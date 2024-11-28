@@ -15,3 +15,11 @@ export type ValidatorFunction = (o: object) => boolean;
 export type Wrapper = (
   validator: ValidatorFunction
 ) => (value: object) => boolean;
+
+export type HandlerReturnType = {
+  recipientEmailAddress: string;
+  templateId: string;
+  templateData: Record<string, any>;
+  preSuccessMessage: string;
+  successMessage: string;
+};

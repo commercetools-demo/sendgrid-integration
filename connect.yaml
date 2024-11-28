@@ -2,10 +2,35 @@ deployAs:
   - name: mail-sender
     applicationType: event
     endpoint: /mail-sender
+    scripts:
+      postDeploy: npm install && npm run connector:post-deploy
+      preUndeploy: npm install && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
         - key: CTP_REGION
           description: commercetools Composable Commerce API region
+        - key: CTP_PROJECT_KEY
+          description: commercetools Composable Commerce project key
+        - key: CTP_CLIENT_ID
+          description: commercetools Composable Commerce client ID
+        - key: CTP_SCOPE
+          description: commercetools Composable Commerce client scope
+        - key: SENDER_EMAIL_ADDRESS
+          description: sender's email address displayed in the email
+        - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
+          description: Identifier of customer registration email template stored in email service provider
+        - key: CUSTOMER_EMAIL_TOKEN_CREATION_TEMPLATE_ID
+          description: Identifier of email token creation email template stored in email service provider
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
+          description: Identifier of password token creation email template stored in email service provider
+        - key: ORDER_CONFIRMATION_TEMPLATE_ID
+          description: Identifier of order confirmation email template stored in email service provider
+        - key: ORDER_STATE_CHANGE_TEMPLATE_ID
+          description: Identifier of order state change / shipment state change email template stored in email service provider
+        - key: ORDER_REFUND_TEMPLATE_ID
+          description: Identifier of order refund email template stored in email service provider
       securedConfiguration:
         - key: CTP_CLIENT_SECRET
           description: commercetools Composable Commerce client secret
+        - key: EMAIL_PROVIDER_API_KEY
+          description: The API key used to communicate with email provider

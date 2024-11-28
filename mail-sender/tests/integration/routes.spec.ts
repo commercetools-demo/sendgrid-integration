@@ -17,16 +17,17 @@ describe('Testing router', () => {
     });
   });
   test('Post invalid body', async () => {
-    const response = await request(app).post('/event').send({
+    const response = await request(app).post('/mail-sender').send({
       message: 'hello world',
     });
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
-      message: 'Bad request: No customer id in the Pub/Sub message',
+      message:
+        'Bad request: Wrong No Pub/Sub message format - Missing data in body message',
     });
   });
   test('Post empty body', async () => {
-    const response = await request(app).post('/event');
+    const response = await request(app).post('/mail-sender');
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
       message: 'Bad request: Wrong No Pub/Sub message format',
@@ -50,7 +51,7 @@ describe('unexpected error', () => {
   });
   test('should handle errors thrown by post method', async () => {
     // Call the route handler
-    const response = await request(app).post('/event');
+    const response = await request(app).post('/mail-sender');
     expect(response.status).toBe(500);
     expect(response.body).toEqual({ message: 'Internal server error' });
   });
