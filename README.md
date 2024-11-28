@@ -86,13 +86,13 @@ deployAs:
           description: Identifier of order refund email template stored in email service provider
         - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
           description: Identifier of password token creation email template stored in email service provider
+        - key: DEFAULT_LOCALE
+          description: Default Locale used to localize e.g. dates and prices        
       securedConfiguration:
         - key: CTP_CLIENT_SECRET
           description: commercetools Composable Commerce client secret
         - key: EMAIL_PROVIDER_API_KEY
           description: The API key used to communicate with email provider
-
-
 ```
 
 Here you can see the details about various variables in configuration
@@ -107,3 +107,5 @@ Here you can see the details about various variables in configuration
 - ORDER_CONFIRMATION_TEMPLATE_ID: It defines the key or identifier of order confirmation email template stored in email service provider.
 - ORDER_STATE_CHANGE_TEMPLATE_ID: It defines the key or identifier of order/shipment state change email template stored in email service provider.
 - ORDER_REFUND_TEMPLATE_ID: It defines the key or identifier of order refund email template stored in email service provider.
+- CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID: It defines the key or identifier of password token creation email template stored in email service provider.
+- DEFAULT_LOCALE: Default Locale used to localize e.g. dates and prices

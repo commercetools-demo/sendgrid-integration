@@ -9,8 +9,9 @@ import { getOrderById } from '../ctp/order';
 import { getCustomerById } from '../ctp/customer';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
+import { findLocale } from '../utils/customer.utils';
+import { convertDateToText } from '../utils/date.utils';
 
-const DEFAULT_LOCALE = 'en-US';
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
 export const handleOrderStateChanged = async (
@@ -35,16 +36,23 @@ export const handleOrderStateChanged = async (
 
     for (const lineItem of order.lineItems) {
       const item = {
-        productName: lineItem.name[order.locale || DEFAULT_LOCALE],
+        productName: lineItem.name[findLocale(customer)],
         productQuantity: lineItem.quantity,
         productSku: lineItem.variant.sku,
         productImage: lineItem.variant.images
           ? lineItem.variant.images[0].url
           : '',
-        productSubTotal: convertMoneyToText(lineItem.totalPrice, order.locale),
+        productSubTotal: convertMoneyToText(
+          lineItem.totalPrice,
+          findLocale(customer)
+        ),
       };
       orderLineItems.push(item);
     }
+    const dateAndTime = convertDateToText(
+      order.createdAt,
+      findLocale(customer)
+    );
     const orderDetails = {
       orderNumber: order.orderNumber ? order.orderNumber : '',
       customerEmail: order.customerEmail ? order.customerEmail : customer.email,
@@ -53,12 +61,16 @@ export const handleOrderStateChanged = async (
         : DEFAULT_CUSTOMER_NAME,
       customerMiddleName: customer?.middleName ? customer.middleName : '',
       customerLastName: customer?.lastName ? customer.lastName : '',
-      orderCreationTime: order.createdAt,
+      orderCreationTime: dateAndTime.time,
+      orderCreationDate: dateAndTime.date,
       orderState: order.orderState,
       orderShipmentState: order.shipmentState,
-      orderTotalPrice: convertMoneyToText(order.totalPrice, order.locale),
+      orderTotalPrice: convertMoneyToText(
+        order.totalPrice,
+        findLocale(customer)
+      ),
       orderTaxedPrice: order.taxedPrice
-        ? convertMoneyToText(order.taxedPrice.totalNet, order.locale)
+        ? convertMoneyToText(order.taxedPrice.totalNet, findLocale(customer))
         : '',
       orderLineItems,
     };

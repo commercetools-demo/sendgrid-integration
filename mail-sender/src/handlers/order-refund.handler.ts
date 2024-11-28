@@ -11,8 +11,9 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { getCustomerById } from '../ctp/customer';
 import { getOrderById } from '../ctp/order';
 import { HandlerReturnType } from '../types/index.types';
+import { findLocale } from '../utils/customer.utils';
+import { convertDateToText } from '../utils/date.utils';
 
-const DEFAULT_LOCALE = 'en-US';
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
 const buildOrderDetails = (
@@ -20,6 +21,7 @@ const buildOrderDetails = (
   customer: Customer,
   returnedLineItems: Array<any>
 ) => {
+  const dateAndTime = convertDateToText(order.createdAt, findLocale(customer));
   return {
     orderNumber: order.orderNumber ? order.orderNumber : '',
     customerEmail: order.customerEmail ? order.customerEmail : customer.email,
@@ -28,12 +30,13 @@ const buildOrderDetails = (
       : DEFAULT_CUSTOMER_NAME,
     customerMiddleName: customer?.middleName ? customer.middleName : '',
     customerLastName: customer?.lastName ? customer.lastName : '',
-    orderCreationTime: order.createdAt,
+    orderCreationTime: dateAndTime.time,
+    orderCreationDate: dateAndTime.date,
     orderState: order.orderState,
     orderShipmentState: order.shipmentState,
-    orderTotalPrice: convertMoneyToText(order.totalPrice, order.locale),
+    orderTotalPrice: convertMoneyToText(order.totalPrice, findLocale(customer)),
     orderTaxedPrice: order.taxedPrice
-      ? convertMoneyToText(order.taxedPrice.totalNet, order.locale)
+      ? convertMoneyToText(order.taxedPrice.totalNet, findLocale(customer))
       : '',
     orderLineItems: returnedLineItems,
   };
@@ -67,7 +70,7 @@ export const handleReturnInfo = async (
       if (returnedLineItemId.includes(lineItem.id)) {
         // Rule out those line items which are not going to be returned.
         const item = {
-          productName: lineItem.name[DEFAULT_LOCALE],
+          productName: lineItem.name[findLocale(customer)],
           productQuantity: lineItem.quantity,
           productSku: lineItem.variant.sku,
           productImage: lineItem.variant.images
@@ -75,7 +78,7 @@ export const handleReturnInfo = async (
             : '',
           productSubTotal: convertMoneyToText(
             lineItem.totalPrice,
-            order.locale
+            findLocale(customer)
           ),
         };
         returnedLineItems.push(item);

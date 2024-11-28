@@ -25,7 +25,7 @@ describe('Testing Order Refund', () => {
 
     const result = await handleReturnInfo(orderStateChangedMessage);
 
-    expect(result.recipientEmailAddress).not.toBe(undefined);
+    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
     expect(result.templateId).toEqual(
       readAdditionalConfiguration().orderRefundTemplateId
     );

@@ -16,6 +16,7 @@ describe('real live test', () => {
       isEmailVerified: false,
       lastModifiedAt: faker.date.past().toISOString(),
       version: faker.number.int(),
+      stores: [],
     };
     const customerCreatedMessage: CustomerCreatedMessage = {
       createdAt: faker.date.past().toISOString(),

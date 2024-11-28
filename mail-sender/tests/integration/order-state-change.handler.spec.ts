@@ -23,7 +23,7 @@ describe('Testing Order State Changed', () => {
 
     const result = await handleOrderStateChanged(orderStateChangedMessage);
 
-    expect(result.recipientEmailAddress).not.toBe(undefined);
+    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
     expect(result.templateId).toEqual(
       readAdditionalConfiguration().orderStateChangeTemplateId
     );

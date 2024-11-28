@@ -3,8 +3,7 @@ import { generatePasswordResetToken, getCustomerById } from '../ctp/customer';
 import { HandlerReturnType } from '../types/index.types';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import CustomError from '../errors/custom.error';
-
-const DEFAULT_LOCALE = 'US';
+import { findLocale } from '../utils/customer.utils';
 
 export const handleCustomerPasswordTokenCreated = async (
   messageBody: CustomerPasswordTokenCreatedMessage
@@ -14,6 +13,7 @@ export const handleCustomerPasswordTokenCreated = async (
 
   const customerId = messageBody.customerId;
   const customer = await getCustomerById(customerId);
+  customer.addresses[0].country;
   const generateTokenResult = await generatePasswordResetToken(customer.email);
   const date = new Date(generateTokenResult.expiresAt);
 
@@ -27,10 +27,10 @@ export const handleCustomerPasswordTokenCreated = async (
       customerCreationTime: customer.createdAt,
       customerPasswordToken: generateTokenResult.value,
       customerPasswordTokenValidityDate: date.toLocaleDateString(
-        customer.locale || DEFAULT_LOCALE
+        findLocale(customer)
       ),
       customerPasswordTokenValidityTime: date.toLocaleTimeString(
-        customer.locale || DEFAULT_LOCALE
+        findLocale(customer)
       ),
     };
 

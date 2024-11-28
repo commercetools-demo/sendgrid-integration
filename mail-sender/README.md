@@ -64,7 +64,8 @@ Order Confirmation
 |   customerFirstName                        |   First name of the customer                                                                      |
 |   customerMiddleName                       |   Middle name of the customer                                                                     |
 |   customerLastName                         |   Last name of the customer                                                                       |
-|   orderCreationTime                        |   Date and time of the order creation                                                             |
+|   orderCreationTime                        |   Time of the order creation                                                                      |
+|   orderCreationDate                        |   Date of the order creation                                                                      |
 |   orderTotalPrice                          |   The total price of the order                                                                    |
 |   orderTaxedPrice                          |   The price of the order after the tax calculation                                                |
 |   orderLineItems                           |   A list of line items included in the specific order                                             |
@@ -88,7 +89,8 @@ Order/Shipment State Change
 |   customerFirstName                       |   First name of the customer                                                                      |
 |   customerMiddleName                      |   Middle name of the customer                                                                     |
 |   customerLastName                        |   Last name of the customer                                                                       |
-|   orderCreationTime                       |   Date and time of the order creation                                                             |
+|   orderCreationTime                       |   Time of the order creation                                                                      |
+|   orderCreationDate                       |   Date of the order creation                                                                      |
 |   orderState                              |   Current state of the order                                                                      |
 |   orderShipmentState                      |   Current state of the shipment                                                                   |
 |   orderTotalPrice                         |   The total price of the order                                                                    |
@@ -112,7 +114,8 @@ Order Refund
 |   customerFirstName                        |   First name of the customer                                                                  |
 |   customerMiddleName                       |   Middle name of the customer                                                                 |
 |   customerLastName                         |   Last name of the customer                                                                   |
-|   orderCreationTime                        |   Date and time of the order creation                                                         |
+|   orderCreationTime                        |   Time of the order creation                                                                  |
+|   orderCreationDate                        |   Date of the order creation                                                                  |
 |   orderTotalPrice                          |   The total price of the order                                                                |
 |   orderTaxedPrice                          |   The price of the order after the tax calculation                                            |
 |   orderLineItems                           |   A list of line items included in the specific order which is going to be returned           |

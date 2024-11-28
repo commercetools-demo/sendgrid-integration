@@ -29,7 +29,7 @@ describe('Testing Order Confirmation', () => {
 
     const result = await handleOrderCreatedMessage(orderCreatedMessage);
 
-    expect(result.recipientEmailAddress).not.toBe(undefined);
+    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
     expect(result.templateId).toEqual(
       readAdditionalConfiguration().orderConfirmationTemplateId
     );

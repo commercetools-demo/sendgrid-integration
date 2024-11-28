@@ -44,6 +44,7 @@ export const readAdditionalConfiguration = () => {
     emailProviderApiKey: process.env.EMAIL_PROVIDER_API_KEY as string,
     customerPasswordTokenCreationTemplateId: process.env
       .CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID as string,
+    defaultLocale: process.env.DEFAULT_LOCALE as string,
   };
 
   const validationErrors = getValidateMessages(

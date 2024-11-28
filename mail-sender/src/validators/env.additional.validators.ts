@@ -73,6 +73,15 @@ const envAdditionalConfigValidators = [
     },
     { min: 2, max: undefined }
   ),
+  standardString(
+    ['defaultLocale'],
+    {
+      code: 'InvalidDefaultLocale',
+      message: 'defaultLocale should be a valid string.',
+      referencedBy: 'environmentVariables',
+    },
+    { min: 2, max: undefined }
+  ),
 ];
 
 export default envAdditionalConfigValidators;
