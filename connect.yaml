@@ -1,0 +1,11 @@
+deployAs:
+  - name: mail-sender
+    applicationType: event
+    endpoint: /mail-sender
+    configuration:
+      standardConfiguration:
+        - key: CTP_REGION
+          description: commercetools Composable Commerce API region
+      securedConfiguration:
+        - key: CTP_CLIENT_SECRET
+          description: commercetools Composable Commerce client secret
