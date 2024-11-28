@@ -55,6 +55,16 @@ const envAdditionalConfigValidators = [
   ),
 
   standardString(
+    ['customerPasswordTokenCreationTemplateId'],
+    {
+      code: 'InvalidCustomerPasswordTokenCreationTemplateId',
+      message: 'customerPasswordTokenCreationTemplateId needs to be defined.',
+      referencedBy: 'environmentVariables',
+    },
+    { min: 2, max: undefined }
+  ),
+
+  standardString(
     ['emailProviderApiKey'],
     {
       code: 'InvalidEmailProviderApiKey',

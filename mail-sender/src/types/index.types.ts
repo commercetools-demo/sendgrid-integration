@@ -17,7 +17,7 @@ export type Wrapper = (
 ) => (value: object) => boolean;
 
 export type HandlerReturnType = {
-  recipientEmailAddress: string;
+  recipientEmailAddresses: Array<string>;
   templateId: string;
   templateData: Record<string, any>;
   preSuccessMessage: string;

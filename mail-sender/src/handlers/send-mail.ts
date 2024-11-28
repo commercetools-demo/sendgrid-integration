@@ -14,7 +14,7 @@ export const sendMail = async (
       from: senderEmailAddress,
       personalizations: [
         {
-          to: [data.recipientEmailAddress],
+          to: data.recipientEmailAddresses,
           dynamicTemplateData: data.templateData,
         },
       ],

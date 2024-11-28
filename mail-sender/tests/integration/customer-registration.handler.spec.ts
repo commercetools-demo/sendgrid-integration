@@ -24,7 +24,7 @@ describe('Testing Customer Registration', () => {
     };
 
     const result = await handleCustomerCreated(customerCreatedMessage);
-    expect(result.recipientEmailAddress).toEqual(customer.email);
+    expect(result.recipientEmailAddresses[0]).toEqual(customer.email);
     expect(result.templateId).toEqual(
       readAdditionalConfiguration().customerRegistrationTemplateId
     );

@@ -7,6 +7,7 @@ import { handleReturnInfo } from '../handlers/order-refund.handler';
 import { handleCustomerCreated } from '../handlers/customer-registration.handler';
 import { sendMail } from '../handlers/send-mail';
 import { readAdditionalConfiguration } from '../utils/config.utils';
+import { handleCustomerPasswordTokenCreated } from '../handlers/customer-password-token-creation.handler';
 
 /**
  * Exposed event POST endpoint.
@@ -27,17 +28,21 @@ export const post = async (request: Request, response: Response) => {
         break;
       }
       case 'OrderCreated': {
-        await handleOrderCreatedMessage(messageBody);
+        emailData = await handleOrderCreatedMessage(messageBody);
         break;
       }
       case 'OrderStateChanged':
       case 'OrderShipmentStateChanged': {
-        await handleOrderStateChanged(messageBody);
+        emailData = await handleOrderStateChanged(messageBody);
         break;
       }
       case 'ReturnInfoAdded':
       case 'ReturnInfoSet': {
-        await handleReturnInfo(messageBody);
+        emailData = await handleReturnInfo(messageBody);
+        break;
+      }
+      case 'CustomerPasswordTokenCreated': {
+        emailData = await handleCustomerPasswordTokenCreated(messageBody);
         break;
       }
     }

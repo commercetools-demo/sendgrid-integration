@@ -19,3 +19,12 @@ export const createTokenForVerification = async (customerId: string) => {
     .execute()
     .then((response) => response.body);
 };
+
+export const generatePasswordResetToken = async (email: string) => {
+  return await createApiRoot()
+    .customers()
+    .passwordToken()
+    .post({ body: { email: email, ttlMinutes: 34560 } })
+    .execute()
+    .then((response) => response.body);
+};

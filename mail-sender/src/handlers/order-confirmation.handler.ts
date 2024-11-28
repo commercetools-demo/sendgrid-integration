@@ -4,13 +4,14 @@ import { convertMoneyToText } from '../utils/money.utils';
 import { OrderCreatedMessage } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { getCustomerById } from '../ctp/customer';
+import { HandlerReturnType } from '../types/index.types';
 
 const DEFAULT_LOCALE = 'en-US';
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
 export const handleOrderCreatedMessage = async (
   messageBody: OrderCreatedMessage
-) => {
+): Promise<HandlerReturnType> => {
   const { orderConfirmationTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
@@ -60,7 +61,7 @@ export const handleOrderCreatedMessage = async (
     };
 
     return {
-      recipientEmailAddress: orderDetails.customerEmail,
+      recipientEmailAddresses: [orderDetails.customerEmail],
       templateId: orderConfirmationTemplateId,
       templateData: orderDetails,
       successMessage: `Confirmation email of customer registration has been sent to ${orderDetails.customerEmail}.`,

@@ -8,13 +8,14 @@ import {
 import { getOrderById } from '../ctp/order';
 import { getCustomerById } from '../ctp/customer';
 import { readAdditionalConfiguration } from '../utils/config.utils';
+import { HandlerReturnType } from '../types/index.types';
 
 const DEFAULT_LOCALE = 'en-US';
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
 export const handleOrderStateChanged = async (
   messageBody: OrderStateChangedMessage | OrderShipmentStateChangedMessage
-) => {
+): Promise<HandlerReturnType> => {
   const { orderStateChangeTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
@@ -63,7 +64,7 @@ export const handleOrderStateChanged = async (
     };
 
     return {
-      recipientEmailAddress: orderDetails.customerEmail,
+      recipientEmailAddresses: [orderDetails.customerEmail],
       templateId: orderStateChangeTemplateId,
       templateData: orderDetails,
       successMessage: `Order state change email has been sent to ${orderDetails.customerEmail}.`,

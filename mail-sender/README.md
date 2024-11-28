@@ -35,6 +35,24 @@ Customer Registration
 └-------------------------------------------------------------------------------------------┘
 ```
 
+Password Reset Token Creation
+``` 
+┌----------------------------------------------------------------------------------------------------┐
+|   Parameters                           |   Description                                             |
+|----------------------------------------|-----------------------------------------------------------|
+|   customerEmail                        |   Recipient email address                                 |
+|   customerNumber                       |   Customer number defined in commercetools platform       |
+|   customerFirstName                    |   First name of the customer                              |
+|   customerMiddleName                   |   Middle name of the customer                             |
+|   customerLastName                     |   Last name of the customer                               |
+|   customerCreationTime                 |   Date and time of the email token generation             |
+|   customerPasswordToken                |   The token generated for password reset purpose          |
+|   customerPasswordTokenValidityDate    |   The validity of the password reset token as date        |
+|   customerPasswordTokenValidityTime    |   The validity of the password reset token as time        |
+└----------------------------------------------------------------------------------------------------┘ 
+```
+
+
 
 Order Confirmation 
 ``` 

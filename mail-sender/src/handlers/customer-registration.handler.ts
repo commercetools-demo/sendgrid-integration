@@ -9,7 +9,7 @@ export const handleCustomerCreated = async (
   const { customerRegistrationTemplateId } = readAdditionalConfiguration();
 
   const customer = messageBody.customer;
-  const customerDetails: Record<string, any> = {
+  const customerDetails: HandlerReturnType['templateData'] = {
     customerEmail: customer.email,
     customerNumber: customer.customerNumber || '',
     customerFirstName: customer.firstName || '',
@@ -22,7 +22,7 @@ export const handleCustomerCreated = async (
   }
 
   return {
-    recipientEmailAddress: customerDetails.customerEmail,
+    recipientEmailAddresses: [customerDetails.customerEmail],
     templateId: customerRegistrationTemplateId,
     templateData: customerDetails,
     successMessage: `Confirmation email of customer registration has been sent to ${customerDetails.customerEmail}.`,

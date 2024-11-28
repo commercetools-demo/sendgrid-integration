@@ -19,6 +19,7 @@ Users are expected to create API client responsible for fetching customer and or
 - Users are expected to create api clients/ keys in Sendgrid. Those details are taken as input as an environment variable / configuration for connect. API token to external email service provider can be provided as environment variables (configuration for connect) `EMAIL_PROVIDER_API_KEY`. For details, please read [Deployment Configuration](./README.md#deployment-configuration).
 - In additions, users are expected to create their own email template on the platform of email service provider for following operations :
 1. Customer Registration
+2. Password Reset Token Generation
 4. Order Confirmation
 5. Order/Shipment State Update
 6. Order Refund
@@ -83,11 +84,14 @@ deployAs:
           description: Identifier of order state change / shipment state change email template stored in email service provider
         - key: ORDER_REFUND_TEMPLATE_ID
           description: Identifier of order refund email template stored in email service provider
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
+          description: Identifier of password token creation email template stored in email service provider
       securedConfiguration:
         - key: CTP_CLIENT_SECRET
           description: commercetools Composable Commerce client secret
         - key: EMAIL_PROVIDER_API_KEY
           description: The API key used to communicate with email provider
+
 
 ```
 

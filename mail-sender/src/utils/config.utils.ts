@@ -42,6 +42,8 @@ export const readAdditionalConfiguration = () => {
       .ORDER_STATE_CHANGE_TEMPLATE_ID as string,
     orderRefundTemplateId: process.env.ORDER_REFUND_TEMPLATE_ID as string,
     emailProviderApiKey: process.env.EMAIL_PROVIDER_API_KEY as string,
+    customerPasswordTokenCreationTemplateId: process.env
+      .CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID as string,
   };
 
   const validationErrors = getValidateMessages(
