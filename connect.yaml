@@ -36,13 +36,13 @@ deployAs:
           description: Identifier of order confirmation email template stored in email service provider
           required: true
         - key: ORDER_STATE_CHANGE_TEMPLATE_ID
-          description: Identifier of order state change or shipment state change email
+          description: Identifier of order state change or shipment state change email template stored in email service provider
           required: true
         - key: ORDER_REFUND_TEMPLATE_ID
           description: Identifier of order refund email template stored in email service provider
           required: true
-        - key: CUSTOMER_PASSWORD
-          description: Identifier
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION
+          description: Identifier of password token creation email template stored in email service provider
           required: true
         - key: DEFAULT_LOCALE
           description: Default Locale used to localize e.g. dates and prices
