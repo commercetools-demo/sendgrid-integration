@@ -26,9 +26,6 @@ deployAs:
         - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
           description: Identifier of customer registration email template stored in email service provider
           required: true
-        - key: CUSTOMER_EMAIL_TOKEN_CREATION_TEMPLATE_ID
-          description: Identifier of email token creation email template stored in email service provider
-          required: true
         - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
           description: Identifier of password token creation email template stored in email service provider
           required: true
@@ -40,9 +37,6 @@ deployAs:
           required: true
         - key: ORDER_REFUND_TEMPLATE_ID
           description: Identifier of order refund email template stored in email service provider
-          required: true
-        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
-          description: Identifier of password token creation email template stored in email service provider
           required: true
         - key: DEFAULT_LOCALE
           description: Default Locale used to localize e.g. dates and prices
