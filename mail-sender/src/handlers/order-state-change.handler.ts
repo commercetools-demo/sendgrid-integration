@@ -11,6 +11,7 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
+import { orderDefaults } from '../utils/order-details.utils';
 
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
@@ -49,20 +50,8 @@ export const handleOrderStateChanged = async (
       };
       orderLineItems.push(item);
     }
-    const dateAndTime = convertDateToText(
-      order.createdAt,
-      findLocale(customer)
-    );
     const orderDetails = {
-      orderNumber: order.orderNumber || '',
-      customerEmail: order.customerEmail || '',
-      customerFirstName: customer?.firstName
-        ? customer.firstName
-        : DEFAULT_CUSTOMER_NAME,
-      customerMiddleName: customer?.middleName || '',
-      customerLastName: customer?.lastName || '',
-      orderCreationTime: dateAndTime.time,
-      orderCreationDate: dateAndTime.date,
+      ...orderDefaults(order, customer),
       orderState: order.orderState,
       orderShipmentState: order.shipmentState,
       orderTotalPrice: convertMoneyToText(

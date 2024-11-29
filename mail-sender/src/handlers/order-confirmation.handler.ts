@@ -7,8 +7,7 @@ import { getCustomerById } from '../ctp/customer';
 import { HandlerReturnType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
-
-const DEFAULT_CUSTOMER_NAME = 'Customer';
+import { orderDefaults } from '../utils/order-details.utils';
 
 export const handleOrderCreatedMessage = async (
   messageBody: OrderCreatedMessage
@@ -46,22 +45,8 @@ export const handleOrderCreatedMessage = async (
       };
       orderLineItems.push(item);
     }
-    const dateAndTime = convertDateToText(
-      order.createdAt,
-      findLocale(customer)
-    );
     const orderDetails = {
-      orderNumber: order.orderNumber || '',
-      customerEmail: order.customerEmail
-        ? order.customerEmail
-        : customer?.email,
-      customerFirstName: customer?.firstName
-        ? customer.firstName
-        : DEFAULT_CUSTOMER_NAME,
-      customerMiddleName: customer?.middleName || '',
-      customerLastName: customer?.lastName || '',
-      orderCreationTime: dateAndTime.time,
-      orderCreationDate: dateAndTime.date,
+      ...orderDefaults(order, customer),
       orderTotalPrice: convertMoneyToText(
         order.totalPrice,
         findLocale(customer)

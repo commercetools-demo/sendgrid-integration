@@ -13,27 +13,16 @@ import { getCustomerById } from '../ctp/customer';
 import { getOrderById } from '../ctp/order';
 import { HandlerReturnType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
-import { convertDateToText } from '../utils/date.utils';
 import { logger } from '../utils/logger.utils';
-
-const DEFAULT_CUSTOMER_NAME = 'Customer';
+import { orderDefaults } from '../utils/order-details.utils';
 
 const buildOrderDetails = (
   order: Order,
   customer: Customer,
   returnedLineItems: Array<any>
 ) => {
-  const dateAndTime = convertDateToText(order.createdAt, findLocale(customer));
   return {
-    orderNumber: order.orderNumber || '',
-    customerEmail: order.customerEmail ? order.customerEmail : customer.email,
-    customerFirstName: customer?.firstName
-      ? customer.firstName
-      : DEFAULT_CUSTOMER_NAME,
-    customerMiddleName: customer?.middleName || '',
-    customerLastName: customer?.lastName || '',
-    orderCreationTime: dateAndTime.time,
-    orderCreationDate: dateAndTime.date,
+    ...orderDefaults(order, customer),
     orderState: order.orderState,
     orderShipmentState: order.shipmentState,
     orderTotalPrice: convertMoneyToText(order.totalPrice, findLocale(customer)),
@@ -42,6 +31,48 @@ const buildOrderDetails = (
       : '',
     orderLineItems: returnedLineItems,
   };
+};
+
+const retrieveLineitemToReturn = (
+  returnInfo: Array<ReturnInfo> | ReturnInfo,
+  order: Order,
+  customer: Customer
+) => {
+  let returnInfos: Array<ReturnInfo> = [];
+  if (Array.isArray(returnInfo)) {
+    returnInfos = returnInfo;
+  } else {
+    returnInfos = [returnInfo];
+  }
+
+  const returnedLineItemId = returnInfos
+    .flatMap((returnInfo) => returnInfo.items)
+    .map((item) => {
+      return 'lineItemId' in item ? item.lineItemId : '';
+    });
+
+  const returnedLineItems = [];
+
+  for (const lineItem of order.lineItems) {
+    if (returnedLineItemId.includes(lineItem.id)) {
+      // Rule out those line items which are not going to be returned.
+      const item = {
+        productName: lineItem.name[findLocale(customer)],
+        productQuantity: lineItem.quantity,
+        productSku: lineItem.variant.sku,
+        productImage: lineItem.variant.images
+          ? lineItem.variant.images[0].url
+          : '',
+        productSubTotal: convertMoneyToText(
+          lineItem.totalPrice,
+          findLocale(customer)
+        ),
+      };
+      returnedLineItems.push(item);
+    }
+  }
+
+  return returnedLineItems;
 };
 
 export const handleReturnInfo = async (
@@ -66,38 +97,11 @@ export const handleReturnInfo = async (
       return undefined;
     }
 
-    let returnInfo: Array<ReturnInfo> = [];
-    if (Array.isArray(messageBody.returnInfo)) {
-      returnInfo = messageBody.returnInfo;
-    } else {
-      returnInfo = [messageBody.returnInfo];
-    }
-
-    const returnedLineItemId = returnInfo
-      .flatMap((returnInfo) => returnInfo.items)
-      .map((item) => {
-        return 'lineItemId' in item ? item.lineItemId : '';
-      });
-    const returnedLineItems = [];
-
-    for (const lineItem of order.lineItems) {
-      if (returnedLineItemId.includes(lineItem.id)) {
-        // Rule out those line items which are not going to be returned.
-        const item = {
-          productName: lineItem.name[findLocale(customer)],
-          productQuantity: lineItem.quantity,
-          productSku: lineItem.variant.sku,
-          productImage: lineItem.variant.images
-            ? lineItem.variant.images[0].url
-            : '',
-          productSubTotal: convertMoneyToText(
-            lineItem.totalPrice,
-            findLocale(customer)
-          ),
-        };
-        returnedLineItems.push(item);
-      }
-    }
+    const returnedLineItems = retrieveLineitemToReturn(
+      messageBody.returnInfo,
+      order,
+      customer
+    );
     if (returnedLineItems.length > 0) {
       const orderDetails = buildOrderDetails(
         order,

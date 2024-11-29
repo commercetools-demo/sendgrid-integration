@@ -11,6 +11,8 @@ import { readConfiguration } from './utils/config.utils';
 import { errorMiddleware } from './middleware/error.middleware';
 import CustomError from './errors/custom.error';
 
+export const EVENT_ROUTE = '/mailSender';
+
 // Read env variables
 readConfiguration();
 
@@ -23,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define routes
-app.use('/mailSender', EventRoutes);
+app.use(EVENT_ROUTE, EventRoutes);
 app.use('*', () => {
   throw new CustomError(404, 'Path not found.');
 });
