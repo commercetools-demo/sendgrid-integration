@@ -2,6 +2,8 @@ import { CustomerCreatedMessage } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
 import { createTokenForVerification } from '../ctp/customer';
+import { convertDateToText } from '../utils/date.utils';
+import { findLocale } from '../utils/customer.utils';
 
 export const handleCustomerCreated = async (
   messageBody: CustomerCreatedMessage
@@ -9,13 +11,15 @@ export const handleCustomerCreated = async (
   const { customerRegistrationTemplateId } = readAdditionalConfiguration();
 
   const customer = messageBody.customer;
+  const createdAt = convertDateToText(customer.createdAt, findLocale(customer));
   const customerDetails: HandlerReturnType['templateData'] = {
     customerEmail: customer.email,
     customerNumber: customer.customerNumber || '',
     customerFirstName: customer.firstName || '',
     customerMiddleName: customer.middleName || '',
     customerLastName: customer.lastName || '',
-    customerCreationTime: customer.createdAt,
+    customerCreationDate: createdAt.date,
+    customerCreationTime: createdAt.time,
   };
   if (!customer.isEmailVerified) {
     customerDetails['token'] = await createTokenForVerification(customer.id);

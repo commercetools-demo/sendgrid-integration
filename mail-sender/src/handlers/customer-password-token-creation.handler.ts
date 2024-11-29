@@ -4,6 +4,7 @@ import { HandlerReturnType } from '../types/index.types';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import CustomError from '../errors/custom.error';
 import { findLocale } from '../utils/customer.utils';
+import { convertDateToText } from '../utils/date.utils';
 
 export const handleCustomerPasswordTokenCreated = async (
   messageBody: CustomerPasswordTokenCreatedMessage
@@ -15,23 +16,28 @@ export const handleCustomerPasswordTokenCreated = async (
   const customer = await getCustomerById(customerId);
   customer.addresses[0].country;
   const generateTokenResult = await generatePasswordResetToken(customer.email);
-  const date = new Date(generateTokenResult.expiresAt);
 
   if (generateTokenResult) {
+    const createdAt = convertDateToText(
+      customer.createdAt,
+      findLocale(customer)
+    );
+
+    const tokenExpiresAt = convertDateToText(
+      generateTokenResult.expiresAt,
+      findLocale(customer)
+    );
     const customerDetails = {
       customerEmail: customer.email,
-      customerNumber: customer.customerNumber ? customer.customerNumber : '',
-      customerFirstName: customer.firstName ? customer.firstName : '',
-      customerMiddleName: customer.middleName ? customer.middleName : '',
-      customerLastName: customer.lastName ? customer.lastName : '',
-      customerCreationTime: customer.createdAt,
+      customerNumber: customer.customerNumber || '',
+      customerFirstName: customer.firstName || '',
+      customerMiddleName: customer.middleName || '',
+      customerLastName: customer.lastName || '',
+      customerCreationDate: createdAt.date,
+      customerCreationTime: createdAt.time,
       customerPasswordToken: generateTokenResult.value,
-      customerPasswordTokenValidityDate: date.toLocaleDateString(
-        findLocale(customer)
-      ),
-      customerPasswordTokenValidityTime: date.toLocaleTimeString(
-        findLocale(customer)
-      ),
+      customerPasswordTokenValidityDate: tokenExpiresAt.date,
+      customerPasswordTokenValidityTime: tokenExpiresAt.time,
     };
 
     return {

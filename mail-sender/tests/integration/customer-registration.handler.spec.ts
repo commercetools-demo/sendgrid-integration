@@ -35,9 +35,10 @@ describe('Testing Customer Registration', () => {
         customerFirstName: customer.firstName || '',
         customerMiddleName: customer.middleName || '',
         customerLastName: customer.lastName || '',
-        customerCreationTime: customer.createdAt || '',
       })
     );
+    expect(result.templateData['customerCreationTime']).toBeDefined();
+    expect(result.templateData['customerCreationDate']).toBeDefined();
     expect(result.templateData['token']).toBe(undefined);
   });
 

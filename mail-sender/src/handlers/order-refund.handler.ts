@@ -23,13 +23,13 @@ const buildOrderDetails = (
 ) => {
   const dateAndTime = convertDateToText(order.createdAt, findLocale(customer));
   return {
-    orderNumber: order.orderNumber ? order.orderNumber : '',
+    orderNumber: order.orderNumber || '',
     customerEmail: order.customerEmail ? order.customerEmail : customer.email,
     customerFirstName: customer?.firstName
       ? customer.firstName
       : DEFAULT_CUSTOMER_NAME,
-    customerMiddleName: customer?.middleName ? customer.middleName : '',
-    customerLastName: customer?.lastName ? customer.lastName : '',
+    customerMiddleName: customer?.middleName || '',
+    customerLastName: customer?.lastName || '',
     orderCreationTime: dateAndTime.time,
     orderCreationDate: dateAndTime.date,
     orderState: order.orderState,

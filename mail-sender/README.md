@@ -31,7 +31,8 @@ Customer Registration
 |   customerFirstName       |   First name of the customer                                  |
 |   customerMiddleName      |   Middle name of the customer                                 |
 |   customerLastName        |   Last name of the customer                                   |
-|   customerCreationTime    |   Registration date and time of the customer                  |
+|   customerCreationTime    |   Registration time of the customer                           |
+|   customerCreationDate    |   Registration date of the customer                           |
 └-------------------------------------------------------------------------------------------┘
 ```
 
@@ -45,7 +46,8 @@ Password Reset Token Creation
 |   customerFirstName                    |   First name of the customer                              |
 |   customerMiddleName                   |   Middle name of the customer                             |
 |   customerLastName                     |   Last name of the customer                               |
-|   customerCreationTime                 |   Date and time of the email token generation             |
+|   customerCreationDate                 |   Date of the email token generation                      |
+|   customerCreationTime                 |   Time of the email token generation                      |
 |   customerPasswordToken                |   The token generated for password reset purpose          |
 |   customerPasswordTokenValidityDate    |   The validity of the password reset token as date        |
 |   customerPasswordTokenValidityTime    |   The validity of the password reset token as time        |

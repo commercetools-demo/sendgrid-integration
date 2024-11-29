@@ -1,4 +1,6 @@
 import { expect } from '@jest/globals';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import request from 'supertest';
 import app from '../../src/app';
 import * as enventController from '../../src/controllers/event.controller';
