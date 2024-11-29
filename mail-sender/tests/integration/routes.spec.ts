@@ -8,6 +8,10 @@ import {
   readAdditionalConfiguration,
   readConfiguration,
 } from '../../src/utils/config.utils';
+import { OrderCreatedMessage } from '@commercetools/platform-sdk';
+import { faker } from '@faker-js/faker';
+import { Order as CTOrder } from '@commercetools/platform-sdk/dist/declarations/src/generated/models/order';
+import { getOrderById } from '../../src/ctp/order';
 
 jest.mock('../../src/utils/config.utils');
 describe('Testing router', () => {
@@ -23,7 +27,7 @@ describe('Testing router', () => {
     });
   });
   test('Post invalid body', async () => {
-    const response = await request(app).post('/mail-sender').send({
+    const response = await request(app).post('/mailSender').send({
       message: 'hello world',
     });
     expect(response.status).toBe(400);
@@ -33,7 +37,7 @@ describe('Testing router', () => {
     });
   });
   test('Post empty body', async () => {
-    const response = await request(app).post('/mail-sender');
+    const response = await request(app).post('/mailSender');
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
       message: 'Bad request: Wrong No Pub/Sub message format',
@@ -58,7 +62,36 @@ describe('unexpected error', () => {
   });
   test('should handle errors thrown by post method', async () => {
     // Call the route handler
-    const response = await request(app).post('/mail-sender');
+    const response = await request(app).post('/mailSender');
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual({ message: 'Internal server error' });
+  });
+});
+
+describe('debugging', () => {
+  test.skip('should handle errors thrown by post method', async () => {
+    const order = await getOrderById('8326511d-9510-4377-9777-30eb006f8235');
+    const orderCreatedMessage: OrderCreatedMessage = {
+      createdAt: faker.date.past().toISOString(),
+      id: faker.string.uuid(),
+      lastModifiedAt: faker.date.past().toISOString(),
+      resource: { id: order.id, typeId: 'order' },
+      resourceVersion: faker.number.int(),
+      sequenceNumber: faker.number.int(),
+      type: 'OrderCreated',
+      version: faker.number.int(),
+      order: order as any as CTOrder,
+    };
+    // Call the route handler
+    const response = await request(app)
+      .post('/mailSender')
+      .send({
+        message: {
+          data: Buffer.from(JSON.stringify(orderCreatedMessage)).toString(
+            'base64'
+          ),
+        },
+      });
     expect(response.status).toBe(500);
     expect(response.body).toEqual({ message: 'Internal server error' });
   });
