@@ -21,7 +21,7 @@ deployAs:
           description: commercetools Composable Commerce client scope
           required: true
         - key: SENDER_EMAIL_ADDRESS
-          description: sender's email address displayed in the email
+          description: sender email address displayed in the email
           required: true
         - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
           description: Identifier of customer registration email template stored in email service provider
