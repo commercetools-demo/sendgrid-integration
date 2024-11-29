@@ -23,26 +23,26 @@ deployAs:
         - key: SENDER_EMAIL_ADDRESS
           description: sender email address displayed in the email
           required: true
-        - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
+        - key: CUSTOMER_REGISTRATION
           description: Identifier of customer registration email template stored in email service provider
           required: true
-        - key: CUSTOMER_EMAIL_TOKEN_CREATION_TEMPLATE_ID
+        - key: CUSTOMER_EMAIL_TOKEN_CREATION
           description: Identifier of email token creation email template stored in email service provider
           required: true
-        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION
           description: Identifier of password token creation email template stored in email service provider
           required: true
-        - key: ORDER_CONFIRMATION_TEMPLATE_ID
+        - key: ORDER_CONFIRMATION
           description: Identifier of order confirmation email template stored in email service provider
           required: true
-        - key: ORDER_STATE_CHANGE_TEMPLATE_ID
-          description: Identifier of order state change or shipment state change email template stored in email service provider
+        - key: ORDER_STATE_CHANGE
+          description: Identifier of order state change or shipment state change email
           required: true
-        - key: ORDER_REFUND_TEMPLATE_ID
+        - key: ORDER_REFUND
           description: Identifier of order refund email template stored in email service provider
           required: true
-        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
-          description: Identifier of password token creation email template stored in email service provider
+        - key: CUSTOMER_PASSWORD
+          description: Identifier
           required: true
         - key: DEFAULT_LOCALE
           description: Default Locale used to localize e.g. dates and prices
