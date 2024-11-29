@@ -3,19 +3,35 @@ import { faker } from '@faker-js/faker';
 
 import { handleCustomerCreated } from '../../src/handlers/customer-registration.handler';
 import { expect } from '@jest/globals';
-import { readAdditionalConfiguration } from '../../src/utils/config.utils';
+import {
+  readAdditionalConfiguration,
+  readConfiguration,
+} from '../../src/utils/config.utils';
 import { CustomerCreatedMessage } from '@commercetools/platform-sdk';
+import { createApiRoot } from '../../src/client/create.client';
+
+jest.mock('../../src/client/create.client', () => {
+  const mockCreateApiRoot = jest.fn();
+  return {
+    createApiRoot: mockCreateApiRoot,
+  };
+});
+
+jest.mock('../../src/utils/config.utils');
 
 describe('Testing Customer Registration', () => {
-  it('Customer Created', async () => {
-    const customerId = 'f52e4230-a1f9-4f49-b6eb-af33fba3ddad';
+  beforeEach(() => {
+    (readConfiguration as jest.Mock).mockClear();
+    (readAdditionalConfiguration as jest.Mock).mockClear();
+  });
 
+  it('Customer Created', async () => {
     const customer = Customer.random().isEmailVerified(true).build<TCustomer>();
     const customerCreatedMessage: CustomerCreatedMessage = {
       createdAt: faker.date.past().toISOString(),
       id: faker.string.uuid(),
       lastModifiedAt: faker.date.past().toISOString(),
-      resource: { id: customerId, typeId: 'customer' },
+      resource: { id: faker.string.uuid(), typeId: 'customer' },
       resourceVersion: faker.number.int(),
       sequenceNumber: faker.number.int(),
       type: 'CustomerCreated',
@@ -43,12 +59,46 @@ describe('Testing Customer Registration', () => {
   });
 
   it('Verification Token', async () => {
-    const customerId = 'f52e4230-a1f9-4f49-b6eb-af33fba3ddad';
-
+    const customerId = faker.string.uuid();
+    const emailToken = faker.string.sample();
     const customer = Customer.random()
-      .id(customerId)
       .isEmailVerified(false)
       .build<TCustomer>();
+
+    // Define a mock root to be returned
+    const withId = jest.fn().mockReturnValueOnce({
+      get: jest.fn().mockReturnValueOnce({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: customer })),
+      }),
+    });
+    const emailTokenPost = jest.fn().mockReturnValue({
+      execute: jest.fn().mockReturnValueOnce(
+        Promise.resolve({
+          body: {
+            id: faker.string.uuid(),
+            customerId: customerId,
+            value: emailToken,
+            expiresAt: faker.date.future().toISOString(),
+            createdAt: faker.date.past().toISOString(),
+          },
+        })
+      ),
+    });
+    const customerEmailToken = jest.fn().mockReturnValue({
+      post: emailTokenPost,
+    });
+    const mockRoot = {
+      customers: jest.fn().mockReturnValue({
+        withId: withId,
+        emailToken: customerEmailToken,
+      }),
+    };
+
+    // Set the mock implementation for createApiRoot to return mockRoot
+    (createApiRoot as jest.Mock).mockReturnValue(mockRoot);
+
     const customerCreatedMessage: CustomerCreatedMessage = {
       createdAt: faker.date.past().toISOString(),
       id: '',
@@ -62,6 +112,11 @@ describe('Testing Customer Registration', () => {
     };
 
     const result = await handleCustomerCreated(customerCreatedMessage);
-    expect(result.templateData['token']).not.toBe(undefined);
+    expect(emailTokenPost).toBeCalledWith({
+      body: expect.objectContaining({ id: customer.id }),
+    });
+    expect(result.templateData['customerEmailToken']).toEqual(emailToken);
+    expect(result.templateData['customerEmailTokenValidityDate']).toBeDefined();
+    expect(result.templateData['customerEmailTokenValidityTime']).toBeDefined();
   });
 });

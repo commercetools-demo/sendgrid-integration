@@ -14,7 +14,6 @@ export const handleCustomerPasswordTokenCreated = async (
 
   const customerId = messageBody.customerId;
   const customer = await getCustomerById(customerId);
-  customer.addresses[0].country;
   const generateTokenResult = await generatePasswordResetToken(customer.email);
 
   if (generateTokenResult) {

@@ -22,7 +22,14 @@ export const handleCustomerCreated = async (
     customerCreationTime: createdAt.time,
   };
   if (!customer.isEmailVerified) {
-    customerDetails['token'] = await createTokenForVerification(customer.id);
+    const generateTokenResult = await createTokenForVerification(customer.id);
+    const tokenExpiresAt = convertDateToText(
+      generateTokenResult.expiresAt,
+      findLocale(customer)
+    );
+    customerDetails['customerEmailToken'] = generateTokenResult.value;
+    customerDetails['customerEmailTokenValidityDate'] = tokenExpiresAt.date;
+    customerDetails['customerEmailTokenValidityTime'] = tokenExpiresAt.time;
   }
 
   return {

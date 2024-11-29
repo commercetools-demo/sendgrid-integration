@@ -5,15 +5,52 @@ import {
 } from '@commercetools/platform-sdk';
 import { handleOrderCreatedMessage } from '../../src/handlers/order-confirmation.handler';
 import { expect } from '@jest/globals';
-import { readAdditionalConfiguration } from '../../src/utils/config.utils';
+import {
+  readAdditionalConfiguration,
+  readConfiguration,
+} from '../../src/utils/config.utils';
 import { faker } from '@faker-js/faker';
+import { Customer, type TCustomer } from '@commercetools-test-data/customer';
+import { createApiRoot } from '../../src/client/create.client';
+
+jest.mock('../../src/client/create.client', () => {
+  const mockCreateApiRoot = jest.fn();
+  return {
+    createApiRoot: mockCreateApiRoot,
+  };
+});
+
+jest.mock('../../src/utils/config.utils');
 
 describe('Testing Order Confirmation', () => {
-  it('Order Created', async () => {
-    const orderId = '62e10dcc-1c76-4e26-823a-5b3829b8f9f8';
-    const customerId = 'f52e4230-a1f9-4f49-b6eb-af33fba3ddad';
+  beforeEach(() => {
+    (readConfiguration as jest.Mock).mockClear();
+    (readAdditionalConfiguration as jest.Mock).mockClear();
+  });
 
+  it('Order Created', async () => {
+    const orderId = faker.string.uuid();
+    const customerId = faker.string.uuid();
+    const customer = Customer.random().build<TCustomer>();
     const order = Order.random().customerId(customerId).build<TOrder>();
+
+    // Define a mock root to be returned
+    const customersWithId = jest.fn().mockReturnValueOnce({
+      get: jest.fn().mockReturnValueOnce({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: customer })),
+      }),
+    });
+
+    const mockRoot = {
+      customers: jest.fn().mockReturnValue({
+        withId: customersWithId,
+      }),
+    };
+
+    // Set the mock implementation for createApiRoot to return mockRoot
+    (createApiRoot as jest.Mock).mockReturnValue(mockRoot);
 
     const orderCreatedMessage: OrderCreatedMessage = {
       createdAt: faker.date.past().toISOString(),

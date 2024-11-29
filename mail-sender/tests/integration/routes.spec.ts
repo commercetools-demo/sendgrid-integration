@@ -4,12 +4,16 @@ import { expect } from '@jest/globals';
 import request from 'supertest';
 import app from '../../src/app';
 import * as enventController from '../../src/controllers/event.controller';
-import { readConfiguration } from '../../src/utils/config.utils';
+import {
+  readAdditionalConfiguration,
+  readConfiguration,
+} from '../../src/utils/config.utils';
 
 jest.mock('../../src/utils/config.utils');
 describe('Testing router', () => {
   beforeEach(() => {
     (readConfiguration as jest.Mock).mockClear();
+    (readAdditionalConfiguration as jest.Mock).mockClear();
   });
   test('Post to non existing route', async () => {
     const response = await request(app).post('/none');
@@ -45,6 +49,7 @@ describe('unexpected error', () => {
       throw new Error('Test error');
     });
     (readConfiguration as jest.Mock).mockClear();
+    (readAdditionalConfiguration as jest.Mock).mockClear();
   });
 
   afterEach(() => {

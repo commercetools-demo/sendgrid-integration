@@ -6,6 +6,7 @@ import {
   Order,
   ReturnInfoAddedMessage,
   ReturnInfoSetMessage,
+  ReturnInfo,
 } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { getCustomerById } from '../ctp/customer';
@@ -13,6 +14,7 @@ import { getOrderById } from '../ctp/order';
 import { HandlerReturnType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
+import { logger } from '../utils/logger.utils';
 
 const DEFAULT_CUSTOMER_NAME = 'Customer';
 
@@ -44,7 +46,7 @@ const buildOrderDetails = (
 
 export const handleReturnInfo = async (
   messageBody: ReturnInfoAddedMessage | ReturnInfoSetMessage
-): Promise<HandlerReturnType> => {
+): Promise<HandlerReturnType | undefined> => {
   const { orderRefundTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
@@ -59,7 +61,19 @@ export const handleReturnInfo = async (
         `Unable to get customer details with customer ID ${order.customerId}`
       );
     }
-    const returnedLineItemId = (order.returnInfo || [])
+    if (!messageBody.returnInfo) {
+      logger.info(`No returned line item is found for order ${orderId}`);
+      return undefined;
+    }
+
+    let returnInfo: Array<ReturnInfo> = [];
+    if (Array.isArray(messageBody.returnInfo)) {
+      returnInfo = messageBody.returnInfo;
+    } else {
+      returnInfo = [messageBody.returnInfo];
+    }
+
+    const returnedLineItemId = returnInfo
       .flatMap((returnInfo) => returnInfo.items)
       .map((item) => {
         return 'lineItemId' in item ? item.lineItemId : '';
