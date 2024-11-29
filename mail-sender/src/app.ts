@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define routes
-app.use('/mail-sender', EventRoutes);
+app.use('/mailSender', EventRoutes);
 app.use('*', () => {
   throw new CustomError(404, 'Path not found.');
 });
