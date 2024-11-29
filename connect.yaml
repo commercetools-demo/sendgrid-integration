@@ -23,22 +23,22 @@ deployAs:
         - key: SENDER_EMAIL_ADDRESS
           description: sender email address displayed in the email
           required: true
-        - key: CUSTOMER_REGISTRATION
+        - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
           description: Identifier of customer registration email template stored in email service provider
           required: true
-        - key: CUSTOMER_EMAIL_TOKEN_CREATION
+        - key: CUSTOMER_EMAIL_TOKEN_CREATION_TEMPLATE_ID
           description: Identifier of email token creation email template stored in email service provider
           required: true
-        - key: CUSTOMER_PASSWORD_TOKEN_CREATION
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
           description: Identifier of password token creation email template stored in email service provider
           required: true
-        - key: ORDER_CONFIRMATION
+        - key: ORDER_CONFIRMATION_TEMPLATE_ID
           description: Identifier of order confirmation email template stored in email service provider
           required: true
-        - key: ORDER_STATE_CHANGE
+        - key: ORDER_STATE_CHANGE_TEMPLATE_ID
           description: Identifier of order state change or shipment state change email
           required: true
-        - key: ORDER_REFUND
+        - key: ORDER_REFUND_TEMPLATE_ID
           description: Identifier of order refund email template stored in email service provider
           required: true
         - key: CUSTOMER_PASSWORD
