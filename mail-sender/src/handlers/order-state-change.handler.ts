@@ -10,10 +10,7 @@ import { getCustomerById } from '../ctp/customer';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
-import { convertDateToText } from '../utils/date.utils';
 import { orderDefaults } from '../utils/order-details.utils';
-
-const DEFAULT_CUSTOMER_NAME = 'Customer';
 
 export const handleOrderStateChanged = async (
   messageBody: OrderStateChangedMessage | OrderShipmentStateChangedMessage
