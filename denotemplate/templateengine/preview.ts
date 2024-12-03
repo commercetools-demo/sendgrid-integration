@@ -1,14 +1,14 @@
 import { htmlFromTemplate } from "./htmlfromtemplate.ts"
 import { cwd } from 'node:process';
-console.log(`Current directory: ${cwd()}`);
 import  order  from "./order.json" with { type: "json" }
-import { iOrderInfo } from "./iOrderInfo.ts" 
+import { Order } from "@commercetoolsdemo/sdk"
+import { messageObject } from "./iMessageObjects.ts"
 
 const options = {
    filePath: cwd() + "/templateengine/mjml"
 }
 
-const data: iOrderInfo = {
+const data: messageObject = {
    locale: "de-DE",
    company: {
       name: "commercetools",
@@ -21,11 +21,11 @@ const data: iOrderInfo = {
          country: "United States of something"
       }
    },
-   order: order
+   order: order as Order
 }
 
 const html = (): BodyInit => {
-   const template = Deno.readTextFileSync("templateengine/mjml/order.mjml")
+   const template = Deno.readTextFileSync("templateengine/mjml/order.mjml") // reading from file for now
    return htmlFromTemplate(template, data, options)
 } 
 

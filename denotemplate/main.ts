@@ -1,17 +1,20 @@
 import { iEnveloppe } from "./smtp/iEnveloppe.ts"
 import { mailtrapconfig } from "./config/mailtrapconfig.ts"
 import { smtpSender } from "./smtp/smtpSender.ts"
-import { iOrderInfo } from "./templateengine/iOrderInfo.ts"
 import  order  from "./templateengine/order.json" with { type: "json" }
 import { cwd } from 'node:process';
 import { htmlFromTemplate } from "./templateengine/htmlfromtemplate.ts"
+import { Order } from "@commercetoolsdemo/sdk"
+import { messageObject } from "./templateengine/iMessageObjects.ts"
+
+
 if (import.meta.main) {
 
   const options = {
     filePath: cwd() + "/templateengine/mjml"
- }
+  }
 
-  const data: iOrderInfo = {
+  const data: messageObject = {
     locale: "de-DE",
     company: {
        name: "commercetools",
@@ -24,7 +27,7 @@ if (import.meta.main) {
           country: "United States of something"
        }
     },
-    order: order
+    order: order as Order
  }
 
  const template = Deno.readTextFileSync("templateengine/mjml/order.mjml")

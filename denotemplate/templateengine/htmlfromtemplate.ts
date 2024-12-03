@@ -1,7 +1,8 @@
 import mjml2html from "mjml"
 import Handlebars from "handlebars"
 import { registerHelpers } from "./hbshelpers/registerHelpers.ts"
-import { iOrderInfo } from "./iOrderInfo.ts"
+import { messageObject } from "./iMessageObjects.ts"
+
 
 function handlebarsErrorMJML(error: any) {
    return `
@@ -12,8 +13,14 @@ function handlebarsErrorMJML(error: any) {
    `;
  }
 
-
-export const htmlFromTemplate = (template: string, data: iOrderInfo, options?: any): string => {
+/**
+ * converts a mjml template and data to html
+ * @param template the mjml template
+ * @param data the data that needs to be inserted into this template
+ * @param options the various options for mjml
+ * @returns html 
+ */
+export const htmlFromTemplate = (template: string, data: messageObject, options?: any): string => {
    
    function processMJMLTemplate(mjml: any) {
       try {

@@ -1,5 +1,8 @@
 import { Address, Order } from "@commercetoolsdemo/sdk"
 
+/** will also contain things like customer etc */
+export type messageObject = iOrderInfo 
+
 export interface iOrderInfo {
    /** the locale that needs to be used to render the output */
    locale: string
@@ -12,5 +15,6 @@ export interface iOrderInfo {
        /** the address of the company that is sending the email */
       address: Address
    },
+
    order: Order
 }
