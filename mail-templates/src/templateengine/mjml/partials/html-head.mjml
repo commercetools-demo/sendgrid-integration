@@ -1,0 +1,25 @@
+<mj-head>
+    <mj-font name="Inter" href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
+    <mj-attributes>
+        <mj-text font-family="Inter, Arial, sans-serif" color="#000000" line-height="1.5" font-size="15px" font-weight="400" />
+        <mj-button background-color="#1a1a1a" color="#ffffff"  font-family="Inter, Arial, sans-serif"  font-size="14px" border-radius="2px" padding="10px 24px" align="left"/>
+        <mj-table font-family="Inter">
+    </mj-attributes>
+    <mj-style inline="inline">
+        body {
+            background-color: #ebebeb
+        }
+
+        .custom-section {
+            background-color: #FFFFFF
+        }
+
+        .divider {
+            background-color: #ebebeb
+        }
+
+        .heroMessage {
+            background-color: #f7f2ea;
+        }
+    </mj-style>
+</mj-head>

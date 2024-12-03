@@ -1,0 +1,48 @@
+<mj-section css-class="custom-section">
+    <mj-column>
+        <mj-text font-size="18px" font-weight="bold">
+            {{orderMessage.orderSummary}}
+        </mj-text>
+        {{#each orderLineItems}}
+        <mj-table>
+            <tr>
+                <td style="background-image: linear-gradient(rgba(15, 17, 17, 0.03), rgba(15, 17, 17, 0.03));
+    border-radius: 4px;
+    display: table-cell;
+    width: 131px;
+    height: 131px;">
+                    <a href="{{orderNumberLink}}">
+                        <img src="{{this.productImage}}" alt="{{this.productName}}"
+                             style="max-height: 115px; max-width: 115px; display: block; padding: 8px; mix-blend-mode: multiply; ">
+                    </a>
+                </td>
+                <td style="width: 8px;"/>
+                <td style="vertical-align: middle;">
+                    <p style="margin: 0;">
+                        <span>
+                            <a href="{{orderNumberLink}}" style="text-decoration:none; color: #000000">
+                                <span style="font-size: 15px;">{{this.productName}}</span>
+                            </a>
+                        </span>
+                    </p>
+                    <p style="margin: 4px 0 0 0; ">
+                        <span style="color:#565959;">
+                            {{../orderMessage.soldBy}}: commercetools
+                        </span>
+                    </p>
+                    <p style="margin: 4px 0 0 0; ">
+                        <span style="color:#565959;">
+                            {{../orderMessage.amount}}: {{this.productQuantity}}
+                        </span>
+                    </p>
+                    <p style="margin: 4px 0 0 0; ">
+                        <span style="color:#565959; font-size: 15px;">
+                            {{this.productSubTotal}}
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </mj-table>
+        {{/each}}
+    </mj-column>
+</mj-section>

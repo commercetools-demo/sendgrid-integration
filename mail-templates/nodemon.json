@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts,json,mjml",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node src/generateTemplates.ts"
+}

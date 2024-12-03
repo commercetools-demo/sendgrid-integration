@@ -6,22 +6,28 @@
   "private": true,
   "scripts": {
     "getAll": "ts-node src/getAll.ts",
+    "generateTemplates:watch": "nodemon",
     "lint": "eslint . --ext .ts",
     "prettier": "prettier --write '**/*.{js,ts}'"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
+    "@types/mjml": "^4.7.4",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
     "eslint": "^8.46.0",
+    "nodemon": "^3.1.7",
     "prettier": "^3.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@commercetools/platform-sdk": "^7.21.0",
     "@sendgrid/client": "^8.1.4",
     "@sendgrid/mail": "^8.1.4",
     "axios": "^1.7.8",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "handlebars": "^4.7.8",
+    "mjml": "^4.15.3"
   }
 }

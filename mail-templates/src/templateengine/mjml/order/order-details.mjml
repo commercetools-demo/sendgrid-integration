@@ -1,0 +1,33 @@
+<mj-section css-class="custom-section">
+    <mj-column width="100%">
+        <mj-text font-size="18px" font-weight="bold">
+            {{orderMessage.shippingConfirmation}}
+        </mj-text>
+        <mj-text>
+            <span style="display:block; color:#565959">
+                {{orderMessage.delivery}}
+            </span>
+            <span style="font-weight:bold;">{{orderMessage.deliveryDate}}</span>
+        </mj-text>
+        <mj-text>
+            <span style="display:block; color:#565959">
+                {{orderMessage.deliveryTo}}
+            </span>
+            <span style="font-weight:bold;">{{customerFirstName}} {{customerLastName}}
+                <br/>
+                {{address.streetName}} {{address.streetNumber}}
+                <br/>
+                {{address.postalCode}} {{address.city}}
+                <br/>
+                {{address.country}}
+            </span>
+        </mj-text>
+        <mj-text>
+            <span style="display:block; color:#565959">
+                {{orderMessage.orderNumber}}
+            </span>
+            <a href="{{orderNumberLink}}" style="font-weight:bold; text-decoration: underline; color: #000000">{{order.orderNumber}}</a>
+        </mj-text>
+        <mj-button href="{{orderTrackingLink}}">{{orderMessage.trackOrder}}</mj-button>
+    </mj-column>
+</mj-section>
