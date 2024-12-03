@@ -1,0 +1,1267 @@
+{
+   "type": "Order",
+   "id": "4700e611-7137-4bcb-b09f-ccfd9feafa6f",
+   "version": 3,
+   "versionModifiedAt": "2024-09-11T07:18:19.701Z",
+   "lastMessageSequenceNumber": 3,
+   "createdAt": "2024-09-11T07:14:20.201Z",
+   "lastModifiedAt": "2024-09-11T07:18:19.701Z",
+   "lastModifiedBy": {
+      "isPlatformClient": true,
+      "user": {
+         "typeId": "user",
+         "id": "8e8f5d1c-a67a-4f5a-a18a-6a883b1bb4f9"
+      }
+   },
+   "createdBy": {
+      "clientId": "utSSEhAhVsydseBCrk-bdPxC",
+      "isPlatformClient": false,
+      "associate": {
+         "typeId": "customer",
+         "id": "d193d831-fb26-4863-84b9-ba1a749596ab"
+      }
+   },
+   "orderNumber": "2024-9-11-86013",
+   "customerId": "d193d831-fb26-4863-84b9-ba1a749596ab",
+   "customerEmail": "olivia-jones@lcs.com",
+   "locale": "en-US",
+   "totalPrice": {
+      "type": "centPrecision",
+      "currencyCode": "USD",
+      "centAmount": 7987500,
+      "fractionDigits": 2
+   },
+   "taxedPrice": {
+      "totalNet": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 7987500,
+         "fractionDigits": 2
+      },
+      "totalGross": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 9185625,
+         "fractionDigits": 2
+      },
+      "taxPortions": [
+         {
+            "rate": 0.15,
+            "amount": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 1198125,
+               "fractionDigits": 2
+            },
+            "name": "Standard Tax US"
+         }
+      ],
+      "totalTax": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 1198125,
+         "fractionDigits": 2
+      }
+   },
+   "country": "US",
+   "taxedShippingPrice": {
+      "totalNet": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 0,
+         "fractionDigits": 2
+      },
+      "totalGross": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 0,
+         "fractionDigits": 2
+      },
+      "taxPortions": [
+         {
+            "rate": 0.15,
+            "amount": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 0,
+               "fractionDigits": 2
+            },
+            "name": "Standard Tax US"
+         }
+      ],
+      "totalTax": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 0,
+         "fractionDigits": 2
+      }
+   },
+   "orderState": "Complete",
+   "shipmentState": "Delivered",
+   "syncInfo": [],
+   "returnInfo": [],
+   "taxMode": "Platform",
+   "inventoryMode": "ReserveOnOrder",
+   "taxRoundingMode": "HalfEven",
+   "taxCalculationMode": "LineItemLevel",
+   "origin": "Customer",
+   "shippingMode": "Single",
+   "shippingInfo": {
+      "shippingMethodName": "Standard shipping method",
+      "price": {
+         "type": "centPrecision",
+         "currencyCode": "USD",
+         "centAmount": 0,
+         "fractionDigits": 2
+      },
+      "shippingRate": {
+         "price": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 500,
+            "fractionDigits": 2
+         },
+         "freeAbove": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 5000,
+            "fractionDigits": 2
+         },
+         "tiers": []
+      },
+      "taxRate": {
+         "name": "Standard Tax US",
+         "amount": 0.15,
+         "includedInPrice": false,
+         "country": "US",
+         "id": "uz3qanuW",
+         "subRates": []
+      },
+      "taxCategory": {
+         "typeId": "tax-category",
+         "id": "1f033dc1-405a-4747-bbc3-dc9c5af1e207"
+      },
+      "deliveries": [],
+      "shippingMethod": {
+         "typeId": "shipping-method",
+         "id": "7c3e0385-517e-42b3-bac0-587be2fe5b8c"
+      },
+      "taxedPrice": {
+         "totalNet": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 0,
+            "fractionDigits": 2
+         },
+         "totalGross": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 0,
+            "fractionDigits": 2
+         },
+         "taxPortions": [
+            {
+               "rate": 0.15,
+               "amount": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 0,
+                  "fractionDigits": 2
+               },
+               "name": "Standard Tax US"
+            }
+         ],
+         "totalTax": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 0,
+            "fractionDigits": 2
+         }
+      },
+      "shippingMethodState": "MatchesCart"
+   },
+   "shippingAddress": {
+      "firstName": "",
+      "lastName": "",
+      "streetName": "Main Street",
+      "postalCode": "27601",
+      "city": "Raleigh",
+      "country": "US",
+      "additionalAddressInfo": ""
+   },
+   "shipping": [],
+   "purchaseOrderNumber": "1983467293487",
+   "lineItems": [
+      {
+         "id": "7d2525ac-4742-4ee7-b003-e09e0e7fa4be",
+         "productId": "940bdd99-6a17-451b-be3a-cfde047f4644",
+         "productKey": "led-work-light",
+         "name": {
+            "de-DE": "LED-Arbeitsleuchte",
+            "it-IT": "LED Work Light",
+            "nl-NL": "LED Work Light",
+            "fr-FR": "LED Work Light",
+            "en-AU": "LED Work Light",
+            "es-ES": "LED Work Light",
+            "en-GB": "LED Work Light",
+            "en-NZ": "LED Work Light",
+            "pt-PT": "LED Work Light",
+            "en-US": "LED Work Light"
+         },
+         "productType": {
+            "typeId": "product-type",
+            "id": "d6dafc1d-d03f-4996-ae80-264178eca3d2",
+            "version": 1
+         },
+         "productSlug": {
+            "de-DE": "led-work-light",
+            "it-IT": "led-work-light",
+            "nl-NL": "led-work-light",
+            "fr-FR": "led-work-light",
+            "en-AU": "led-work-light",
+            "es-ES": "led-work-light",
+            "en-GB": "led-work-light",
+            "en-NZ": "led-work-light",
+            "pt-PT": "led-work-light",
+            "en-US": "led-work-light"
+         },
+         "variant": {
+            "id": 1,
+            "sku": "led-work-light",
+            "key": "led-work-light",
+            "prices": [
+               {
+                  "id": "86c995bf-b771-4dfb-a2f6-fe223e7b5e03",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "GBP",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "GB"
+               },
+               {
+                  "id": "241c27d0-5acb-42f5-ab0a-99b4dedda1ed",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "US"
+               },
+               {
+                  "id": "26b8beb0-4794-4936-98af-4eb48edc799b",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "AUD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "AU"
+               },
+               {
+                  "id": "79d65ad3-3f51-440e-8888-437faa40b128",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "NZD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NZ"
+               },
+               {
+                  "id": "0062eebb-829c-4b73-822b-688d40bcd267",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "ES"
+               },
+               {
+                  "id": "ad11e448-a5da-451f-aa54-6e2354227099",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "FR"
+               },
+               {
+                  "id": "1c353b9d-19a1-4c67-99f5-af8b944a98b8",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "DE"
+               },
+               {
+                  "id": "3a987e50-c4dc-43d5-bee0-ff88a3444315",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "IT"
+               },
+               {
+                  "id": "cbad9a75-a816-4154-8f18-43588601d8ac",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "PT"
+               },
+               {
+                  "id": "62ce82e9-9fa0-4b5f-8e36-c3b9104bd916",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NL"
+               }
+            ],
+            "images": [
+               {
+                  "url": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/led-work-light.webp",
+                  "dimensions": {
+                     "w": 1024,
+                     "h": 0
+                  }
+               }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+               "channels": {
+                  "9da9d13b-7117-4d57-8550-5e38337bc474": {
+                     "isOnStock": true,
+                     "availableQuantity": 750,
+                     "version": 1,
+                     "id": "38a5e761-cc07-4c88-9869-35c82a341556"
+                  }
+               }
+            }
+         },
+         "price": {
+            "id": "83c3103a-09ef-4821-9598-25249daafa24",
+            "value": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 10000,
+               "fractionDigits": 2
+            },
+            "key": "led-work-light-us-medium-customers-US-USD",
+            "country": "US",
+            "channel": {
+               "typeId": "channel",
+               "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+            }
+         },
+         "quantity": 25,
+         "discountedPricePerQuantity": [],
+         "supplyChannel": {
+            "typeId": "channel",
+            "id": "9da9d13b-7117-4d57-8550-5e38337bc474"
+         },
+         "distributionChannel": {
+            "typeId": "channel",
+            "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+         },
+         "taxRate": {
+            "name": "Standard Tax US",
+            "amount": 0.15,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "uz3qanuW",
+            "subRates": []
+         },
+         "perMethodTaxRate": [],
+         "addedAt": "2024-09-11T07:13:05.996Z",
+         "lastModifiedAt": "2024-09-11T07:13:05.996Z",
+         "state": [
+            {
+               "quantity": 25,
+               "state": {
+                  "typeId": "state",
+                  "id": "13c82cf6-18c6-45ea-b51a-01835d67be2f"
+               }
+            }
+         ],
+         "priceMode": "Platform",
+         "lineItemMode": "Standard",
+         "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 250000,
+            "fractionDigits": 2
+         },
+         "taxedPrice": {
+            "totalNet": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 250000,
+               "fractionDigits": 2
+            },
+            "totalGross": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 287500,
+               "fractionDigits": 2
+            },
+            "taxPortions": [
+               {
+                  "rate": 0.15,
+                  "amount": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 37500,
+                     "fractionDigits": 2
+                  },
+                  "name": "Standard Tax US"
+               }
+            ],
+            "totalTax": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 37500,
+               "fractionDigits": 2
+            }
+         },
+         "taxedPricePortions": []
+      },
+      {
+         "id": "ac6db3a4-6ce5-4230-b57c-ea04ab9a856f",
+         "productId": "ff31657f-2424-4a7a-9ec8-2cea9c05faa0",
+         "productKey": "pin-and-bushing-kit",
+         "name": {
+            "de-DE": "Stift- und Buchsensatz",
+            "it-IT": "Pin and Bushing Kit",
+            "nl-NL": "Pin and Bushing Kit",
+            "fr-FR": "Pin and Bushing Kit",
+            "en-AU": "Pin and Bushing Kit",
+            "es-ES": "Pin and Bushing Kit",
+            "en-GB": "Pin and Bushing Kit",
+            "en-NZ": "Pin and Bushing Kit",
+            "pt-PT": "Pin and Bushing Kit",
+            "en-US": "Pin and Bushing Kit"
+         },
+         "productType": {
+            "typeId": "product-type",
+            "id": "d6dafc1d-d03f-4996-ae80-264178eca3d2",
+            "version": 1
+         },
+         "productSlug": {
+            "de-DE": "pin-and-bushing-kit",
+            "it-IT": "pin-and-bushing-kit",
+            "nl-NL": "pin-and-bushing-kit",
+            "fr-FR": "pin-and-bushing-kit",
+            "en-AU": "pin-and-bushing-kit",
+            "es-ES": "pin-and-bushing-kit",
+            "en-GB": "pin-and-bushing-kit",
+            "en-NZ": "pin-and-bushing-kit",
+            "pt-PT": "pin-and-bushing-kit",
+            "en-US": "pin-and-bushing-kit"
+         },
+         "variant": {
+            "id": 1,
+            "sku": "pin-and-bushing-kit",
+            "key": "pin-and-bushing-kit",
+            "prices": [
+               {
+                  "id": "24ed239f-10ab-466d-ac77-55d30572c79d",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "GBP",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "GB"
+               },
+               {
+                  "id": "c46cce64-8d8d-4d02-ab92-8fd6439456c9",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "US"
+               },
+               {
+                  "id": "c429a006-292b-43fc-a83d-f234f45e6d28",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "AUD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "AU"
+               },
+               {
+                  "id": "a6b22664-ac55-4c18-9beb-ea18ecd8c322",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "NZD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NZ"
+               },
+               {
+                  "id": "6e40e474-9a22-4152-86c0-cb95a1e9a918",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "ES"
+               },
+               {
+                  "id": "880145f2-35f1-4d94-9238-bafff425909f",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "FR"
+               },
+               {
+                  "id": "3180ff5a-647e-467a-bc6d-5ff334b5ac0e",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "DE"
+               },
+               {
+                  "id": "373971f3-519c-432c-bd6c-85b0d971e949",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "IT"
+               },
+               {
+                  "id": "517cb30f-4e65-4735-9255-031b9014a272",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "PT"
+               },
+               {
+                  "id": "98ca89ae-c05c-40b1-94ce-5853eb8ce4ae",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NL"
+               }
+            ],
+            "images": [
+               {
+                  "url": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/pin-and-bushing-kit.webp",
+                  "dimensions": {
+                     "w": 1024,
+                     "h": 0
+                  }
+               }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+               "channels": {
+                  "9da9d13b-7117-4d57-8550-5e38337bc474": {
+                     "isOnStock": true,
+                     "availableQuantity": 1000,
+                     "version": 1,
+                     "id": "857a6641-d7dd-4520-9a85-9b0852232c67"
+                  }
+               }
+            }
+         },
+         "price": {
+            "id": "8db5093d-e951-4f03-81b8-2cfe0d477cec",
+            "value": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 32500,
+               "fractionDigits": 2
+            },
+            "key": "pin-and-bushing-kit-us-medium-customers-US-USD",
+            "country": "US",
+            "channel": {
+               "typeId": "channel",
+               "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+            }
+         },
+         "quantity": 35,
+         "discountedPricePerQuantity": [],
+         "supplyChannel": {
+            "typeId": "channel",
+            "id": "9da9d13b-7117-4d57-8550-5e38337bc474"
+         },
+         "distributionChannel": {
+            "typeId": "channel",
+            "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+         },
+         "taxRate": {
+            "name": "Standard Tax US",
+            "amount": 0.15,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "uz3qanuW",
+            "subRates": []
+         },
+         "perMethodTaxRate": [],
+         "addedAt": "2024-09-11T07:13:06.027Z",
+         "lastModifiedAt": "2024-09-11T07:13:06.027Z",
+         "state": [
+            {
+               "quantity": 35,
+               "state": {
+                  "typeId": "state",
+                  "id": "13c82cf6-18c6-45ea-b51a-01835d67be2f"
+               }
+            }
+         ],
+         "priceMode": "Platform",
+         "lineItemMode": "Standard",
+         "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 1137500,
+            "fractionDigits": 2
+         },
+         "taxedPrice": {
+            "totalNet": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 1137500,
+               "fractionDigits": 2
+            },
+            "totalGross": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 1308125,
+               "fractionDigits": 2
+            },
+            "taxPortions": [
+               {
+                  "rate": 0.15,
+                  "amount": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 170625,
+                     "fractionDigits": 2
+                  },
+                  "name": "Standard Tax US"
+               }
+            ],
+            "totalTax": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 170625,
+               "fractionDigits": 2
+            }
+         },
+         "taxedPricePortions": []
+      },
+      {
+         "id": "3aa58f89-e388-40a3-864e-10c811144ad6",
+         "productId": "925ffd4b-272e-48e6-906e-04e875f4fc56",
+         "productKey": "tapered-roller-bearing",
+         "name": {
+            "de-DE": "Kegelrollenlager",
+            "it-IT": "Tapered Roller Bearing",
+            "nl-NL": "Tapered Roller Bearing",
+            "fr-FR": "Tapered Roller Bearing",
+            "en-AU": "Tapered Roller Bearing",
+            "es-ES": "Tapered Roller Bearing",
+            "en-GB": "Tapered Roller Bearing",
+            "en-NZ": "Tapered Roller Bearing",
+            "pt-PT": "Tapered Roller Bearing",
+            "en-US": "Tapered Roller Bearing"
+         },
+         "productType": {
+            "typeId": "product-type",
+            "id": "d6dafc1d-d03f-4996-ae80-264178eca3d2",
+            "version": 1
+         },
+         "productSlug": {
+            "de-DE": "tapered-roller-bearing",
+            "it-IT": "tapered-roller-bearing",
+            "nl-NL": "tapered-roller-bearing",
+            "fr-FR": "tapered-roller-bearing",
+            "en-AU": "tapered-roller-bearing",
+            "es-ES": "tapered-roller-bearing",
+            "en-GB": "tapered-roller-bearing",
+            "en-NZ": "tapered-roller-bearing",
+            "pt-PT": "tapered-roller-bearing",
+            "en-US": "tapered-roller-bearing"
+         },
+         "variant": {
+            "id": 1,
+            "sku": "tapered-roller-bearing",
+            "key": "tapered-roller-bearing",
+            "prices": [
+               {
+                  "id": "184e0015-c453-4017-9b94-8c96fd302a0c",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "GBP",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "GB"
+               },
+               {
+                  "id": "7d383396-3f1e-4a64-a0f7-7e18eed60371",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "US"
+               },
+               {
+                  "id": "4fac2ef4-2e1d-4153-b9b7-ed14fb104629",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "AUD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "AU"
+               },
+               {
+                  "id": "db5188de-5c46-4d3e-aa42-04c8b9ae7b30",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "NZD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NZ"
+               },
+               {
+                  "id": "f6e026ff-ff4a-4e71-a751-890145a5ba2a",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "ES"
+               },
+               {
+                  "id": "fba54ae9-4590-432b-8299-7e5b86e33006",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "FR"
+               },
+               {
+                  "id": "9ffce033-3a6e-4d6f-ad26-0b49acebfddb",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "DE"
+               },
+               {
+                  "id": "0cde91ac-3845-49f5-94df-6a1551842247",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "IT"
+               },
+               {
+                  "id": "7f65c897-4fb6-49d4-8952-441d97c14b78",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "PT"
+               },
+               {
+                  "id": "735aa7d7-56d1-4058-bd39-ccaf793fcf24",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NL"
+               }
+            ],
+            "images": [
+               {
+                  "url": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/tapered-roller-bearing.webp",
+                  "dimensions": {
+                     "w": 1024,
+                     "h": 0
+                  }
+               }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+               "channels": {
+                  "9da9d13b-7117-4d57-8550-5e38337bc474": {
+                     "isOnStock": true,
+                     "availableQuantity": 800,
+                     "version": 1,
+                     "id": "2e41f052-f25b-48e5-8e8f-3b1dd35d0ae5"
+                  }
+               }
+            }
+         },
+         "price": {
+            "id": "9dfc596a-1982-4d5d-b525-466620f7335c",
+            "value": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 20000,
+               "fractionDigits": 2
+            },
+            "key": "tapered-roller-bearing-us-medium-customers-US-USD",
+            "country": "US",
+            "channel": {
+               "typeId": "channel",
+               "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+            }
+         },
+         "quantity": 30,
+         "discountedPricePerQuantity": [],
+         "supplyChannel": {
+            "typeId": "channel",
+            "id": "9da9d13b-7117-4d57-8550-5e38337bc474"
+         },
+         "distributionChannel": {
+            "typeId": "channel",
+            "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+         },
+         "taxRate": {
+            "name": "Standard Tax US",
+            "amount": 0.15,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "uz3qanuW",
+            "subRates": []
+         },
+         "perMethodTaxRate": [],
+         "addedAt": "2024-09-11T07:13:06.034Z",
+         "lastModifiedAt": "2024-09-11T07:13:06.034Z",
+         "state": [
+            {
+               "quantity": 30,
+               "state": {
+                  "typeId": "state",
+                  "id": "13c82cf6-18c6-45ea-b51a-01835d67be2f"
+               }
+            }
+         ],
+         "priceMode": "Platform",
+         "lineItemMode": "Standard",
+         "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 600000,
+            "fractionDigits": 2
+         },
+         "taxedPrice": {
+            "totalNet": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 600000,
+               "fractionDigits": 2
+            },
+            "totalGross": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 690000,
+               "fractionDigits": 2
+            },
+            "taxPortions": [
+               {
+                  "rate": 0.15,
+                  "amount": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 90000,
+                     "fractionDigits": 2
+                  },
+                  "name": "Standard Tax US"
+               }
+            ],
+            "totalTax": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 90000,
+               "fractionDigits": 2
+            }
+         },
+         "taxedPricePortions": []
+      },
+      {
+         "id": "a7688203-0798-49fc-b03f-39ed0678139e",
+         "productId": "17874d90-88b3-4e00-8581-c5a273fa83ca",
+         "productKey": "eee123-qr",
+         "name": {
+            "de-DE": "EEE123 QR Abbruchhammer",
+            "it-IT": "Martello demolitore EEE123 QR",
+            "nl-NL": "EEE123 QR-sloophamer",
+            "fr-FR": "Marteau de démolition EEE123 QR",
+            "en-AU": "EEE123 QR Demolition Hammer",
+            "es-ES": "Martillo demoledor EEE123 QR",
+            "en-GB": "EEE123 QR Demolition Hammer",
+            "en-NZ": "EEE123 QR Demolition Hammer",
+            "pt-PT": "Martelo de demolição EEE123 QR",
+            "en-US": "EEE123 QR Demolition Hammer"
+         },
+         "productType": {
+            "typeId": "product-type",
+            "id": "e7467165-1f31-4dec-88a4-dc3b991bafe8",
+            "version": 9
+         },
+         "productSlug": {
+            "de-DE": "eee123-qr",
+            "it-IT": "eee123-qr",
+            "nl-NL": "eee123-qr",
+            "fr-FR": "eee123-qr",
+            "en-AU": "eee123-qr",
+            "es-ES": "eee123-qr",
+            "en-GB": "eee123-qr",
+            "en-NZ": "eee123-qr",
+            "pt-PT": "eee123-qr",
+            "en-US": "eee123-qr"
+         },
+         "variant": {
+            "id": 1,
+            "sku": "eee123-qr-red",
+            "key": "eee123-qr-red",
+            "prices": [
+               {
+                  "id": "c3e375d7-76f8-4606-91fa-2592b7e2aaa8",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "GBP",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "GB"
+               },
+               {
+                  "id": "c6e1fd0c-2ba6-4a0c-be55-697da7fe396b",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "US"
+               },
+               {
+                  "id": "aed2a5cc-f06a-4783-8bb0-bafe9dba29c8",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "AUD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "AU"
+               },
+               {
+                  "id": "5dc7d29f-5db0-4e92-b937-c687e43e041a",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "NZD",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NZ"
+               },
+               {
+                  "id": "86d15b18-e8e2-4bb1-800a-1497ba5d8911",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "ES"
+               },
+               {
+                  "id": "7b19b090-76a0-4292-b5d0-71726f17f1ac",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "FR"
+               },
+               {
+                  "id": "7a9c1951-bd9d-48ca-a643-3f05dad800a0",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "DE"
+               },
+               {
+                  "id": "5ed5d640-fdb4-4b73-98c9-3ee62200d558",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "IT"
+               },
+               {
+                  "id": "7c101507-02d3-4c01-a254-863f9632c1b0",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "PT"
+               },
+               {
+                  "id": "f80d82dd-4903-4d71-9515-99c7d7b2365a",
+                  "value": {
+                     "type": "centPrecision",
+                     "currencyCode": "EUR",
+                     "centAmount": 4200,
+                     "fractionDigits": 2
+                  },
+                  "country": "NL"
+               }
+            ],
+            "images": [
+               {
+                  "url": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/eee123-qr-red.webp",
+                  "dimensions": {
+                     "w": 1024,
+                     "h": 0
+                  }
+               }
+            ],
+            "attributes": [
+               {
+                  "name": "capacity",
+                  "value": 10000
+               },
+               {
+                  "name": "iso45001",
+                  "value": false
+               },
+               {
+                  "name": "mobility",
+                  "value": {
+                     "key": "tracked",
+                     "label": "Tracked"
+                  }
+               },
+               {
+                  "name": "color",
+                  "value": {
+                     "key": "RED",
+                     "label": {
+                        "de-DE": "Rot",
+                        "en-GB": "Red",
+                        "en-US": "Red"
+                     }
+                  }
+               },
+               {
+                  "name": "relatedProducts",
+                  "value": [
+                     {
+                        "typeId": "product",
+                        "id": "925ffd4b-272e-48e6-906e-04e875f4fc56"
+                     },
+                     {
+                        "typeId": "product",
+                        "id": "1e208a2f-3447-45e1-9d24-bf5761a81326"
+                     },
+                     {
+                        "typeId": "product",
+                        "id": "02904ac6-405b-434b-bcab-509f2e743037"
+                     },
+                     {
+                        "typeId": "product",
+                        "id": "9504a4c5-5a20-4cea-99a9-266cabd719ae"
+                     },
+                     {
+                        "typeId": "product",
+                        "id": "08f5e8f4-751f-403f-82c5-882fdd6560ea"
+                     }
+                  ]
+               }
+            ],
+            "assets": [],
+            "availability": {
+               "channels": {
+                  "9da9d13b-7117-4d57-8550-5e38337bc474": {
+                     "isOnStock": true,
+                     "availableQuantity": 147,
+                     "version": 7,
+                     "id": "175489b8-e3b3-4a8d-a6b9-c356e5fa203b"
+                  }
+               }
+            }
+         },
+         "price": {
+            "id": "964023b6-decc-4deb-aabe-62c901c07b30",
+            "value": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 6000000,
+               "fractionDigits": 2
+            },
+            "key": "eee123-qr-red-us-medium-customers-US-USD",
+            "country": "US",
+            "channel": {
+               "typeId": "channel",
+               "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+            }
+         },
+         "quantity": 1,
+         "discountedPricePerQuantity": [],
+         "supplyChannel": {
+            "typeId": "channel",
+            "id": "9da9d13b-7117-4d57-8550-5e38337bc474"
+         },
+         "distributionChannel": {
+            "typeId": "channel",
+            "id": "0be8f215-957c-49b8-97a1-7e8a7992473c"
+         },
+         "taxRate": {
+            "name": "Standard Tax US",
+            "amount": 0.15,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "uz3qanuW",
+            "subRates": []
+         },
+         "perMethodTaxRate": [],
+         "addedAt": "2024-09-11T07:13:35.896Z",
+         "lastModifiedAt": "2024-09-11T07:13:35.896Z",
+         "state": [
+            {
+               "quantity": 1,
+               "state": {
+                  "typeId": "state",
+                  "id": "13c82cf6-18c6-45ea-b51a-01835d67be2f"
+               }
+            }
+         ],
+         "priceMode": "Platform",
+         "lineItemMode": "Standard",
+         "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 6000000,
+            "fractionDigits": 2
+         },
+         "taxedPrice": {
+            "totalNet": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 6000000,
+               "fractionDigits": 2
+            },
+            "totalGross": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 6900000,
+               "fractionDigits": 2
+            },
+            "taxPortions": [
+               {
+                  "rate": 0.15,
+                  "amount": {
+                     "type": "centPrecision",
+                     "currencyCode": "USD",
+                     "centAmount": 900000,
+                     "fractionDigits": 2
+                  },
+                  "name": "Standard Tax US"
+               }
+            ],
+            "totalTax": {
+               "type": "centPrecision",
+               "currencyCode": "USD",
+               "centAmount": 900000,
+               "fractionDigits": 2
+            }
+         },
+         "taxedPricePortions": []
+      }
+   ],
+   "customLineItems": [],
+   "transactionFee": true,
+   "discountCodes": [],
+   "directDiscounts": [],
+   "cart": {
+      "typeId": "cart",
+      "id": "a05930f0-9d38-430c-bb5e-4c71bd8ca443"
+   },
+   "billingAddress": {
+      "firstName": "",
+      "lastName": "",
+      "streetName": "Main Street",
+      "postalCode": "27601",
+      "city": "Raleigh",
+      "country": "US",
+      "additionalAddressInfo": ""
+   },
+   "itemShippingAddresses": [],
+   "refusedGifts": [],
+   "store": {
+      "typeId": "store",
+      "key": "us-medium-customers"
+   },
+   "businessUnit": {
+      "typeId": "business-unit",
+      "key": "liberty-crane-solutions-llc-us"
+   }
+}

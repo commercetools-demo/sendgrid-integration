@@ -1,0 +1,26 @@
+<mj-section full-width="full-width">
+   <mj-column>
+      <mj-table>
+         <tr style="text-align:left">
+            <th></th> 
+            <th><b>SKU</b></th> 
+            <th><b>Description</b></th> 
+            <th style="text-align: right"><b>unit Price</b></th> 
+            <th style="text-align: right"><b>Qty.</b></th>    
+            <th style="text-align: right"><b>Ammount</b></th> 
+         </tr>
+         {{#each order.lineItems}}
+         <tr style="text-align:left">
+            <td style="padding: 3px"><img width="50px" height="50px" src="{{imgUrl this.variant.images}}" /></td>
+            <td>{{this.variant.sku}}</td>
+            <td>{{lookup this.name ../locale}}</td>
+            <td style="text-align: right">{{FormatMoney this.price.value order.country}}</td>
+            <td style="text-align: right">{{this.quantity}}</td>
+            <td style="text-align: right">{{FormatMoney this.totalPrice order.country}}</td>
+         </tr>
+         {{/each}}         
+      </mj-table>
+   </mj-column>
+</mj-section>
+
+

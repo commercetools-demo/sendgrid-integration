@@ -1,0 +1,45 @@
+<mjml>
+  <mj-body width="1024px">
+   <mj-include path="header.mjml" />
+   <mj-section full-width="full-width" background-color="#f7f2ea">
+      <mj-column >
+      <mj-text>
+         <h1>Orderconfirmation</h1>
+      </mj-text>
+      </mj-column>
+   </mj-section>
+   <mj-section full-width="full-width">
+      <mj-column width="50%">
+         <mj-include path="from.mjml" />
+      </mj-column>
+      <mj-column width="50%">
+         <mj-include path="to.mjml" />
+      </mj-column>
+   </mj-section>
+    <mj-section full-width="full-width">
+      <mj-column>
+        <mj-text>
+         <b>Order number: </b>{{order.orderNumber}}
+        </mj-text>
+      </mj-column>
+      <mj-column >
+         <mj-text>
+            <b>Date:</b> {{Date order.createdAt locale}}
+         </mj-text> 
+         
+      </mj-column>
+    </mj-section>
+   <mj-section>
+      <mj-column>
+         <mj-divider />
+      </mj-column>
+   </mj-section>
+   <mj-include path="lineitems.mjml" />
+   <mj-section>
+      <mj-column>
+         <mj-divider />
+      </mj-column>
+   </mj-section>
+   <mj-include path="footer.mjml" />
+  </mj-body>
+</mjml>

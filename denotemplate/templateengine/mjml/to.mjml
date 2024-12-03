@@ -1,0 +1,7 @@
+<mj-text>
+  <h3>To</h3>
+  <p><b>{{order.customerEmail}} </b></p>
+  <p>{{order.shippingAddress.streetName}} {{order.shippingAddress.streetNumber}}</p>
+  <p>{{order.shippingAddress.postalCode}} {{order.shippingAddress.city}}</p>
+  <p>{{order.shippingAddress.country}}</p>
+</mj-text>

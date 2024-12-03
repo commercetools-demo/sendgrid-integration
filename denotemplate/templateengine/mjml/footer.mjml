@@ -1,0 +1,22 @@
+    <mj-section full-width="full-width" background-color="#6359ff" >
+      <mj-column >
+        <mj-text color="white">
+          <h4>footer one</h4>
+        </mj-text>
+       </mj-column>
+            <mj-column >
+        <mj-text color="white">
+          <h4>footer two</h4>
+        </mj-text>
+       </mj-column>      
+       <mj-column >
+        <mj-text color="white">
+          <h4>footer three</h4>
+        </mj-text>
+       </mj-column>      
+       <mj-column >
+        <mj-text color="white">
+          <h4>footer four</h4>
+        </mj-text>
+       </mj-column>
+    </mj-section>

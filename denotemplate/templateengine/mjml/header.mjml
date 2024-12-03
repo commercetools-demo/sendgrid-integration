@@ -1,0 +1,9 @@
+
+<mj-section full-width="full-width">
+  <mj-column width="50%">
+    <mj-image align="left" src="{{company.logo}}" />
+  </mj-column>
+  <mj-column width="50%">
+    
+  </mj-column>
+</mj-section>
