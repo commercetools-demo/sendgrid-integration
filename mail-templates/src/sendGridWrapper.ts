@@ -76,7 +76,7 @@ export const createTemplate = async (name: string): Promise<Template> => {
   };
   const [result] = await getClient().request(request);
   handleResultCode(result);
-  return (result.body as any).result;
+  return result.body as Template;
 };
 
 export const getVersion = async (

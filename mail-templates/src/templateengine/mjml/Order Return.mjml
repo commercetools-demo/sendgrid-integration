@@ -1,0 +1,12 @@
+<mjml>
+    <mj-include path="partials/html-head.mjml"/>
+    <mj-body width="600px" >
+        <mj-include path="partials/header.mjml"/>
+        <mj-include path="partials/divider.mjml"/>
+        <mj-include path="partials/hero-message.mjml"/>
+        <mj-include path="partials/divider.mjml"/>
+        <mj-include path="order/order-message.mjml"/>
+        <mj-include path="partials/divider.mjml"/>
+        <mj-include path="partials/footer.mjml"/>
+    </mj-body>
+</mjml>
