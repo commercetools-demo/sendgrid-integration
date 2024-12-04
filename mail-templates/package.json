@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "getAll": "ts-node src/getAll.ts",
-    "generateTemplates:watch": "nodemon",
+    "developTemplates": "nodemon",
+    "buildTemplates": "ts-node src/buildTemplates.ts",
     "lint": "eslint . --ext .ts",
     "prettier": "prettier --write '**/*.{js,ts}'"
   },

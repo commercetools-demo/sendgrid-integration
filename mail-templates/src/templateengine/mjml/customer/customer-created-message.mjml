@@ -1,0 +1,10 @@
+<mj-section css-class="custom-section">
+    <mj-column>
+        <mj-text font-size="26px" >
+            {{customerMessage.welcome}} {{customerName}},
+        </mj-text>
+        <mj-text>
+            {{customerMessage.text}}
+        </mj-text>
+    </mj-column>
+</mj-section>

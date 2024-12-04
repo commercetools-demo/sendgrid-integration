@@ -1,6 +1,7 @@
 import client from '@sendgrid/client';
 import { ClientRequest } from '@sendgrid/client/src/request';
 import { config } from 'dotenv';
+import { ClientResponse } from '@commercetools/platform-sdk';
 
 config();
 config({ path: `.env.local`, override: true });
@@ -36,6 +37,13 @@ const getClient = () => {
   return client;
 };
 
+const handleResultCode = (clientResponse: ClientResponse) => {
+  if (clientResponse.statusCode !== 200 && clientResponse.statusCode !== 201) {
+    console.error(clientResponse);
+    throw new Error('response code !== 200');
+  }
+};
+
 export const getTemplates = async (): Promise<Array<Template>> => {
   const queryParams = {
     page_size: 18,
@@ -54,9 +62,7 @@ export const getTemplates = async (): Promise<Array<Template>> => {
   return (result.body as any).result;
 };
 
-export const createTemplate = async (
-  name: string
-): Promise<Array<Template>> => {
+export const createTemplate = async (name: string): Promise<Template> => {
   const data = {
     name: name,
     generation: 'dynamic',
@@ -68,9 +74,7 @@ export const createTemplate = async (
     body: data,
   };
   const [result] = await getClient().request(request);
-  if (result.statusCode !== 200) {
-    throw new Error('response code !== 200');
-  }
+  handleResultCode(result);
   return (result.body as any).result;
 };
 
@@ -83,9 +87,7 @@ export const getVersion = async (
     method: 'GET',
   };
   const [result] = await getClient().request(request);
-  if (result.statusCode !== 200) {
-    throw new Error('response code !== 200');
-  }
+  handleResultCode(result);
   return result.body as any as Version;
 };
 
@@ -101,9 +103,7 @@ export const updateVersion = async (
     body: toSet,
   };
   const [result] = await getClient().request(request);
-  if (result.statusCode !== 200) {
-    throw new Error('response code !== 200');
-  }
+  handleResultCode(result);
   return result.body as any as Version;
 };
 
@@ -117,8 +117,6 @@ export const createVersion = async (
     body: data,
   };
   const [result] = await getClient().request(request);
-  if (result.statusCode !== 200) {
-    throw new Error('response code !== 200');
-  }
+  handleResultCode(result);
   return result.body as any as Version;
 };

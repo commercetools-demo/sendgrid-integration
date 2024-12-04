@@ -26,17 +26,17 @@
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
-                        <span style="color:#565959;">
+                        <span class="secondary">
                             {{../orderMessage.soldBy}}: commercetools
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
-                        <span style="color:#565959;">
+                        <span class="secondary">
                             {{../orderMessage.amount}}: {{this.productQuantity}}
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
-                        <span style="color:#565959; font-size: 15px;">
+                        <span  class="secondary" style="font-size: 15px;">
                             {{this.productSubTotal}}
                         </span>
                     </p>

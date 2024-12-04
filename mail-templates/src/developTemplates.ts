@@ -1,13 +1,29 @@
-import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { createFolder, htmlFromTemplate } from './utils';
-import { MJMLParsingOptions } from 'mjml-core';
+import { run } from './mjml';
 
 const getAllRunner = async () => {
   const mjmlFolder = resolve('src', 'templateengine', 'mjml');
+  const targetDir = resolve('build', 'templates');
   const data: Record<string, any> = {
+    'customer-created': {
+      heroMessage: 'Customer Created',
+      heroImage:
+        'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
+      customerName: 'Firstname',
+      customerMessage: {
+        welcome: 'Hey',
+        text: 'Thank you for signing up!',
+        verificationText: "Let's verify your account so you can start.",
+        verificationButtonText: 'Verifiy your account',
+        verificationValidityText:
+          'Your link is active for 48 hours. After that, you will need to resend the verification email.',
+      },
+      verificationLink: 'asdf',
+    },
     order: {
       heroMessage: 'Order Confirmation',
+      heroImage:
+        'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
       orderMessage: {
         welcome: 'Hey there,',
         text: 'Thank you for your order! We will notify you as soon as your item(s) have been dispatched.you will find the estimated delivery date below.to view or amend your order, visit My Orders on our website.',
@@ -15,7 +31,8 @@ const getAllRunner = async () => {
         delivery: 'Delivery:',
         deliveryDate: 'Tuesday, November 27th',
         deliveryTo: 'The shipment goes to:',
-        orderNumber: 'Order Number: #',
+        orderNumberText: 'Order Number: #',
+        orderNumber: '2q34',
         trackOrder: 'Track Order',
         orderSummary: 'Order Summary',
         soldBy: 'Sold By',
@@ -57,25 +74,7 @@ const getAllRunner = async () => {
       ],
     },
   };
-
-  const items = readdirSync(mjmlFolder, { withFileTypes: true })
-    .filter((item) => item.isFile())
-    .filter((item) => item.name.endsWith('.mjml'))
-    .map((item) => item.name)
-    .map((item) => item.split('.')[0]);
-
-  for (const item of items) {
-    const template = readFileSync(resolve(mjmlFolder, item + '.mjml'), 'utf-8');
-
-    const options: MJMLParsingOptions = {
-      filePath: mjmlFolder,
-    };
-    const message = htmlFromTemplate(template, data[item], options);
-    const templateStorage = resolve('build', 'templates');
-    createFolder(templateStorage);
-    const filename = resolve(templateStorage, item + '.html');
-    writeFileSync(filename, message);
-  }
+  run(mjmlFolder, targetDir, data);
 };
 
 getAllRunner().catch((e) => console.error(e));

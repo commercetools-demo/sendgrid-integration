@@ -3,11 +3,21 @@
     <mj-attributes>
         <mj-text font-family="Inter, Arial, sans-serif" color="#000000" line-height="1.5" font-size="15px" font-weight="400" />
         <mj-button background-color="#1a1a1a" color="#ffffff"  font-family="Inter, Arial, sans-serif"  font-size="14px" border-radius="2px" padding="10px 24px" align="left"/>
-        <mj-table font-family="Inter">
+        <mj-table font-family="Inter"/>
+        <mj-class name="secondary" color="#565959" display="block" />
     </mj-attributes>
     <mj-style inline="inline">
         body {
             background-color: #ebebeb
+        }
+
+        .bold {
+            font-weight:bold;
+        }
+
+        .secondary {
+            color: #565959;
+            display: block;
         }
 
         .custom-section {
@@ -20,6 +30,10 @@
 
         .heroMessage {
             background-color: #f7f2ea;
+        }
+
+        a {
+            text-decoration: underline; color: #000000;
         }
     </mj-style>
 </mj-head>

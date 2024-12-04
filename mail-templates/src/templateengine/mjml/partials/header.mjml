@@ -1,7 +1,12 @@
 <mj-section css-class="custom-section">
-  <mj-column width="50%">
-    <mj-image align="left" src="http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png" />
-  </mj-column>
-  <mj-column width="50%">
-  </mj-column>
+
+    <mj-column>
+        <mj-image align="left"
+                  src="{{heroImage}}"/>
+    </mj-column>
+    <mj-column>
+<!--        <mj-text font-size="26px">-->
+<!--            {{heroMessage}}-->
+<!--        </mj-text>-->
+    </mj-column>
 </mj-section>

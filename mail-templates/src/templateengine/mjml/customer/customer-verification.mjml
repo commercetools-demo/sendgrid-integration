@@ -1,0 +1,9 @@
+<mj-section css-class="custom-section">
+    <mj-column width="100%">
+        <mj-text font-size="18px" font-weight="bold">
+            {{customerMessage.verificationText}}
+        </mj-text>
+        <mj-button href="{{verificationLink}}">{{customerMessage.verificationButtonText}}</mj-button>
+        <mj-text>{{customerMessage.verificationValidityText}}</mj-text>
+    </mj-column>
+</mj-section>

@@ -1,10 +1,10 @@
 <mj-section css-class="custom-section">
     <mj-column width="50%">
-        <mj-text color="#565959">
-                {{orderMessage.totalAmount}}
+        <mj-text mj-class="secondary">
+            {{orderMessage.totalAmount}}
         </mj-text>
     </mj-column>
     <mj-column width="50%">
-<mj-text align="right">{{total}}</mj-text>
+        <mj-text align="right">{{total}}</mj-text>
     </mj-column>
 </mj-section>

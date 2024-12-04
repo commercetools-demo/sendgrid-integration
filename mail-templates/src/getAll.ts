@@ -9,6 +9,7 @@ import {
 } from 'fs';
 import { resolve } from 'path';
 import {
+  createTemplate,
   createVersion,
   getTemplates,
   getVersion,
@@ -287,6 +288,47 @@ const getAllRunner = async () => {
       foundUntitledVersion = false;
     }
   }
+
+  const templateNames = templates.map((template) => template.name);
+  const items = readdirSync('templates', { withFileTypes: true })
+    .filter((item) => item.isDirectory())
+    .map((item) => item.name)
+    .filter((item) => templateNames.indexOf(item) < 0);
+
+  for (const folder of items) {
+    if (existsSync(resolve('templates', folder, folder, folder + '.html'))) {
+      const template = await createTemplate(folder);
+      const version = await createVersion(template.id, {
+        template_id: template.id,
+        active: 1,
+        name: folder,
+        html_content: readFileSync(
+          resolve('templates', folder, folder, folder + '.html'),
+          'utf-8'
+        ),
+        generate_plain_content: false,
+        subject: folder,
+      });
+      const versionInStore: Version = {
+        id: version.id,
+        remote: new Date(),
+        local: new Date(),
+        html: new Date(),
+      };
+      await storeVersionLocally(
+        template.id,
+        version.id,
+        resolve('templates', folder, folder),
+        versionInStore
+      );
+      status.templates.push({
+        id: template.id,
+        name: template.name,
+        versions: [versionInStore],
+      });
+    }
+  }
+
   writeJsonFile(status, 'templates', 'status');
 };
 

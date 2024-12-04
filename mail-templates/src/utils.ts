@@ -33,19 +33,22 @@ function handlebarsErrorMJML(error: any) {
 
 export const htmlFromTemplate = (
   template: string,
-  data: Record<string, any>,
+  data: Record<string, any> | undefined,
   options: MJMLParsingOptions
 ): string => {
   function processMJMLTemplate(mjml: any) {
     try {
       const hbarsTemplate = hbs.compile<Record<string, any>>(mjml);
-      return hbarsTemplate(data);
+      return hbarsTemplate(data || {});
     } catch (e) {
       console.error(e);
       return handlebarsErrorMJML(e);
     }
   }
-  options.preprocessors = [processMJMLTemplate];
+
+  if (data) {
+    options.preprocessors = [processMJMLTemplate];
+  }
   const hbs = Handlebars;
   const output = mjml2html(template, options);
 

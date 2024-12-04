@@ -4,16 +4,16 @@
             {{orderMessage.shippingConfirmation}}
         </mj-text>
         <mj-text>
-            <span style="display:block; color:#565959">
+            <span class="secondary">
                 {{orderMessage.delivery}}
             </span>
-            <span style="font-weight:bold;">{{orderMessage.deliveryDate}}</span>
+            <span class="bold">{{orderMessage.deliveryDate}}</span>
         </mj-text>
         <mj-text>
-            <span style="display:block; color:#565959">
+            <span class="secondary">
                 {{orderMessage.deliveryTo}}
             </span>
-            <span style="font-weight:bold;">{{customerFirstName}} {{customerLastName}}
+            <span class="bold">{{customerFirstName}} {{customerLastName}}
                 <br/>
                 {{address.streetName}} {{address.streetNumber}}
                 <br/>
@@ -23,10 +23,10 @@
             </span>
         </mj-text>
         <mj-text>
-            <span style="display:block; color:#565959">
-                {{orderMessage.orderNumber}}
+            <span class="secondary">
+                {{orderMessage.orderNumberText}}
             </span>
-            <a href="{{orderNumberLink}}" style="font-weight:bold; text-decoration: underline; color: #000000">{{order.orderNumber}}</a>
+            <a href="{{orderNumberLink}}" class="bold">{{orderMessage.orderNumber}}</a>
         </mj-text>
         <mj-button href="{{orderTrackingLink}}">{{orderMessage.trackOrder}}</mj-button>
     </mj-column>
