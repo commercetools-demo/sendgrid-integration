@@ -3,7 +3,7 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
 import { createTokenForVerification } from '../ctp/customer';
 import { convertDateToText } from '../utils/date.utils';
-import { mapNames, findLocale } from '../utils/customer.utils';
+import { mapNames, findLocale, mapEmail } from '../utils/customer.utils';
 
 export const handleCustomerCreated = async (
   messageBody: CustomerCreatedMessage
@@ -12,8 +12,8 @@ export const handleCustomerCreated = async (
 
   const customer = messageBody.customer;
   const createdAt = convertDateToText(customer.createdAt, findLocale(customer));
-  const customerDetails: HandlerReturnType['templateData'] = {
-    customerEmail: customer.email,
+  let customerDetails: HandlerReturnType['templateData'] = {
+    ...mapEmail(customer),
     customerNumber: customer.customerNumber || '',
     ...mapNames(customer),
     customerCreationDate: createdAt.date,
@@ -29,6 +29,22 @@ export const handleCustomerCreated = async (
     customerDetails['customerEmailTokenValidityDate'] = tokenExpiresAt.date;
     customerDetails['customerEmailTokenValidityTime'] = tokenExpiresAt.time;
   }
+
+  customerDetails = {
+    ...customerDetails,
+    messages: {
+      welcome: 'Hey',
+      text: 'Thank you for signing up!',
+      verificationText: "Let's verify your account so you can start.",
+      verificationButtonText: 'Verify your account',
+      verificationValidityText:
+        'Your link is active for 48 hours. After that, you will need to resend the verification email.',
+      heroMessage: 'Customer Created',
+      heroImage:
+        'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
+      verificationLink: 'asdf',
+    },
+  };
 
   return {
     recipientEmailAddresses: [customerDetails.customerEmail],

@@ -9,32 +9,39 @@ import {
   ReturnInfo,
 } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
-import { getCustomerById } from '../ctp/customer';
 import { getOrderById } from '../ctp/order';
 import { HandlerReturnType } from '../types/index.types';
-import { mapNames, findLocale } from '../utils/customer.utils';
+import { mapNames, findLocale, mapEmail } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
 import { logger } from '../utils/logger.utils';
-
-const DEFAULT_CUSTOMER_NAME = 'Customer';
+import { getCustomerFromOrder } from '../utils/order.utils';
 
 const buildOrderDetails = (
   order: Order,
-  customer: Customer,
+  customer: Customer | undefined,
   returnedLineItems: Array<any>
 ) => {
-  const dateAndTime = convertDateToText(order.createdAt, findLocale(customer));
+  const dateAndTime = convertDateToText(
+    order.createdAt,
+    findLocale(customer, order)
+  );
   return {
     orderNumber: order.orderNumber || '',
-    customerEmail: order.customerEmail ? order.customerEmail : customer.email,
+    ...mapEmail(customer, order),
     ...mapNames(customer, order),
     orderCreationTime: dateAndTime.time,
     orderCreationDate: dateAndTime.date,
     orderState: order.orderState,
     orderShipmentState: order.shipmentState,
-    orderTotalPrice: convertMoneyToText(order.totalPrice, findLocale(customer)),
+    orderTotalPrice: convertMoneyToText(
+      order.totalPrice,
+      findLocale(customer, order)
+    ),
     orderTaxedPrice: order.taxedPrice
-      ? convertMoneyToText(order.taxedPrice.totalNet, findLocale(customer))
+      ? convertMoneyToText(
+          order.taxedPrice.totalNet,
+          findLocale(customer, order)
+        )
       : '',
     orderLineItems: returnedLineItems,
   };
@@ -48,15 +55,7 @@ export const handleReturnInfo = async (
   const orderId = messageBody.resource.id;
   const order = await getOrderById(orderId);
   if (order) {
-    let customer;
-    if (order.customerId) {
-      customer = await getCustomerById(order.customerId);
-    } else {
-      throw new CustomError(
-        HTTP_STATUS_BAD_REQUEST,
-        `Unable to get customer details with customer ID ${order.customerId}`
-      );
-    }
+    const customer = await getCustomerFromOrder(order);
     if (!messageBody.returnInfo) {
       logger.info(`No returned line item is found for order ${orderId}`);
       return undefined;
@@ -80,7 +79,7 @@ export const handleReturnInfo = async (
       if (returnedLineItemId.includes(lineItem.id)) {
         // Rule out those line items which are not going to be returned.
         const item = {
-          productName: lineItem.name[findLocale(customer)],
+          productName: lineItem.name[findLocale(customer, order)],
           productQuantity: lineItem.quantity,
           productSku: lineItem.variant.sku,
           productImage: lineItem.variant.images
@@ -88,18 +87,29 @@ export const handleReturnInfo = async (
             : '',
           productSubTotal: convertMoneyToText(
             lineItem.totalPrice,
-            findLocale(customer)
+            findLocale(customer, order)
           ),
         };
         returnedLineItems.push(item);
       }
     }
     if (returnedLineItems.length > 0) {
-      const orderDetails = buildOrderDetails(
+      let orderDetails: HandlerReturnType['templateData'] = buildOrderDetails(
         order,
         customer,
         returnedLineItems
       );
+      orderDetails = {
+        ...orderDetails,
+        messages: {
+          heroMessage: 'Order Return Change',
+          heroImage:
+            'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
+          welcome: 'Hey there,',
+          text: 'The state of your order has changed.',
+        },
+      };
+
       return {
         recipientEmailAddresses: [orderDetails.customerEmail],
         templateId: orderRefundTemplateId,

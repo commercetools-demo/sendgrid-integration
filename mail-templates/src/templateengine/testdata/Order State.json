@@ -1,7 +1,25 @@
 {
-  "heroMessage": "Order State Change",
-  "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
-  "orderMessage": {
+  "orderNumber": "2253395538047636",
+  "customerEmail": "Weston_Pfannerstill@gmail.com",
+  "customerFirstName": "Bettye",
+  "customerLastName": "Hirthe",
+  "orderCreationTime": "7:36:57 AM",
+  "orderCreationDate": "12/3/2024",
+  "orderState": "Cancelled",
+  "orderShipmentState": "Ready",
+  "orderTotalPrice": "€66,446,397.31",
+  "orderTaxedPrice": "",
+  "orderLineItems": [
+    {
+      "productQuantity": 895295818744997,
+      "productSku": "patria-pec",
+      "productImage": "https://picsum.photos/seed/A22ztseT/1209/3488",
+      "productSubTotal": "$35,841,133.80"
+    }
+  ],
+  "messages": {
+    "heroMessage": "Order State Change",
+    "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
     "welcome": "Hey there,",
     "text": "The state of your order has changed."
   }

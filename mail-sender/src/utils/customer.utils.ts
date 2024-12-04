@@ -11,6 +11,12 @@ export const findLocale = (customer?: Customer, order?: Order) => {
   );
 };
 
+export const mapEmail = (customer?: Customer, order?: Order) => {
+  return {
+    customerEmail: order?.customerEmail || customer?.email || '',
+  };
+};
+
 export const mapNames = (customer?: Customer, order?: Order) => {
   return {
     customerFirstName:

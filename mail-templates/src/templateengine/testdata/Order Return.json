@@ -1,7 +1,25 @@
 {
-  "heroMessage": "Order State Change",
-  "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
-  "orderMessage": {
+  "orderNumber": "8948026247257027",
+  "customerEmail": "Otho78@hotmail.com",
+  "customerFirstName": "Valentina",
+  "customerLastName": "Grimes",
+  "orderCreationTime": "11:39:35 AM",
+  "orderCreationDate": "11/26/2024",
+  "orderState": "Open",
+  "orderShipmentState": "Delayed",
+  "orderTotalPrice": "$27,586,760.55",
+  "orderTaxedPrice": "",
+  "orderLineItems": [
+    {
+      "productQuantity": 712525354544235,
+      "productSku": "blandior-3DU",
+      "productImage": "https://picsum.photos/seed/s86Wn/1663/3780",
+      "productSubTotal": "$6,012,761.68"
+    }
+  ],
+  "messages": {
+    "heroMessage": "Order State Change",
+    "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
     "welcome": "Hey there,",
     "text": "The state of your order has changed."
   }

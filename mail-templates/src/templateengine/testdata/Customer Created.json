@@ -1,13 +1,21 @@
 {
-  "heroMessage": "Customer Created",
-  "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
-  "customerName": "Firstname",
-  "customerMessage": {
+  "customerEmail": "Dell_Hegmann14@yahoo.com",
+  "customerNumber": "explicabo-cuppedia",
+  "customerFirstName": "Maci",
+  "customerLastName": "Bailey",
+  "customerCreationDate": "1/12/2024",
+  "customerCreationTime": "8:53:42",
+  "customerEmailToken": "R)J'Ly!nW(",
+  "customerEmailTokenValidityDate": "28/2/2025",
+  "customerEmailTokenValidityTime": "23:07:39",
+  "messages": {
     "welcome": "Hey",
     "text": "Thank you for signing up!",
     "verificationText": "Let's verify your account so you can start.",
     "verificationButtonText": "Verify your account",
-    "verificationValidityText": "Your link is active for 48 hours. After that, you will need to resend the verification email."
-  },
-  "verificationLink": "asdf"
+    "verificationValidityText": "Your link is active for 48 hours. After that, you will need to resend the verification email.",
+    "heroMessage": "Customer Created",
+    "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+    "verificationLink": "asdf"
+  }
 }

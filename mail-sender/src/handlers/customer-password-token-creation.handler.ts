@@ -3,7 +3,7 @@ import { generatePasswordResetToken, getCustomerById } from '../ctp/customer';
 import { HandlerReturnType } from '../types/index.types';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import CustomError from '../errors/custom.error';
-import { mapNames, findLocale } from '../utils/customer.utils';
+import { mapNames, findLocale, mapEmail } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
 
 export const handleCustomerPasswordTokenCreated = async (
@@ -26,8 +26,8 @@ export const handleCustomerPasswordTokenCreated = async (
       generateTokenResult.expiresAt,
       findLocale(customer)
     );
-    const customerDetails = {
-      customerEmail: customer.email,
+    let customerDetails: HandlerReturnType['templateData'] = {
+      ...mapEmail(customer),
       customerNumber: customer.customerNumber || '',
       ...mapNames(customer),
       customerCreationDate: createdAt.date,
@@ -35,6 +35,22 @@ export const handleCustomerPasswordTokenCreated = async (
       customerPasswordToken: generateTokenResult.value,
       customerPasswordTokenValidityDate: tokenExpiresAt.date,
       customerPasswordTokenValidityTime: tokenExpiresAt.time,
+    };
+
+    customerDetails = {
+      ...customerDetails,
+      messages: {
+        welcome: 'Hey',
+        text: 'Thank you for signing up!',
+        verificationText: "Let's update your password so you can start.",
+        verificationButtonText: 'Verify your account',
+        verificationValidityText:
+          'Your link is active for 48 hours. After that, you will need to resend the verification email.',
+        verificationLink: 'asdf',
+        heroMessage: 'Password Reset',
+        heroImage:
+          'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
+      },
     };
 
     return {

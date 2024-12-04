@@ -5,8 +5,14 @@ import { OrderCreatedMessage } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { getCustomerById } from '../ctp/customer';
 import { HandlerReturnType } from '../types/index.types';
-import { mapNames, findLocale, mapAddress } from '../utils/customer.utils';
+import {
+  mapNames,
+  findLocale,
+  mapAddress,
+  mapEmail,
+} from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
+import { getCustomerFromOrder } from '../utils/order.utils';
 
 export const handleOrderCreatedMessage = async (
   messageBody: OrderCreatedMessage
@@ -17,24 +23,14 @@ export const handleOrderCreatedMessage = async (
   const order = messageBody.order;
 
   if (order) {
-    let customer;
-    if (order.customerId) {
-      customer = await getCustomerById(order.customerId);
-    } else if (!order.customerEmail) {
-      throw new CustomError(
-        HTTP_STATUS_BAD_REQUEST,
-        `Unable to either get customer or email from order`
-      );
-    }
+    const customer = await getCustomerFromOrder(order);
 
     const locale = findLocale(customer, order);
 
     const dateAndTime = convertDateToText(order.createdAt, locale);
-    let orderDetails: Record<string, any> = {
+    let orderDetails: HandlerReturnType['templateData'] = {
       orderNumber: order.orderNumber || '',
-      customerEmail: order.customerEmail
-        ? order.customerEmail
-        : customer?.email,
+      ...mapEmail(customer, order),
       ...mapNames(customer, order),
       orderCreationTime: dateAndTime.time,
       orderCreationDate: dateAndTime.date,
