@@ -83,9 +83,6 @@ describe('Testing Order Confirmation', () => {
     expect(result.templateData['orderLineItems'].length).toEqual(
       order.lineItems.length
     );
-
-    const data = result.templateData;
-    console.log(JSON.stringify(data, undefined, 2));
   });
 
   it('Order Created Anonymous', async () => {
@@ -122,8 +119,5 @@ describe('Testing Order Confirmation', () => {
     expect(result.templateData['orderLineItems'].length).toEqual(
       order.lineItems.length
     );
-
-    const data = result.templateData;
-    console.log(JSON.stringify(data, undefined, 2));
   });
 });

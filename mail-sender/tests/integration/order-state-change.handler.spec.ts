@@ -84,6 +84,5 @@ describe('Testing Order State Changed', () => {
       readAdditionalConfiguration().orderStateChangeTemplateId
     );
     expect(result.templateData['orderState']).toBeDefined();
-    console.log(JSON.stringify(result?.templateData, undefined, 2));
   });
 });
