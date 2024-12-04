@@ -1,18 +1,12 @@
 import CustomError from '../errors/custom.error';
 import { HTTP_STATUS_BAD_REQUEST } from '../constants/http-status.constants';
-import { convertMoneyToText } from '../utils/money.utils';
 import { OrderCreatedMessage } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
-import { getCustomerById } from '../ctp/customer';
 import { HandlerReturnType } from '../types/index.types';
-import {
-  mapNames,
-  findLocale,
-  mapAddress,
-  mapEmail,
-} from '../utils/customer.utils';
-import { convertDateToText } from '../utils/date.utils';
-import { getCustomerFromOrder } from '../utils/order.utils';
+import { findLocale, mapAddress } from '../utils/customer.utils';
+import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
+import { getProject } from '../ctp/project';
+import { mapLineItem } from '../utils/lineitem.utils';
 
 export const handleOrderCreatedMessage = async (
   messageBody: OrderCreatedMessage
@@ -26,28 +20,12 @@ export const handleOrderCreatedMessage = async (
     const customer = await getCustomerFromOrder(order);
 
     const locale = findLocale(customer, order);
+    const { languages } = await getProject();
 
-    const dateAndTime = convertDateToText(order.createdAt, locale);
     let orderDetails: HandlerReturnType['templateData'] = {
-      orderNumber: order.orderNumber || '',
-      ...mapEmail(customer, order),
-      ...mapNames(customer, order),
-      orderCreationTime: dateAndTime.time,
-      orderCreationDate: dateAndTime.date,
-      orderTotalPrice: convertMoneyToText(order.totalPrice, locale),
-      orderTaxedPrice: order.taxedPrice
-        ? convertMoneyToText(order.taxedPrice.totalNet, locale)
-        : '',
+      ...mapOrderDefaults(order, customer, locale),
       orderLineItems: order.lineItems.map((lineItem) => {
-        return {
-          productName: lineItem.name[locale],
-          productQuantity: lineItem.quantity,
-          productSku: lineItem.variant.sku,
-          productImage: lineItem.variant.images
-            ? lineItem.variant.images[0].url
-            : '',
-          productSubTotal: convertMoneyToText(lineItem.totalPrice, locale),
-        };
+        return mapLineItem(lineItem, locale, languages);
       }),
       ...mapAddress(customer, order),
     };

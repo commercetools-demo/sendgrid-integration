@@ -15,6 +15,7 @@ import { LineItem } from '@commercetools-test-data/cart';
 import { faker } from '@faker-js/faker';
 import { Customer, type TCustomer } from '@commercetools-test-data/customer';
 import { createApiRoot } from '../../src/client/create.client';
+import { Project, type TProject } from '@commercetools-test-data/project';
 
 jest.mock('../../src/client/create.client', () => {
   const mockCreateApiRoot = jest.fn();
@@ -37,6 +38,7 @@ describe('Testing Order Refund', () => {
 
     const customerId = faker.string.uuid();
     const customer = Customer.random().build<TCustomer>();
+    const project = Project.random().build<TProject>();
     const order = Order.random()
       .customerId(customerId)
       .lineItems([LineItem.random().id(lineItemId)])
@@ -66,6 +68,11 @@ describe('Testing Order Refund', () => {
     });
 
     const mockRoot = {
+      get: jest.fn().mockReturnValue({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: project })),
+      }),
       orders: jest.fn().mockReturnValue({
         withId: ordersWithId,
       }),

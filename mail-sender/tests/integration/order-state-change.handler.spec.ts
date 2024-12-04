@@ -9,6 +9,7 @@ import { faker } from '@faker-js/faker';
 import { Customer, type TCustomer } from '@commercetools-test-data/customer';
 import { createApiRoot } from '../../src/client/create.client';
 import { Order, TOrder } from '@commercetools-test-data/order';
+import { Project, type TProject } from '@commercetools-test-data/project';
 
 jest.mock('../../src/client/create.client', () => {
   const mockCreateApiRoot = jest.fn();
@@ -29,6 +30,7 @@ describe('Testing Order State Changed', () => {
     const orderId = faker.string.uuid();
     const customerId = faker.string.uuid();
     const customer = Customer.random().build<TCustomer>();
+    const project = Project.random().build<TProject>();
     const order = Order.random()
       .customerId(customerId)
       .customerEmail(customer.email)
@@ -53,6 +55,11 @@ describe('Testing Order State Changed', () => {
     });
 
     const mockRoot = {
+      get: jest.fn().mockReturnValue({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: project })),
+      }),
       orders: jest.fn().mockReturnValue({
         withId: ordersWithId,
       }),

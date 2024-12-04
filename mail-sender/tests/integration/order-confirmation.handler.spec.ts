@@ -1,7 +1,7 @@
 import { Order, type TOrder } from '@commercetools-test-data/order';
 import {
-  OrderCreatedMessage,
   Order as CTOrder,
+  OrderCreatedMessage,
 } from '@commercetools/platform-sdk';
 import { handleOrderCreatedMessage } from '../../src/handlers/order-confirmation.handler';
 import { expect } from '@jest/globals';
@@ -13,6 +13,7 @@ import { faker } from '@faker-js/faker';
 import { Customer, type TCustomer } from '@commercetools-test-data/customer';
 import { createApiRoot } from '../../src/client/create.client';
 import { LineItem } from '@commercetools-test-data/cart';
+import { Project, type TProject } from '@commercetools-test-data/project';
 
 jest.mock('../../src/client/create.client', () => {
   const mockCreateApiRoot = jest.fn();
@@ -32,6 +33,7 @@ describe('Testing Order Confirmation', () => {
   it('Order Created With Customer', async () => {
     const orderId = faker.string.uuid();
     const customerId = faker.string.uuid();
+    const project = Project.random().build<TProject>();
     const customer = Customer.random().locale('EN').build<TCustomer>();
     const order = Order.random()
       .customerId(customerId)
@@ -48,6 +50,11 @@ describe('Testing Order Confirmation', () => {
     });
 
     const mockRoot = {
+      get: jest.fn().mockReturnValue({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: project })),
+      }),
       customers: jest.fn().mockReturnValue({
         withId: customersWithId,
       }),
@@ -91,6 +98,19 @@ describe('Testing Order Confirmation', () => {
       .customerEmail(faker.internet.email())
       .customerId(undefined)
       .build<TOrder>();
+
+    const project = Project.random().build<TProject>();
+
+    const mockRoot = {
+      get: jest.fn().mockReturnValue({
+        execute: jest
+          .fn()
+          .mockReturnValueOnce(Promise.resolve({ body: project })),
+      }),
+    };
+
+    // Set the mock implementation for createApiRoot to return mockRoot
+    (createApiRoot as jest.Mock).mockReturnValue(mockRoot);
 
     const orderCreatedMessage: OrderCreatedMessage = {
       createdAt: faker.date.past().toISOString(),

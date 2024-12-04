@@ -4,8 +4,8 @@ import { readAdditionalConfiguration } from './config.utils';
 export const findLocale = (customer?: Customer, order?: Order) => {
   return (
     customer?.locale ||
-    customer?.addresses?.[0]?.country ||
     order?.locale ||
+    customer?.addresses?.[0]?.country ||
     order?.shippingAddress?.country ||
     readAdditionalConfiguration().defaultLocale
   );

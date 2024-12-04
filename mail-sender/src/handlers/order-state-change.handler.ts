@@ -1,6 +1,5 @@
 import CustomError from '../errors/custom.error';
 import { HTTP_STATUS_BAD_REQUEST } from '../constants/http-status.constants';
-import { convertMoneyToText } from '../utils/money.utils';
 import {
   OrderShipmentStateChangedMessage,
   OrderStateChangedMessage,
@@ -8,9 +7,10 @@ import {
 import { getOrderById } from '../ctp/order';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
-import { mapNames, findLocale, mapEmail } from '../utils/customer.utils';
-import { convertDateToText } from '../utils/date.utils';
-import { getCustomerFromOrder } from '../utils/order.utils';
+import { findLocale } from '../utils/customer.utils';
+import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
+import { getProject } from '../ctp/project';
+import { mapLineItem } from '../utils/lineitem.utils';
 
 export const handleOrderStateChanged = async (
   messageBody: OrderStateChangedMessage | OrderShipmentStateChangedMessage
@@ -22,46 +22,16 @@ export const handleOrderStateChanged = async (
   if (order) {
     const customer = await getCustomerFromOrder(order);
 
-    const orderLineItems = [];
+    const locale = findLocale(customer, order);
+    const { languages } = await getProject();
 
-    for (const lineItem of order.lineItems) {
-      const item = {
-        productName: lineItem.name[findLocale(customer, order)],
-        productQuantity: lineItem.quantity,
-        productSku: lineItem.variant.sku,
-        productImage: lineItem.variant.images
-          ? lineItem.variant.images[0].url
-          : '',
-        productSubTotal: convertMoneyToText(
-          lineItem.totalPrice,
-          findLocale(customer, order)
-        ),
-      };
-      orderLineItems.push(item);
-    }
-    const dateAndTime = convertDateToText(
-      order.createdAt,
-      findLocale(customer, order)
-    );
     let orderDetails: HandlerReturnType['templateData'] = {
-      orderNumber: order.orderNumber || '',
-      ...mapEmail(customer, order),
-      ...mapNames(customer, order),
-      orderCreationTime: dateAndTime.time,
-      orderCreationDate: dateAndTime.date,
+      ...mapOrderDefaults(order, customer, locale),
       orderState: order.orderState,
       orderShipmentState: order.shipmentState,
-      orderTotalPrice: convertMoneyToText(
-        order.totalPrice,
-        findLocale(customer, order)
-      ),
-      orderTaxedPrice: order.taxedPrice
-        ? convertMoneyToText(
-            order.taxedPrice.totalNet,
-            findLocale(customer, order)
-          )
-        : '',
-      orderLineItems,
+      orderLineItems: order.lineItems.map((lineItem) => {
+        return mapLineItem(lineItem, locale, languages);
+      }),
     };
 
     orderDetails = {
