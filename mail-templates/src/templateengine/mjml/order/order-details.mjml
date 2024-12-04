@@ -1,33 +1,33 @@
 <mj-section css-class="custom-section">
     <mj-column width="100%">
         <mj-text font-size="18px" font-weight="bold">
-            {{orderMessage.shippingConfirmation}}
+            {{messages.shippingConfirmation}}
         </mj-text>
         <mj-text>
             <span class="secondary">
-                {{orderMessage.delivery}}
+                {{messages.delivery}}
             </span>
-            <span class="bold">{{orderMessage.deliveryDate}}</span>
+            <span class="bold">{{messages.deliveryDate}}</span>
         </mj-text>
         <mj-text>
             <span class="secondary">
-                {{orderMessage.deliveryTo}}
+                {{messages.deliveryTo}}
             </span>
-            <span class="bold">{{customerFirstName}} {{customerLastName}}
+            <span class="bold">{{shippingAddress.firstName}} {{shippingAddress.lastName}}
                 <br/>
-                {{address.streetName}} {{address.streetNumber}}
+                {{shippingAddress.streetName}} {{shippingAddress.streetNumber}}
                 <br/>
-                {{address.postalCode}} {{address.city}}
+                {{shippingAddress.postalCode}} {{shippingAddress.city}}
                 <br/>
-                {{address.country}}
+                {{shippingAddress.country}}
             </span>
         </mj-text>
         <mj-text>
             <span class="secondary">
-                {{orderMessage.orderNumberText}}
+                {{messages.orderNumberText}}
             </span>
-            <a href="{{orderNumberLink}}" class="bold">{{orderMessage.orderNumber}}</a>
+            <a href="{{messages.orderNumberLink}}" class="bold">{{orderNumber}}</a>
         </mj-text>
-        <mj-button href="{{orderTrackingLink}}">{{orderMessage.trackOrder}}</mj-button>
+        <mj-button href="{{messages.orderTrackingLink}}">{{messages.trackOrder}}</mj-button>
     </mj-column>
 </mj-section>

@@ -105,9 +105,6 @@ describe('Testing Order Refund', () => {
     expect(result?.templateData['customerFirstName']).toEqual(
       customer.firstName
     );
-    expect(result?.templateData['customerMiddleName']).toEqual(
-      customer.middleName
-    );
     expect(result?.templateData['customerLastName']).toEqual(customer.lastName);
     expect(result?.templateData['orderCreationTime']).toBeDefined();
     expect(result?.templateData['orderCreationDate']).toBeDefined();

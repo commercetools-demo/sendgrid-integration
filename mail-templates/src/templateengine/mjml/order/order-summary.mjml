@@ -1,7 +1,7 @@
 <mj-section css-class="custom-section">
     <mj-column>
         <mj-text font-size="18px" font-weight="bold">
-            {{orderMessage.orderSummary}}
+            {{messages.orderSummary}}
         </mj-text>
         {{#each orderLineItems}}
         <mj-table>
@@ -11,7 +11,7 @@
     display: table-cell;
     width: 131px;
     height: 131px;">
-                    <a href="{{orderNumberLink}}">
+                    <a href="{{messages.orderNumberLink}}">
                         <img src="{{this.productImage}}" alt="{{this.productName}}"
                              style="max-height: 115px; max-width: 115px; display: block; padding: 8px; mix-blend-mode: multiply; ">
                     </a>
@@ -20,19 +20,19 @@
                 <td style="vertical-align: middle;">
                     <p style="margin: 0;">
                         <span>
-                            <a href="{{orderNumberLink}}" style="text-decoration:none; color: #000000">
+                            <a href="{{messages.orderNumberLink}}" style="text-decoration:none; color: #000000">
                                 <span style="font-size: 15px;">{{this.productName}}</span>
                             </a>
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
                         <span class="secondary">
-                            {{../orderMessage.soldBy}}: commercetools
+                            {{../messages.soldBy}}: commercetools
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
                         <span class="secondary">
-                            {{../orderMessage.amount}}: {{this.productQuantity}}
+                            {{../messages.amount}}: {{this.productQuantity}}
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">

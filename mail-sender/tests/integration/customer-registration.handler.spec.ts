@@ -49,7 +49,6 @@ describe('Testing Customer Registration', () => {
         customerEmail: customer.email,
         customerNumber: customer.customerNumber || '',
         customerFirstName: customer.firstName || '',
-        customerMiddleName: customer.middleName || '',
         customerLastName: customer.lastName || '',
       })
     );

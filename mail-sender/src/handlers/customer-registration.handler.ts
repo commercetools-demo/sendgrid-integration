@@ -3,7 +3,7 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
 import { createTokenForVerification } from '../ctp/customer';
 import { convertDateToText } from '../utils/date.utils';
-import { findLocale } from '../utils/customer.utils';
+import { mapNames, findLocale } from '../utils/customer.utils';
 
 export const handleCustomerCreated = async (
   messageBody: CustomerCreatedMessage
@@ -15,9 +15,7 @@ export const handleCustomerCreated = async (
   const customerDetails: HandlerReturnType['templateData'] = {
     customerEmail: customer.email,
     customerNumber: customer.customerNumber || '',
-    customerFirstName: customer.firstName || '',
-    customerMiddleName: customer.middleName || '',
-    customerLastName: customer.lastName || '',
+    ...mapNames(customer),
     customerCreationDate: createdAt.date,
     customerCreationTime: createdAt.time,
   };

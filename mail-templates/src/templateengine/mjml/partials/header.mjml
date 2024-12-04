@@ -2,7 +2,7 @@
 
     <mj-column>
         <mj-image align="left"
-                  src="{{heroImage}}"/>
+                  src="{{messages.heroImage}}"/>
     </mj-column>
     <mj-column>
 <!--        <mj-text font-size="26px">-->

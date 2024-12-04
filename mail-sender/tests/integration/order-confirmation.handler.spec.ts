@@ -12,6 +12,7 @@ import {
 import { faker } from '@faker-js/faker';
 import { Customer, type TCustomer } from '@commercetools-test-data/customer';
 import { createApiRoot } from '../../src/client/create.client';
+import { LineItem } from '@commercetools-test-data/cart';
 
 jest.mock('../../src/client/create.client', () => {
   const mockCreateApiRoot = jest.fn();
@@ -28,11 +29,14 @@ describe('Testing Order Confirmation', () => {
     (readAdditionalConfiguration as jest.Mock).mockClear();
   });
 
-  it('Order Created', async () => {
+  it('Order Created With Customer', async () => {
     const orderId = faker.string.uuid();
     const customerId = faker.string.uuid();
-    const customer = Customer.random().build<TCustomer>();
-    const order = Order.random().customerId(customerId).build<TOrder>();
+    const customer = Customer.random().locale('EN').build<TCustomer>();
+    const order = Order.random()
+      .customerId(customerId)
+      .lineItems([LineItem.random(), LineItem.random()])
+      .build<TOrder>();
 
     // Define a mock root to be returned
     const customersWithId = jest.fn().mockReturnValueOnce({
@@ -79,5 +83,47 @@ describe('Testing Order Confirmation', () => {
     expect(result.templateData['orderLineItems'].length).toEqual(
       order.lineItems.length
     );
+
+    const data = result.templateData;
+    console.log(JSON.stringify(data, undefined, 2));
+  });
+
+  it('Order Created Anonymous', async () => {
+    const orderId = faker.string.uuid();
+    const order = Order.random()
+      .customerEmail(faker.internet.email())
+      .customerId(undefined)
+      .build<TOrder>();
+
+    const orderCreatedMessage: OrderCreatedMessage = {
+      createdAt: faker.date.past().toISOString(),
+      id: faker.string.uuid(),
+      lastModifiedAt: faker.date.past().toISOString(),
+      resource: { id: orderId, typeId: 'order' },
+      resourceVersion: faker.number.int(),
+      sequenceNumber: faker.number.int(),
+      type: 'OrderCreated',
+      version: faker.number.int(),
+      order: order as any as CTOrder,
+    };
+
+    const result = await handleOrderCreatedMessage(orderCreatedMessage);
+
+    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
+    expect(result.templateId).toEqual(
+      readAdditionalConfiguration().orderConfirmationTemplateId
+    );
+
+    expect(result.templateData).toEqual(
+      expect.objectContaining({
+        orderNumber: order.orderNumber,
+      })
+    );
+    expect(result.templateData['orderLineItems'].length).toEqual(
+      order.lineItems.length
+    );
+
+    const data = result.templateData;
+    console.log(JSON.stringify(data, undefined, 2));
   });
 });

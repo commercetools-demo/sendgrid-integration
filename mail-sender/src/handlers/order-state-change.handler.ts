@@ -9,7 +9,7 @@ import { getOrderById } from '../ctp/order';
 import { getCustomerById } from '../ctp/customer';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType } from '../types/index.types';
-import { findLocale } from '../utils/customer.utils';
+import { mapNames, findLocale } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
 
 const DEFAULT_CUSTOMER_NAME = 'Customer';
@@ -56,11 +56,7 @@ export const handleOrderStateChanged = async (
     const orderDetails = {
       orderNumber: order.orderNumber || '',
       customerEmail: order.customerEmail || '',
-      customerFirstName: customer?.firstName
-        ? customer.firstName
-        : DEFAULT_CUSTOMER_NAME,
-      customerMiddleName: customer?.middleName || '',
-      customerLastName: customer?.lastName || '',
+      ...mapNames(customer, order),
       orderCreationTime: dateAndTime.time,
       orderCreationDate: dateAndTime.date,
       orderState: order.orderState,
@@ -80,7 +76,7 @@ export const handleOrderStateChanged = async (
       templateId: orderStateChangeTemplateId,
       templateData: orderDetails,
       successMessage: `Order state change email has been sent to ${orderDetails.customerEmail}.`,
-      preSuccessMessage: `Ready to send order state change email : customerEmail=${orderDetails.customerEmail}, orderNumber=${orderDetails.orderNumber}, customerMiddleName=${orderDetails.customerMiddleName}, customerCreationTime=${orderDetails.orderCreationTime}`,
+      preSuccessMessage: `Ready to send order state change email : customerEmail=${orderDetails.customerEmail}, orderNumber=${orderDetails.orderNumber}, customerCreationTime=${orderDetails.orderCreationTime}`,
     };
   } else {
     throw new CustomError(

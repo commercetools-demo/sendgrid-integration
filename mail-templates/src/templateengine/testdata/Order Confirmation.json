@@ -1,48 +1,54 @@
 {
-  "heroMessage": "Order Confirmation",
-  "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
-  "orderMessage": {
+  "orderNumber": "8740401360494911",
+  "customerEmail": "Elaina72@hotmail.com",
+  "customerFirstName": "Alexandro",
+  "customerLastName": "Mann",
+  "orderCreationTime": "10:25:18 AM",
+  "orderCreationDate": "11/29/2024",
+  "orderTotalPrice": "$44,227,918.93",
+  "orderTaxedPrice": "",
+  "orderLineItems": [
+    {
+      "productQuantity": 5937354354008748,
+      "productSku": "copia-3GP",
+      "productImage": "https://loremflickr.com/3855/693?lock=5482529695507643",
+      "productSubTotal": "$19,145,886.43"
+    },
+    {
+      "productQuantity": 8375111864025625,
+      "productSku": "candidus-mQq",
+      "productImage": "https://loremflickr.com/64/2492?lock=5614158323190312",
+      "productSubTotal": "$69,566,130.29"
+    }
+  ],
+  "shippingAddress": {
+    "firstName": "Aryanna",
+    "lastName": "Tromp",
+    "country": "DE",
+    "streetName": "Ottilie Valleys",
+    "streetNumber": "1509856812033808",
+    "additionalStreetInfo": "Clarence Street",
+    "postalCode": "78355-5587",
+    "city": "Mansfield",
+    "state": "Pennsylvania",
+    "company": "Hane, Shields and McGlynn"
+  },
+  "messages": {
+    "heroMessage": "Order Confirmation",
+    "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
     "welcome": "Hey there,",
     "text": "Thank you for your order! We will notify you as soon as your item(s) have been dispatched.you will find the estimated delivery date below.to view or amend your order, visit My Orders on our website.",
     "shippingConfirmation": "Shipping Confirmation",
     "delivery": "Delivery:",
-    "deliveryDate": "Tuesday, November 27th",
+    "deliveryDate": "12/5/2024",
     "deliveryTo": "The shipment goes to:",
     "orderNumberText": "Order Number: #",
-    "orderNumber": "2q34",
     "trackOrder": "Track Order",
     "orderSummary": "Order Summary",
     "soldBy": "Sold By",
     "amount": "Amount",
-    "totalAmount": "Total Amount"
-  },
-  "total": "$2134.00",
-  "orderTrackingLink": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299",
-  "orderNumberLink": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299",
-  "customerFirstName": "Firstname",
-  "customerLastName": "Lastname",
-  "address": {
-    "streetName": "Mainroad",
-    "streetNumber": "66",
-    "postalCode": "1234 BB",
-    "city": "City",
-    "state": "State",
-    "country": "United States of something"
-  },
-  "orderLineItems": [
-    {
-      "productName": "Name 1",
-      "productQuantity": "1",
-      "productSku": "123",
-      "productImage": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/led-work-light.webp",
-      "productSubTotal": "$49.99"
-    },
-    {
-      "productName": "Name 2",
-      "productQuantity": "2",
-      "productSku": "234",
-      "productImage": "https://storage.googleapis.com/merchant-center-europe/sample-data/b2bstore/pin-and-bushing-kit.webp",
-      "productSubTotal": "$149.99"
-    }
-  ]
+    "totalAmount": "Total Amount",
+    "orderTrackingLink": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299",
+    "orderNumberLink": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299"
+  }
 }

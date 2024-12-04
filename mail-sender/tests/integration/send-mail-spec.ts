@@ -19,7 +19,6 @@ describe('Testing router', () => {
         orderNumber: '2024-11-29-79164',
         customerEmail: faker.string.sample(),
         customerFirstName: faker.person.firstName(),
-        customerMiddleName: faker.person.middleName(),
         customerLastName: faker.person.lastName(),
         orderCreationTime: '12:50:29',
         orderCreationDate: '29.11.2024',

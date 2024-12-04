@@ -1,10 +1,10 @@
 <mj-section css-class="custom-section">
     <mj-column>
         <mj-text font-size="26px" >
-            {{orderMessage.welcome}}
+            {{messages.welcome}}
         </mj-text>
         <mj-text>
-            {{orderMessage.text}}
+            {{messages.text}}
         </mj-text>
     </mj-column>
 </mj-section>

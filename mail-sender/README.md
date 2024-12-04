@@ -41,7 +41,6 @@ Customer Registration
 |   customerEmail                  |   Recipient email address                           |
 |   customerNumber                 |   Customer number defined in commercetools platform |
 |   customerFirstName              |   First name of the customer                        |
-|   customerMiddleName             |   Middle name of the customer                       |
 |   customerLastName               |   Last name of the customer                         |
 |   customerCreationTime           |   Registration time of the customer                 |
 |   customerCreationDate           |   Registration date of the customer                 |
@@ -60,7 +59,6 @@ Password Reset Token Creation
 |   customerEmail                        |   Recipient email address                                 |
 |   customerNumber                       |   Customer number defined in commercetools platform       |
 |   customerFirstName                    |   First name of the customer                              |
-|   customerMiddleName                   |   Middle name of the customer                             |
 |   customerLastName                     |   Last name of the customer                               |
 |   customerCreationDate                 |   Date of the email token generation                      |
 |   customerCreationTime                 |   Time of the email token generation                      |
@@ -79,7 +77,6 @@ Order Confirmation
 |   orderNumber                              |   Recipient email address                                                                         |
 |   customerEmail                            |   Email address of customer linked to the order                                                   |
 |   customerFirstName                        |   First name of the customer                                                                      |
-|   customerMiddleName                       |   Middle name of the customer                                                                     |
 |   customerLastName                         |   Last name of the customer                                                                       |
 |   orderCreationTime                        |   Time of the order creation                                                                      |
 |   orderCreationDate                        |   Date of the order creation                                                                      |
@@ -104,7 +101,6 @@ Order/Shipment State Change
 |   orderNumber                             |   Recipient email address                                                                         |
 |   customerEmail                           |   Email address of customer linked to the order                                                   |
 |   customerFirstName                       |   First name of the customer                                                                      |
-|   customerMiddleName                      |   Middle name of the customer                                                                     |
 |   customerLastName                        |   Last name of the customer                                                                       |
 |   orderCreationTime                       |   Time of the order creation                                                                      |
 |   orderCreationDate                       |   Date of the order creation                                                                      |
@@ -130,7 +126,6 @@ Order Refund
 |   orderNumber                              |   Recipient email address                                                                     |
 |   customerEmail                            |   Email address of customer linked to the order                                               |
 |   customerFirstName                        |   First name of the customer                                                                  |
-|   customerMiddleName                       |   Middle name of the customer                                                                 |
 |   customerLastName                         |   Last name of the customer                                                                   |
 |   orderCreationTime                        |   Time of the order creation                                                                  |
 |   orderCreationDate                        |   Date of the order creation                                                                  |
