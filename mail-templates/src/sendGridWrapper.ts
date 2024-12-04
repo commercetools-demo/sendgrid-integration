@@ -19,6 +19,7 @@ export type Version = {
 
   html_content?: string;
   plain_content?: string;
+  test_data?: string;
 };
 
 export type Template = {

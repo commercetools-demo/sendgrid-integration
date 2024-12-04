@@ -19,7 +19,13 @@ import {
 } from './sendGridWrapper';
 import { createFolder, writeJsonFile } from './utils';
 
-type Version = { id: string; remote: Date; local: Date; html: Date };
+type Version = {
+  id: string;
+  remote: Date;
+  local: Date;
+  html: Date;
+  testdata: Date;
+};
 type Template = { id: string; name: string; versions: Array<Version> };
 
 type StatusFile = {
@@ -51,11 +57,20 @@ const storeVersionLocally = async (
   const version = await getVersion(templateId, versionId);
   const filenameAPIResponse = resolve(path, version.name + '.json');
   const filenameHTML = resolve(path, version.name + '.html');
+  const filenameTestdata = resolve(path, version.name + '-testdata.json');
   writeFileSync(filenameAPIResponse, JSON.stringify(version, undefined, 2));
   if (version.html_content) {
     writeFileSync(filenameHTML, version.html_content);
     const { mtime } = statSync(filenameHTML);
     versionInStore.html = mtime;
+  }
+  if (version.test_data) {
+    writeFileSync(
+      filenameTestdata,
+      JSON.stringify(JSON.parse(version.test_data), undefined, 2)
+    );
+    const { mtime } = statSync(filenameTestdata);
+    versionInStore.testdata = mtime;
   }
   const { mtime } = statSync(filenameAPIResponse);
   versionInStore.local = mtime;
@@ -68,21 +83,34 @@ const checkUpdatedStatus = (
   versionPath: string
 ) => {
   //check if updated locally
+  let updatedLocal = false;
+  let updatedRemote = false;
+
   const { mtime: localVersionOfVersionEditDate } = statSync(
     versionPath + '/' + version.name + '.json'
   );
-  const { mtime: localVersionOfHTML } = statSync(
-    versionPath + '/' + version.name + '.html'
-  );
-  let updatedLocal = false;
-  let updatedRemote = false;
+  if (existsSync(versionPath + '/' + version.name + '.html')) {
+    const { mtime: localVersionOfHTML } = statSync(
+      versionPath + '/' + version.name + '.html'
+    );
+    if (localVersionOfHTML > new Date(versionInStore.html)) {
+      updatedLocal = true;
+    }
+  }
+  if (existsSync(versionPath + '/' + version.name + '-testdata.json')) {
+    const { mtime: localVersionOfTestdata } = statSync(
+      versionPath + '/' + version.name + '-testdata.json'
+    );
+    if (localVersionOfTestdata > new Date(versionInStore.testdata)) {
+      updatedLocal = true;
+    }
+  }
+
   //check if updated locally
   if (localVersionOfVersionEditDate > new Date(versionInStore.local)) {
     updatedLocal = true;
   }
-  if (localVersionOfHTML > new Date(versionInStore.html)) {
-    updatedLocal = true;
-  }
+
   //check if updated remotely
   if (new Date(version.updated_at) > new Date(versionInStore.remote)) {
     updatedRemote = true;
@@ -102,6 +130,7 @@ async function versionDoesNotExistLocally(
     remote: new Date(),
     local: new Date(),
     html: new Date(),
+    testdata: new Date(),
   };
   await storeVersionLocally(
     template.id,
@@ -147,6 +176,12 @@ async function versionExistsLocally(
     if (existsSync(versionPath + '/' + version.name + '.html')) {
       data.html_content = readFileSync(
         versionPath + '/' + version.name + '.html',
+        'utf-8'
+      );
+    }
+    if (existsSync(versionPath + '/' + version.name + '-testdata.json')) {
+      data.test_data = readFileSync(
+        versionPath + '/' + version.name + '-testdata.json',
         'utf-8'
       );
     }
@@ -242,7 +277,7 @@ const getAllRunner = async () => {
           name: item.name,
           html_content: item.file,
           generate_plain_content: false,
-          subject: '',
+          subject: item.name,
         });
       }
     } else {
@@ -314,6 +349,7 @@ const getAllRunner = async () => {
         remote: new Date(),
         local: new Date(),
         html: new Date(),
+        testdata: new Date(),
       };
       await storeVersionLocally(
         template.id,

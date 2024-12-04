@@ -34,7 +34,8 @@ function handlebarsErrorMJML(error: any) {
 export const htmlFromTemplate = (
   template: string,
   data: Record<string, any> | undefined,
-  options: MJMLParsingOptions
+  options: MJMLParsingOptions,
+  enableHandleBar = true
 ): string => {
   function processMJMLTemplate(mjml: any) {
     try {
@@ -46,7 +47,7 @@ export const htmlFromTemplate = (
     }
   }
 
-  if (data) {
+  if (enableHandleBar && data) {
     options.preprocessors = [processMJMLTemplate];
   }
   const hbs = Handlebars;
