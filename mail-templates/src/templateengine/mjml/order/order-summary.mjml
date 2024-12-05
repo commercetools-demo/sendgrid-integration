@@ -3,7 +3,9 @@
         <mj-text font-size="18px" font-weight="bold">
             {{messages.orderSummary}}
         </mj-text>
-        {{#each orderLineItems}}
+        <mj-raw>
+            {{#each orderLineItems}}
+        </mj-raw>
         <mj-table>
             <tr>
                 <td style="background-image: linear-gradient(rgba(15, 17, 17, 0.03), rgba(15, 17, 17, 0.03));
@@ -36,13 +38,15 @@
                         </span>
                     </p>
                     <p style="margin: 4px 0 0 0; ">
-                        <span  class="secondary" style="font-size: 15px;">
+                        <span class="secondary" style="font-size: 15px;">
                             {{this.productSubTotal}}
                         </span>
                     </p>
                 </td>
             </tr>
         </mj-table>
-        {{/each}}
+        <mj-raw>
+            {{/each}}
+        </mj-raw>
     </mj-column>
 </mj-section>
