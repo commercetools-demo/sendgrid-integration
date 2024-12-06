@@ -9,8 +9,8 @@ deployAs:
       standardConfiguration:
         - key: CTP_REGION
           description: commercetools Composable Commerce API region
+          default: europe-west1.gcp
           required: true
-          default: "europe-west1.gcp"
         - key: CTP_PROJECT_KEY
           description: commercetools Composable Commerce project key
           required: true
@@ -24,19 +24,24 @@ deployAs:
           description: sender's email address displayed in the email
           required: true
         - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
-          description: Identifier of customer registration email template stored in email service provider
+          description: Identifier of customer registration email template stored in email
+            service provider
           required: true
         - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
-          description: Identifier of password token creation email template stored in email service provider
+          description: Identifier of password token creation email template stored in
+            email service provider
           required: true
         - key: ORDER_CONFIRMATION_TEMPLATE_ID
-          description: Identifier of order confirmation email template stored in email service provider
+          description: Identifier of order confirmation email template stored in email
+            service provider
           required: true
         - key: ORDER_STATE_CHANGE_TEMPLATE_ID
-          description: Identifier of order state change / shipment state change email template stored in email service provider
+          description: Identifier of order state change / shipment state change email
+            template stored in email service provider
           required: true
         - key: ORDER_REFUND_TEMPLATE_ID
-          description: Identifier of order refund email template stored in email service provider
+          description: Identifier of order refund email template stored in email service
+            provider
           required: true
         - key: DEFAULT_LOCALE
           description: Default Locale used to localize e.g. dates and prices
@@ -48,3 +53,19 @@ deployAs:
         - key: EMAIL_PROVIDER_API_KEY
           description: The API key used to communicate with email provider
           required: true
+  - name: localization-manager
+    applicationType: merchant-center-custom-application
+    configuration:
+      standardConfiguration:
+        - key: CUSTOM_APPLICATION_ID
+          description: The ID of the custom application.
+        - key: CLOUD_IDENTIFIER
+          description: The cloud identifier.
+          required: true
+          default: 'gcp-eu'
+        - key: ENTRY_POINT_URI_PATH
+          description: The entry point URI path.
+          required: true
+          default: 'localization-manager'
+        - key: INITIAL_PROJECT_KEY
+          description: development project key

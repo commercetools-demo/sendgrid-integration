@@ -1,0 +1,9 @@
+query GetCustomObject($id: String, $key: String, $container: String) {
+  customObject(id: $id, key: $key, container: $container) {
+    id
+    version
+    container
+    value
+    key
+  }
+}
