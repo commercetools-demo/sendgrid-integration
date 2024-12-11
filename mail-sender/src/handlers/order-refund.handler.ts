@@ -13,6 +13,28 @@ import { logger } from '../utils/logger.utils';
 import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
 import { mapLineItem } from '../utils/lineitem.utils';
 
+const resolveLineItemIds = (
+  returnInfoInput: Array<ReturnInfo> | ReturnInfo | undefined,
+  orderId: string
+) => {
+  if (!returnInfoInput) {
+    logger.info(`No returned line item is found for order ${orderId}`);
+    return undefined;
+  }
+  let returnInfo: Array<ReturnInfo> = [];
+  if (Array.isArray(returnInfoInput)) {
+    returnInfo = returnInfoInput;
+  } else {
+    returnInfo = [returnInfoInput];
+  }
+
+  return returnInfo
+    .flatMap((returnInfo) => returnInfo.items)
+    .map((item) => {
+      return 'lineItemId' in item ? item.lineItemId : '';
+    });
+};
+
 export const handleReturnInfo: HandlerType<
   ReturnInfoAddedMessage | ReturnInfoSetMessage
 > = async (messageBody, languages) => {
@@ -22,34 +44,19 @@ export const handleReturnInfo: HandlerType<
   const order = await getOrderById(orderId);
   if (order) {
     const customer = await getCustomerFromOrder(order);
-    if (!messageBody.returnInfo) {
-      logger.info(`No returned line item is found for order ${orderId}`);
+    const returnedLineItemId = resolveLineItemIds(
+      messageBody.returnInfo,
+      orderId
+    );
+    if (!returnedLineItemId) {
       return undefined;
     }
-
-    let returnInfo: Array<ReturnInfo> = [];
-    if (Array.isArray(messageBody.returnInfo)) {
-      returnInfo = messageBody.returnInfo;
-    } else {
-      returnInfo = [messageBody.returnInfo];
-    }
-
-    const returnedLineItemId = returnInfo
-      .flatMap((returnInfo) => returnInfo.items)
-      .map((item) => {
-        return 'lineItemId' in item ? item.lineItemId : '';
-      });
-    const returnedLineItems = [];
-
     const locale = findLocale(customer, order);
 
-    for (const lineItem of order.lineItems) {
-      if (returnedLineItemId.includes(lineItem.id)) {
-        // Rule out those line items which are not going to be returned.
-        const item = mapLineItem(lineItem, locale, languages);
-        returnedLineItems.push(item);
-      }
-    }
+    const returnedLineItems = order.lineItems
+      .filter((lineItem) => returnedLineItemId.includes(lineItem.id))
+      .map((lineItem) => mapLineItem(lineItem, locale, languages));
+
     if (returnedLineItems.length > 0) {
       const orderDetails: HandlerReturnType['templateData'] = {
         ...mapOrderDefaults(order, customer, locale),
