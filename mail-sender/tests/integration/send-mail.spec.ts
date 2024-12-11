@@ -12,10 +12,11 @@ describe('Testing router', () => {
   });
 
   test.skip('Post to non existing route', async () => {
-    await sendMail(readAdditionalConfiguration().senderEmailAddress, {
-      recipientEmailAddresses: ['philipp.hofmann@commercetools.com'],
-      templateId: readAdditionalConfiguration().orderConfirmationTemplateId,
-      templateData: {
+    await sendMail(
+      readAdditionalConfiguration().senderEmailAddress,
+      ['philipp.hofmann@commercetools.com'],
+      readAdditionalConfiguration().orderConfirmationTemplateId,
+      {
         orderNumber: '2024-11-29-79164',
         customerEmail: faker.string.sample(),
         customerFirstName: faker.person.firstName(),
@@ -33,9 +34,7 @@ describe('Testing router', () => {
             productSubTotal: '1.299,00 €',
           },
         ],
-      },
-      successMessage: '',
-      preSuccessMessage: '',
-    });
+      }
+    );
   });
 });

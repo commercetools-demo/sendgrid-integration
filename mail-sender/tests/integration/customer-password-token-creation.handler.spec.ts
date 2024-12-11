@@ -78,18 +78,21 @@ describe('Testing Customer Password Reset', () => {
       };
 
     const result = await handleCustomerPasswordTokenCreated(
-      customerPasswordTokenCreatedMessage
+      customerPasswordTokenCreatedMessage,
+      []
     );
 
     expect(passwordTokenPost).toBeCalledWith({
       body: expect.objectContaining({ email: customer.email }),
     });
-    expect(result.templateData['customerPasswordToken']).toEqual(passwordToken);
+    expect(result?.templateData['customerPasswordToken']).toEqual(
+      passwordToken
+    );
     expect(
-      result.templateData['customerPasswordTokenValidityDate']
+      result?.templateData['customerPasswordTokenValidityDate']
     ).toBeDefined();
     expect(
-      result.templateData['customerPasswordTokenValidityTime']
+      result?.templateData['customerPasswordTokenValidityTime']
     ).toBeDefined();
   });
 });

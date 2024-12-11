@@ -1,5 +1,4 @@
 import { logger } from '../utils/logger.utils';
-import { HandlerReturnType } from '../types/index.types';
 import sendGridMail from '@sendgrid/mail';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import CustomError from '../errors/custom.error';
@@ -7,10 +6,12 @@ import { notEmpty } from '../utils/notemtpy.utils';
 
 export const sendMail = async (
   senderEmailAddress: string,
-  data: HandlerReturnType
+  recipientEmailAddresses: Array<string | undefined>,
+  templateId: string,
+  templateData: Record<string, any>
 ) => {
   try {
-    const filteredEmails = data.recipientEmailAddresses.filter(notEmpty);
+    const filteredEmails = recipientEmailAddresses.filter(notEmpty);
     if (filteredEmails.length > 0) {
       sendGridMail.setApiKey(readAdditionalConfiguration().emailProviderApiKey);
       const msg: sendGridMail.MailDataRequired = {
@@ -18,10 +19,10 @@ export const sendMail = async (
         personalizations: [
           {
             to: filteredEmails,
-            dynamicTemplateData: data.templateData,
+            dynamicTemplateData: templateData,
           },
         ],
-        templateId: data.templateId,
+        templateId: templateId,
       };
       await sendGridMail.send(msg);
     }

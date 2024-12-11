@@ -39,12 +39,12 @@ describe('Testing Customer Registration', () => {
       customer: customer,
     };
 
-    const result = await handleCustomerCreated(customerCreatedMessage);
-    expect(result.recipientEmailAddresses[0]).toEqual(customer.email);
-    expect(result.templateId).toEqual(
+    const result = await handleCustomerCreated(customerCreatedMessage, []);
+    expect(result?.recipientEmailAddresses[0]).toEqual(customer.email);
+    expect(result?.templateId).toEqual(
       readAdditionalConfiguration().customerRegistrationTemplateId
     );
-    expect(result.templateData).toEqual(
+    expect(result?.templateData).toEqual(
       expect.objectContaining({
         customerEmail: customer.email,
         customerNumber: customer.customerNumber || '',
@@ -52,9 +52,9 @@ describe('Testing Customer Registration', () => {
         customerLastName: customer.lastName || '',
       })
     );
-    expect(result.templateData['customerCreationTime']).toBeDefined();
-    expect(result.templateData['customerCreationDate']).toBeDefined();
-    expect(result.templateData['token']).toBe(undefined);
+    expect(result?.templateData['customerCreationTime']).toBeDefined();
+    expect(result?.templateData['customerCreationDate']).toBeDefined();
+    expect(result?.templateData['token']).toBe(undefined);
   });
 
   it('Verification Token', async () => {
@@ -110,12 +110,16 @@ describe('Testing Customer Registration', () => {
       customer: customer,
     };
 
-    const result = await handleCustomerCreated(customerCreatedMessage);
+    const result = await handleCustomerCreated(customerCreatedMessage, []);
     expect(emailTokenPost).toBeCalledWith({
       body: expect.objectContaining({ id: customer.id }),
     });
-    expect(result.templateData['customerEmailToken']).toEqual(emailToken);
-    expect(result.templateData['customerEmailTokenValidityDate']).toBeDefined();
-    expect(result.templateData['customerEmailTokenValidityTime']).toBeDefined();
+    expect(result?.templateData['customerEmailToken']).toEqual(emailToken);
+    expect(
+      result?.templateData['customerEmailTokenValidityDate']
+    ).toBeDefined();
+    expect(
+      result?.templateData['customerEmailTokenValidityTime']
+    ).toBeDefined();
   });
 });

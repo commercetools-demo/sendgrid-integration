@@ -75,19 +75,19 @@ describe('Testing Order Confirmation', () => {
       order: order as any as CTOrder,
     };
 
-    const result = await handleOrderCreatedMessage(orderCreatedMessage);
+    const result = await handleOrderCreatedMessage(orderCreatedMessage, []);
 
-    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
-    expect(result.templateId).toEqual(
+    expect(result?.recipientEmailAddresses[0]).not.toBe(undefined);
+    expect(result?.templateId).toEqual(
       readAdditionalConfiguration().orderConfirmationTemplateId
     );
 
-    expect(result.templateData).toEqual(
+    expect(result?.templateData).toEqual(
       expect.objectContaining({
         orderNumber: order.orderNumber,
       })
     );
-    expect(result.templateData['orderLineItems'].length).toEqual(
+    expect(result?.templateData['orderLineItems'].length).toEqual(
       order.lineItems.length
     );
   });
@@ -124,19 +124,19 @@ describe('Testing Order Confirmation', () => {
       order: order as any as CTOrder,
     };
 
-    const result = await handleOrderCreatedMessage(orderCreatedMessage);
+    const result = await handleOrderCreatedMessage(orderCreatedMessage, []);
 
-    expect(result.recipientEmailAddresses[0]).not.toBe(undefined);
-    expect(result.templateId).toEqual(
+    expect(result?.recipientEmailAddresses[0]).not.toBe(undefined);
+    expect(result?.templateId).toEqual(
       readAdditionalConfiguration().orderConfirmationTemplateId
     );
 
-    expect(result.templateData).toEqual(
+    expect(result?.templateData).toEqual(
       expect.objectContaining({
         orderNumber: order.orderNumber,
       })
     );
-    expect(result.templateData['orderLineItems'].length).toEqual(
+    expect(result?.templateData['orderLineItems'].length).toEqual(
       order.lineItems.length
     );
   });

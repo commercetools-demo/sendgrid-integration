@@ -1,14 +1,14 @@
 import { CustomerPasswordTokenCreatedMessage } from '@commercetools/platform-sdk';
 import { generatePasswordResetToken, getCustomerById } from '../ctp/customer';
-import { HandlerReturnType } from '../types/index.types';
+import { HandlerReturnType, HandlerType } from '../types/index.types';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import CustomError from '../errors/custom.error';
 import { mapNames, findLocale, mapEmail } from '../utils/customer.utils';
 import { convertDateToText } from '../utils/date.utils';
 
-export const handleCustomerPasswordTokenCreated = async (
-  messageBody: CustomerPasswordTokenCreatedMessage
-): Promise<HandlerReturnType> => {
+export const handleCustomerPasswordTokenCreated: HandlerType<
+  CustomerPasswordTokenCreatedMessage
+> = async (messageBody) => {
   const templateId =
     readAdditionalConfiguration().customerPasswordTokenCreationTemplateId;
 
@@ -17,16 +17,14 @@ export const handleCustomerPasswordTokenCreated = async (
   const generateTokenResult = await generatePasswordResetToken(customer.email);
 
   if (generateTokenResult) {
-    const createdAt = convertDateToText(
-      customer.createdAt,
-      findLocale(customer)
-    );
+    const locale = findLocale(customer);
+    const createdAt = convertDateToText(customer.createdAt, locale);
 
     const tokenExpiresAt = convertDateToText(
       generateTokenResult.expiresAt,
-      findLocale(customer)
+      locale
     );
-    let customerDetails: HandlerReturnType['templateData'] = {
+    const customerDetails: HandlerReturnType['templateData'] = {
       ...mapEmail(customer),
       customerNumber: customer.customerNumber || '',
       ...mapNames(customer),
@@ -37,28 +35,13 @@ export const handleCustomerPasswordTokenCreated = async (
       customerPasswordTokenValidityTime: tokenExpiresAt.time,
     };
 
-    customerDetails = {
-      ...customerDetails,
-      messages: {
-        welcome: 'Hey',
-        text: 'Thank you for signing up!',
-        verificationText: "Let's update your password so you can start.",
-        verificationButtonText: 'Verify your account',
-        verificationValidityText:
-          'Your link is active for 48 hours. After that, you will need to resend the verification email.',
-        verificationLink: 'asdf',
-        heroMessage: 'Password Reset',
-        heroImage:
-          'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
-      },
-    };
-
     return {
       recipientEmailAddresses: [customerDetails.customerEmail],
       templateId: templateId,
       templateData: customerDetails,
       successMessage: `Password reset email has been sent to ${customerDetails.customerEmail}.`,
       preSuccessMessage: `Ready to send password reset email : customerEmail=${customerDetails.customerEmail}, customerNumber=${customerDetails.customerNumber}, customerCreationTime=${customerDetails.customerCreationTime} `,
+      locale: locale,
     };
   } else {
     throw new CustomError(

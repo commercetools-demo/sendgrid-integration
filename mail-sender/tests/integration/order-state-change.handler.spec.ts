@@ -84,12 +84,12 @@ describe('Testing Order State Changed', () => {
       orderState: 'Complete',
     };
 
-    const result = await handleOrderStateChanged(orderStateChangedMessage);
+    const result = await handleOrderStateChanged(orderStateChangedMessage, []);
 
-    expect(result.recipientEmailAddresses[0]).toEqual(customer.email);
-    expect(result.templateId).toEqual(
+    expect(result?.recipientEmailAddresses[0]).toEqual(customer.email);
+    expect(result?.templateId).toEqual(
       readAdditionalConfiguration().orderStateChangeTemplateId
     );
-    expect(result.templateData['orderState']).toBeDefined();
+    expect(result?.templateData['orderState']).toBeDefined();
   });
 });

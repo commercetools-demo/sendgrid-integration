@@ -100,7 +100,7 @@ describe('Testing Order Refund', () => {
       version: faker.number.int(),
     };
 
-    const result = await handleReturnInfo(returnInfoAddedMessage);
+    const result = await handleReturnInfo(returnInfoAddedMessage, []);
 
     expect(result?.recipientEmailAddresses[0]).toEqual(order.customerEmail);
     expect(result?.templateId).toEqual(

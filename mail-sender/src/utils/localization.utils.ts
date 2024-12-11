@@ -1,4 +1,7 @@
 import { LocalizedString } from '@commercetools/platform-sdk';
+import { getCustomObjectByContainerAndKey } from '../ctp/custom-objects';
+import { logger } from './logger.utils';
+import * as defaultLocalizations from './localizations.json';
 
 export const findFallbackLocale = (
   localizedString: LocalizedString,
@@ -7,13 +10,6 @@ export const findFallbackLocale = (
   fallbackOrder
     .concat(Object.keys(localizedString))
     .find((lang) => Boolean(localizedString[lang]));
-
-export type FormatLocalizedStringOptions<T> = {
-  key: keyof T;
-  locale: string | null;
-  fallbackOrder?: string[];
-  fallback?: string;
-};
 
 export const getPrimaryLocale = (locale: string): string =>
   locale.split('-')[0];
@@ -61,4 +57,61 @@ export const formatLocalizedString = (
 
   // use formattedFallback by fallbackOrder as last resort
   return formattedLocalizedFallback;
+};
+
+export const loadAdditionalLocalizations = async (
+  key: string,
+  locale: string,
+  fallbackOrder: string[],
+  dynamic = true
+) => {
+  let additionalConfig: {
+    name: Record<string, string>;
+    entries: Array<{
+      key: string;
+      name: Record<string, string>;
+      values: Array<{
+        key: string;
+        label: Record<string, string>;
+      }>;
+    }>;
+  } = defaultLocalizations as {
+    name: Record<string, string>;
+    entries: Array<{
+      key: string;
+      name: Record<string, string>;
+      values: Array<{
+        key: string;
+        label: Record<string, string>;
+      }>;
+    }>;
+  };
+  if (dynamic) {
+    try {
+      const localizations = await getCustomObjectByContainerAndKey(
+        'localizations',
+        'transactional-emails'
+      );
+      additionalConfig = localizations.value;
+      logger.info(localizations);
+    } catch (e) {
+      logger.info('No Localizations found in custom object');
+    }
+  }
+  const config = additionalConfig.entries.find((entry) => entry.key === key);
+  if (!config) {
+    logger.info(`No Localization config found for key ${key}`);
+    return undefined;
+  }
+  return config.values.reduce(
+    (acc, current) => ({
+      ...acc,
+      [current.key]: formatLocalizedString(
+        current.label,
+        locale,
+        fallbackOrder
+      ),
+    }),
+    {}
+  );
 };

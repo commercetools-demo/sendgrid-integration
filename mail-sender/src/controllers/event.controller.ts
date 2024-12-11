@@ -8,6 +8,8 @@ import { handleCustomerCreated } from '../handlers/customer-registration.handler
 import { sendMail } from '../handlers/send-mail';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { handleCustomerPasswordTokenCreated } from '../handlers/customer-password-token-creation.handler';
+import { loadAdditionalLocalizations } from '../utils/localization.utils';
+import { getProject } from '../ctp/project';
 
 /**
  * Exposed event POST endpoint.
@@ -22,34 +24,48 @@ export const post = async (request: Request, response: Response) => {
   const messageBody = doValidation(request);
   let emailData = undefined;
   try {
+    const { languages } = await getProject();
     switch (messageBody.type) {
       case 'CustomerCreated': {
-        emailData = await handleCustomerCreated(messageBody);
+        emailData = await handleCustomerCreated(messageBody, languages);
         break;
       }
       case 'OrderCreated': {
-        emailData = await handleOrderCreatedMessage(messageBody);
+        emailData = await handleOrderCreatedMessage(messageBody, languages);
         break;
       }
       case 'OrderStateChanged':
       case 'OrderShipmentStateChanged': {
-        emailData = await handleOrderStateChanged(messageBody);
+        emailData = await handleOrderStateChanged(messageBody, languages);
         break;
       }
       case 'ReturnInfoAdded':
       case 'ReturnInfoSet': {
-        emailData = await handleReturnInfo(messageBody);
+        emailData = await handleReturnInfo(messageBody, languages);
         break;
       }
       case 'CustomerPasswordTokenCreated': {
-        emailData = await handleCustomerPasswordTokenCreated(messageBody);
+        emailData = await handleCustomerPasswordTokenCreated(
+          messageBody,
+          languages
+        );
         break;
       }
     }
     if (emailData) {
       const { senderEmailAddress } = readAdditionalConfiguration();
+      const result = await loadAdditionalLocalizations(
+        messageBody.type,
+        emailData.templateData.locale,
+        languages
+      );
       logger.info(emailData.preSuccessMessage);
-      await sendMail(senderEmailAddress, emailData);
+      await sendMail(
+        senderEmailAddress,
+        emailData.recipientEmailAddresses,
+        emailData.templateId,
+        { ...(result ?? {}), ...emailData.templateData }
+      );
       logger.info(emailData.successMessage);
     }
     response.status(204).send();

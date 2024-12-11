@@ -1,0 +1,702 @@
+{
+  "name": {
+    "en-GB": "Transactional Emails",
+    "de-DE": "Transaktions-E-Mails",
+    "nl-NL": "Transactionele e-mails",
+    "it-IT": "E-mail transazionali",
+    "fr-FR": "E-mails transactionnels",
+    "pt-PT": "Emails transacionais",
+    "en-US": "Transactional Emails",
+    "es-ES": "Correos electrónicos transaccionales"
+  },
+  "entries": [
+    {
+      "key": "CustomerCreated",
+      "name": {
+        "en-GB": "Customer Created",
+        "de-DE": "Vom Kunden erstellt",
+        "nl-NL": "Klant gemaakt",
+        "it-IT": "Cliente creato",
+        "fr-FR": "Client créé",
+        "pt-PT": "Cliente criado",
+        "en-US": "Customer Created",
+        "es-ES": "Cliente creado"
+      },
+      "values": [
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey",
+            "de-DE": "Hey",
+            "nl-NL": "Hoi",
+            "it-IT": "EHI",
+            "fr-FR": "Hé",
+            "pt-PT": "Ei",
+            "en-US": "Hey",
+            "es-ES": "Ey"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "Thank you for signing up!",
+            "de-DE": "Vielen Dank für Ihre Anmeldung!",
+            "nl-NL": "Bedankt voor uw aanmelding!",
+            "it-IT": "Grazie per esserti iscritto!",
+            "fr-FR": "Merci de votre inscription !",
+            "pt-PT": "Obrigado por se inscrever!",
+            "en-US": "Thank you for signing up!",
+            "es-ES": "¡Gracias por registrarte!"
+          }
+        },
+        {
+          "key": "verificationText",
+          "label": {
+            "en-GB": "Let's verify your account so you can start.",
+            "de-DE": "Lassen Sie uns Ihr Konto verifizieren, damit Sie beginnen können.",
+            "nl-NL": "Laten we uw account verifiëren, zodat u kunt beginnen.",
+            "it-IT": "Verifichiamo il tuo account così puoi iniziare.",
+            "fr-FR": "Vérifions votre compte pour que vous puissiez commencer.",
+            "pt-PT": "Vamos verificar sua conta para que você possa começar.",
+            "en-US": "Let's verify your account so you can start.",
+            "es-ES": "Verifiquemos tu cuenta para que puedas comenzar."
+          }
+        },
+        {
+          "key": "verificationButtonText",
+          "label": {
+            "en-GB": "Verify your account",
+            "de-DE": "Bestätigen Sie Ihr Konto",
+            "nl-NL": "Verifieer uw account",
+            "it-IT": "Verifica il tuo account",
+            "fr-FR": "Vérifiez votre compte",
+            "pt-PT": "Verifique sua conta",
+            "en-US": "Verify your account",
+            "es-ES": "Verifica tu cuenta"
+          }
+        },
+        {
+          "key": "verificationValidityText",
+          "label": {
+            "en-GB": "Your link is active for 48 hours. After that, you will need to resend the verification email.",
+            "de-DE": "Ihr Link ist 48 Stunden lang aktiv. Danach müssen Sie die Bestätigungs-E-Mail erneut senden.",
+            "nl-NL": "Uw link is 48 uur actief. Daarna moet u de verificatie-e-mail opnieuw verzenden.",
+            "it-IT": "Il tuo collegamento è attivo per 48 ore. Successivamente, dovrai inviare nuovamente l'e-mail di verifica.",
+            "fr-FR": "Votre lien est actif pendant 48 heures. Après cela, vous devrez renvoyer l'e-mail de vérification.",
+            "pt-PT": "Seu link fica ativo por 48 horas. Depois disso, você precisará reenviar o e-mail de verificação.",
+            "en-US": "Your link is active for 48 hours. After that, you will need to resend the verification email.",
+            "es-ES": "Su enlace está activo durante 48 horas. Después de eso, deberás volver a enviar el correo electrónico de verificación."
+          }
+        },
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Customer Created",
+            "de-DE": "Vom Kunden erstellt",
+            "nl-NL": "Klant gemaakt",
+            "it-IT": "Cliente creato",
+            "fr-FR": "Client créé",
+            "pt-PT": "Cliente criado",
+            "en-US": "Customer Created",
+            "es-ES": "Cliente creado"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "verificationLink",
+          "label": {
+            "en-GB": "asdf"
+          }
+        }
+      ]
+    },
+    {
+      "key": "OrderCreated",
+      "name": {
+        "en-GB": "Order Created",
+        "de-DE": "Auftrag erstellt",
+        "nl-NL": "Bestelling aangemaakt",
+        "it-IT": "Ordine creato",
+        "fr-FR": "Commande créée",
+        "pt-PT": "Pedido criado",
+        "en-US": "Order Created",
+        "es-ES": "Orden creada"
+      },
+      "values": [
+        {
+          "key": " heroMessage",
+          "label": {
+            "en-GB": "Order Confirmation",
+            "de-DE": "Auftragsbestätigung",
+            "nl-NL": "Orderbevestiging",
+            "it-IT": "Conferma dell'ordine",
+            "fr-FR": "Confirmation de commande",
+            "pt-PT": "Confirmação do pedido",
+            "en-US": "Order Confirmation",
+            "es-ES": "Confirmación de pedido"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Hola,"
+          }
+        },
+        {
+          "key": " text",
+          "label": {
+            "en-GB": "Thank you for your order! We will notify you as soon as your item(s) have been dispatched.you will find the estimated delivery date below.to view or amend your order, visit My Orders on our website.",
+            "de-DE": "Vielen Dank für Ihre Bestellung! Wir benachrichtigen Sie, sobald Ihre Artikel versandt wurden. Das voraussichtliche Lieferdatum finden Sie unten. Um Ihre Bestellung anzuzeigen oder zu ändern, besuchen Sie „Meine Bestellungen“ auf unserer Website.",
+            "nl-NL": "Bedankt voor uw bestelling! We zullen u op de hoogte stellen zodra uw artikel(en) zijn verzonden. Hieronder vindt u de geschatte leverdatum. Om uw bestelling te bekijken of te wijzigen, gaat u naar Mijn bestellingen op onze website.",
+            "it-IT": "Grazie per il tuo ordine! Ti informeremo non appena i tuoi articoli saranno stati spediti. Di seguito troverai la data di consegna prevista. Per visualizzare o modificare il tuo ordine, visita I miei ordini sul nostro sito web.",
+            "fr-FR": "Merci pour votre commande ! Nous vous informerons dès que vos articles auront été expédiés. Vous trouverez ci-dessous la date de livraison estimée. Pour consulter ou modifier votre commande, visitez Mes commandes sur notre site Web.",
+            "pt-PT": "Obrigado pelo seu pedido! Iremos notificá-lo assim que seus itens forem despachados. Você encontrará a data estimada de entrega abaixo. Para visualizar ou alterar seu pedido, visite Meus pedidos em nosso site.",
+            "en-US": "Thank you for your order! We will notify you as soon as your item(s) have been dispatched.you will find the estimated delivery date below.to view or amend your order, visit My Orders on our website.",
+            "es-ES": "¡Gracias por tu pedido! Le notificaremos tan pronto como se hayan enviado sus artículos. Encontrará la fecha de entrega estimada a continuación. Para ver o modificar su pedido, visite Mis pedidos en nuestro sitio web."
+          }
+        },
+        {
+          "key": "shippingConfirmation",
+          "label": {
+            "en-GB": "Shipping Confirmation",
+            "de-DE": "Versandbestätigung",
+            "nl-NL": "Verzendingsbevestiging",
+            "it-IT": "Conferma di spedizione",
+            "fr-FR": "Confirmation d'expédition",
+            "pt-PT": "Confirmação de Envio",
+            "en-US": "Shipping Confirmation",
+            "es-ES": "Confirmación de envío"
+          }
+        },
+        {
+          "key": "delivery",
+          "label": {
+            "en-GB": "Delivery:",
+            "de-DE": "Lieferung:",
+            "nl-NL": "Levering:",
+            "it-IT": "Consegna:",
+            "fr-FR": "Livraison:",
+            "pt-PT": "Entrega:",
+            "en-US": "Delivery:",
+            "es-ES": "Entrega:"
+          }
+        },
+        {
+          "key": "deliveryTo",
+          "label": {
+            "en-GB": "The shipment goes to:",
+            "de-DE": "Die Sendung geht an:",
+            "nl-NL": "De zending gaat naar:",
+            "it-IT": "La spedizione va a:",
+            "fr-FR": "L'envoi est destiné à :",
+            "pt-PT": "A remessa vai para:",
+            "en-US": "The shipment goes to:",
+            "es-ES": "El envío va a:"
+          }
+        },
+        {
+          "key": "orderNumberText",
+          "label": {
+            "en-GB": "Order Number: #",
+            "de-DE": "Bestellnummer: #",
+            "nl-NL": "Bestelnummer: #",
+            "it-IT": "Numero d'ordine: #",
+            "fr-FR": "Numéro de commande : #",
+            "pt-PT": "Número do pedido: #",
+            "en-US": "Order Number: #",
+            "es-ES": "Número de orden: #"
+          }
+        },
+        {
+          "key": "trackOrder",
+          "label": {
+            "en-GB": "Track Order",
+            "de-DE": "Bestellung verfolgen",
+            "nl-NL": "Volg bestelling",
+            "it-IT": "Traccia l'ordine",
+            "fr-FR": "Suivre la commande",
+            "pt-PT": "Rastrear pedido",
+            "en-US": "Track Order",
+            "es-ES": "Seguimiento del pedido"
+          }
+        },
+        {
+          "key": "orderSummary",
+          "label": {
+            "en-GB": "Order Summary",
+            "de-DE": "Bestellübersicht",
+            "nl-NL": "Besteloverzicht",
+            "it-IT": "Riepilogo dell'ordine",
+            "fr-FR": "Récapitulatif de la commande",
+            "pt-PT": "Resumo do pedido",
+            "en-US": "Order Summary",
+            "es-ES": "Resumen del pedido"
+          }
+        },
+        {
+          "key": "soldBy",
+          "label": {
+            "en-GB": "Sold By",
+            "de-DE": "Verkauft von",
+            "nl-NL": "Verkocht door",
+            "it-IT": "Venduto da",
+            "fr-FR": "Vendu par",
+            "pt-PT": "Vendido por",
+            "en-US": "Sold By",
+            "es-ES": "Vendido por"
+          }
+        },
+        {
+          "key": "amount",
+          "label": {
+            "en-GB": "Amount",
+            "de-DE": "Menge",
+            "nl-NL": "Hoeveelheid",
+            "it-IT": "Quantità",
+            "fr-FR": "Montant",
+            "pt-PT": "Quantia",
+            "en-US": "Amount",
+            "es-ES": "Cantidad"
+          }
+        },
+        {
+          "key": "totalAmount",
+          "label": {
+            "en-GB": "Total Amount",
+            "de-DE": "Gesamtbetrag",
+            "nl-NL": "Totaal bedrag",
+            "it-IT": "Importo totale",
+            "fr-FR": "Montant total",
+            "pt-PT": "Montante total",
+            "en-US": "Total Amount",
+            "es-ES": "Monto total"
+          }
+        },
+        {
+          "key": "orderTrackingLink",
+          "label": {
+            "en-GB": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299"
+          }
+        },
+        {
+          "key": "orderNumberLink",
+          "label": {
+            "en-GB": "https://b2c-emeademos.frontend.site/en/account/?hash=orders&id=order_b4a877e7-f706-47c5-b9e9-1ca67ea0b299"
+          }
+        }
+      ]
+    },
+    {
+      "key": "OrderStateChanged",
+      "name": {
+        "en-GB": "Order State Changed",
+        "de-DE": "Auftragsstatus geändert",
+        "nl-NL": "Bestelstatus gewijzigd",
+        "it-IT": "Stato dell'ordine modificato",
+        "fr-FR": "État de la commande modifié",
+        "pt-PT": "Estado do pedido alterado",
+        "en-US": "Order State Changed",
+        "es-ES": "Estado del pedido cambiado"
+      },
+      "values": [
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Order State Changed",
+            "de-DE": "Auftragsstatus geändert",
+            "nl-NL": "Bestelstatus gewijzigd",
+            "it-IT": "Stato dell'ordine modificato",
+            "fr-FR": "État de la commande modifié",
+            "pt-PT": "Estado do pedido alterado",
+            "en-US": "Order State Changed",
+            "es-ES": "Cambio de estado de orden"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Hola,"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "The state of your order has changed.",
+            "de-DE": "Der Status Ihrer Bestellung hat sich geändert.",
+            "nl-NL": "De status van uw bestelling is gewijzigd.",
+            "it-IT": "Lo stato del tuo ordine è cambiato.",
+            "fr-FR": "L'état de votre commande a changé.",
+            "pt-PT": "O estado do seu pedido mudou.",
+            "en-US": "The state of your order has changed.",
+            "es-ES": "El estado de su pedido ha cambiado."
+          }
+        }
+      ]
+    },
+    {
+      "key": "OrderShipmentStateChanged",
+      "name": {
+        "en-GB": "Order Shipment State Changed",
+        "de-DE": "Versandstatus der Bestellung geändert",
+        "nl-NL": "Verzendstatus van bestelling gewijzigd",
+        "it-IT": "Stato di spedizione dell'ordine modificato",
+        "fr-FR": "État d'expédition de la commande modifié",
+        "pt-PT": "Estado da remessa do pedido alterado",
+        "en-US": "Order Shipment State Changed",
+        "es-ES": "Estado de envío del pedido cambiado"
+      },
+      "values": [
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Order Shipment State Changed",
+            "de-DE": "Versandstatus der Bestellung geändert",
+            "nl-NL": "Verzendstatus van bestelling gewijzigd",
+            "it-IT": "Stato di spedizione dell'ordine modificato",
+            "fr-FR": "État d'expédition de la commande modifié",
+            "pt-PT": "Estado da remessa do pedido alterado",
+            "en-US": "Order Shipment State Changed",
+            "es-ES": "Cambio de estado de orden"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Hola,"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "The state of your order has changed.",
+            "de-DE": "Der Status Ihrer Bestellung hat sich geändert.",
+            "nl-NL": "De status van uw bestelling is gewijzigd.",
+            "it-IT": "Lo stato del tuo ordine è cambiato.",
+            "fr-FR": "L'état de votre commande a changé.",
+            "pt-PT": "O estado do seu pedido mudou.",
+            "en-US": "The state of your order has changed.",
+            "es-ES": "El estado de su pedido ha cambiado."
+          }
+        }
+      ]
+    },
+    {
+      "key": "ReturnInfoAdded",
+      "name": {
+        "en-GB": "Return Info Added",
+        "de-DE": "Rückgabeinformationen hinzugefügt",
+        "nl-NL": "Retourinformatie toegevoegd",
+        "it-IT": "Informazioni sul reso aggiunte",
+        "fr-FR": "Informations de retour ajoutées",
+        "pt-PT": "Informações de retorno adicionadas",
+        "en-US": "Return Info Added",
+        "es-ES": "Información de devolución agregada"
+      },
+      "values": [
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Order Return Change",
+            "de-DE": "Änderung der Bestellrückgabe",
+            "nl-NL": "Wijziging bestelling retour",
+            "it-IT": "Modifica reso ordine",
+            "fr-FR": "Modification du retour de commande",
+            "pt-PT": "Alteração de devolução de pedido",
+            "en-US": "Order Return Change",
+            "es-ES": "Cambio de devolución de pedido"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Hola,"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "The state of your order has changed.",
+            "de-DE": "Der Status Ihrer Bestellung hat sich geändert.",
+            "nl-NL": "De status van uw bestelling is gewijzigd.",
+            "it-IT": "Lo stato del tuo ordine è cambiato.",
+            "fr-FR": "L'état de votre commande a changé.",
+            "pt-PT": "O estado do seu pedido mudou.",
+            "en-US": "The state of your order has changed.",
+            "es-ES": "El estado de su pedido ha cambiado."
+          }
+        }
+      ]
+    },
+    {
+      "key": "ReturnInfoSet",
+      "name": {
+        "en-GB": "Return Info Set",
+        "de-DE": "Rückgabe-Info-Set",
+        "nl-NL": "Infoset retourneren",
+        "it-IT": "Insieme di informazioni sulla restituzione",
+        "fr-FR": "Ensemble d'informations de retour",
+        "pt-PT": "Conjunto de informações de retorno",
+        "en-US": "Return Info Set",
+        "es-ES": "Conjunto de información de devolución"
+      },
+      "values": [
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Order Return Change",
+            "de-DE": "Änderung der Bestellrückgabe",
+            "nl-NL": "Wijziging bestelling retour",
+            "it-IT": "Modifica reso ordine",
+            "fr-FR": "Modification du retour de commande",
+            "pt-PT": "Alteração de devolução de pedido",
+            "en-US": "Order Return Change",
+            "es-ES": "Cambio de devolución de pedido"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        },
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Hola,"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "The state of your order has changed.",
+            "de-DE": "Der Status Ihrer Bestellung hat sich geändert.",
+            "nl-NL": "De status van uw bestelling is gewijzigd.",
+            "it-IT": "Lo stato del tuo ordine è cambiato.",
+            "fr-FR": "L'état de votre commande a changé.",
+            "pt-PT": "O estado do seu pedido mudou.",
+            "en-US": "The state of your order has changed.",
+            "es-ES": "El estado de su pedido ha cambiado."
+          }
+        }
+      ]
+    },
+    {
+      "key": "CustomerPasswordTokenCreated",
+      "name": {
+        "en-GB": "Customer Password Token Created",
+        "de-DE": "Kundenpasswort-Token erstellt",
+        "nl-NL": "Klantwachtwoordtoken aangemaakt",
+        "it-IT": "Token password cliente creato",
+        "fr-FR": "Jeton de mot de passe client créé",
+        "pt-PT": "Token de senha do cliente criado",
+        "en-US": "Customer Password Token Created",
+        "es-ES": "Token de contraseña del cliente creado"
+      },
+      "values": [
+        {
+          "key": "welcome",
+          "label": {
+            "en-GB": "Hey there,",
+            "de-DE": "Hallo,",
+            "nl-NL": "Hallo daar,",
+            "it-IT": "Ehilà,",
+            "fr-FR": "Salut,",
+            "pt-PT": "Ei,",
+            "en-US": "Hey there,",
+            "es-ES": "Ey"
+          }
+        },
+        {
+          "key": "text",
+          "label": {
+            "en-GB": "The state of your order has changed.",
+            "de-DE": "Der Status Ihrer Bestellung hat sich geändert.",
+            "nl-NL": "De status van uw bestelling is gewijzigd.",
+            "it-IT": "Lo stato del tuo ordine è cambiato.",
+            "fr-FR": "L'état de votre commande a changé.",
+            "pt-PT": "O estado do seu pedido mudou.",
+            "en-US": "The state of your order has changed.",
+            "es-ES": "¡Gracias por registrarte!"
+          }
+        },
+        {
+          "key": "verificationText: ",
+          "label": {
+            "en-GB": "Let's update your password so you can start.",
+            "de-DE": "Lassen Sie uns Ihr Passwort aktualisieren, damit Sie beginnen können.",
+            "nl-NL": "Laten we uw wachtwoord bijwerken, zodat u kunt beginnen.",
+            "it-IT": "Aggiorniamo la tua password così puoi iniziare.",
+            "fr-FR": "Mettons à jour votre mot de passe pour que vous puissiez commencer.",
+            "pt-PT": "Vamos atualizar sua senha para que você possa começar.",
+            "en-US": "Let's update your password so you can start.",
+            "es-ES": "Actualicemos su contraseña para que pueda comenzar."
+          }
+        },
+        {
+          "key": "verificationButtonText",
+          "label": {
+            "en-GB": "Verify your account",
+            "de-DE": "Bestätigen Sie Ihr Konto",
+            "nl-NL": "Verifieer uw account",
+            "it-IT": "Verifica il tuo account",
+            "fr-FR": "Vérifiez votre compte",
+            "pt-PT": "Verifique sua conta",
+            "en-US": "Verify your account",
+            "es-ES": "Verifica tu cuenta"
+          }
+        },
+        {
+          "key": "verificationValidityText",
+          "label": {
+            "en-GB": "Your link is active for 48 hours. After that, you will need to resend the verification email.",
+            "de-DE": "Ihr Link ist 48 Stunden lang aktiv. Danach müssen Sie die Bestätigungs-E-Mail erneut senden.",
+            "nl-NL": "Uw link is 48 uur actief. Daarna moet u de verificatie-e-mail opnieuw verzenden.",
+            "it-IT": "Il tuo collegamento è attivo per 48 ore. Successivamente, dovrai inviare nuovamente l'e-mail di verifica.",
+            "fr-FR": "Votre lien est actif pendant 48 heures. Après cela, vous devrez renvoyer l'e-mail de vérification.",
+            "pt-PT": "Seu link fica ativo por 48 horas. Depois disso, você precisará reenviar o e-mail de verificação.",
+            "en-US": "Your link is active for 48 hours. After that, you will need to resend the verification email.",
+            "es-ES": "Su enlace está activo durante 48 horas. Después de eso, deberás volver a enviar el correo electrónico de verificación."
+          }
+        },
+        {
+          "key": "verificationLink",
+          "label": {
+            "en-GB": "asdf"
+          }
+        },
+        {
+          "key": "heroMessage",
+          "label": {
+            "en-GB": "Password Reset",
+            "de-DE": "Passwort zurücksetzen",
+            "nl-NL": "Wachtwoord opnieuw instellen",
+            "it-IT": "Reimpostazione della password",
+            "fr-FR": "Réinitialisation du mot de passe",
+            "pt-PT": "Redefinição de senha",
+            "en-US": "Password Reset",
+            "es-ES": "Restablecer contraseña"
+          }
+        },
+        {
+          "key": "heroImage",
+          "label": {
+            "en-GB": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "de-DE": "http://cdn.mcauto-images-produktion.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "nl-NL": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "it-IT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "fr-FR": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "pt-PT": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "en-US": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
+            "es-ES": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -7,16 +7,15 @@ import {
 } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { getOrderById } from '../ctp/order';
-import { HandlerReturnType } from '../types/index.types';
+import { HandlerReturnType, HandlerType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
 import { logger } from '../utils/logger.utils';
 import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
 import { mapLineItem } from '../utils/lineitem.utils';
-import { getProject } from '../ctp/project';
 
-export const handleReturnInfo = async (
-  messageBody: ReturnInfoAddedMessage | ReturnInfoSetMessage
-): Promise<HandlerReturnType | undefined> => {
+export const handleReturnInfo: HandlerType<
+  ReturnInfoAddedMessage | ReturnInfoSetMessage
+> = async (messageBody, languages) => {
   const { orderRefundTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
@@ -43,7 +42,6 @@ export const handleReturnInfo = async (
     const returnedLineItems = [];
 
     const locale = findLocale(customer, order);
-    const { languages } = await getProject();
 
     for (const lineItem of order.lineItems) {
       if (returnedLineItemId.includes(lineItem.id)) {
@@ -53,21 +51,11 @@ export const handleReturnInfo = async (
       }
     }
     if (returnedLineItems.length > 0) {
-      let orderDetails: HandlerReturnType['templateData'] = {
+      const orderDetails: HandlerReturnType['templateData'] = {
         ...mapOrderDefaults(order, customer, locale),
         orderState: order.orderState,
         orderShipmentState: order.shipmentState,
         orderLineItems: returnedLineItems,
-      };
-      orderDetails = {
-        ...orderDetails,
-        messages: {
-          heroMessage: 'Order Return Change',
-          heroImage:
-            'http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png',
-          welcome: 'Hey there,',
-          text: 'The state of your order has changed.',
-        },
       };
 
       return {
@@ -76,6 +64,7 @@ export const handleReturnInfo = async (
         templateData: orderDetails,
         successMessage: `Order state change email has been sent to ${orderDetails.customerEmail}.`,
         preSuccessMessage: `Ready to send order state change email : customerEmail=${orderDetails.customerEmail}, orderNumber=${orderDetails.orderNumber}, customerCreationTime=${orderDetails.orderCreationTime}`,
+        locale: locale,
       };
     } else {
       throw new CustomError(

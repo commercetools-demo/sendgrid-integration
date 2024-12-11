@@ -22,4 +22,10 @@ export type HandlerReturnType = {
   templateData: Record<string, any>;
   preSuccessMessage: string;
   successMessage: string;
+  locale: string;
 };
+
+export type HandlerType<T> = (
+  messageBody: T,
+  languages: Array<string>
+) => Promise<HandlerReturnType | undefined>;
