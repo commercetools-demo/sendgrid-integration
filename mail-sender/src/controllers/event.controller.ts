@@ -65,7 +65,7 @@ export const post = async (request: Request, response: Response) => {
         senderEmailAddress,
         emailData.recipientEmailAddresses,
         emailData.templateId,
-        { ...(result ?? {}), ...emailData.templateData }
+        { ...(result ? { messages: result } : {}), ...emailData.templateData }
       );
       logger.info(emailData.successMessage);
     }

@@ -83,7 +83,6 @@ export const loadAdditionalLocalizations = async (
         'transactional-emails'
       );
       additionalConfig = localizations.value;
-      logger.info('Found localizations:', JSON.stringify(localizations));
     } catch (e) {
       logger.info('No Localizations found in custom object');
     }
@@ -93,7 +92,6 @@ export const loadAdditionalLocalizations = async (
     logger.info(`No Localization config found for key ${key}`);
     return undefined;
   }
-  logger.info(`Found localizations for ${key}:`, JSON.stringify(config));
   return config.values.reduce(
     (acc, current) => ({
       ...acc,
