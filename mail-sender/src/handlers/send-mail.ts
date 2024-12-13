@@ -11,6 +11,7 @@ export const sendMail = async (
   templateData: Record<string, any>
 ) => {
   try {
+    logger.info('sending email with data', templateData);
     const filteredEmails = recipientEmailAddresses.filter(notEmpty);
     if (filteredEmails.length > 0) {
       sendGridMail.setApiKey(readAdditionalConfiguration().emailProviderApiKey);

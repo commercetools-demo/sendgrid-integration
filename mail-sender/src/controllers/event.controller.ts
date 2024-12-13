@@ -56,8 +56,9 @@ export const post = async (request: Request, response: Response) => {
       const { senderEmailAddress } = readAdditionalConfiguration();
       const result = await loadAdditionalLocalizations(
         messageBody.type,
-        emailData.templateData.locale,
-        languages
+        emailData.locale,
+        languages,
+        true
       );
       logger.info(emailData.preSuccessMessage);
       await sendMail(
