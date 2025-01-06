@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { logger } from '../utils/logger.utils';
 import { doValidation } from '../validators/message.validators';
 import { handleOrderStateChanged } from '../handlers/order-state-change.handler';
+import { handleOrderStateTransitioned } from '../handlers/order-state-transitioned.handler';
 import { handleOrderCreatedMessage } from '../handlers/order-confirmation.handler';
 import { handleReturnInfo } from '../handlers/order-refund.handler';
 import { handleCustomerCreated } from '../handlers/customer-registration.handler';
@@ -38,6 +39,10 @@ export const post = async (request: Request, response: Response) => {
       case 'OrderStateChanged':
       case 'OrderShipmentStateChanged': {
         emailData = await handleOrderStateChanged(messageBody, languages);
+        break;
+      }
+      case 'OrderStateTransition': {
+        emailData = await handleOrderStateTransitioned(messageBody, languages);
         break;
       }
       case 'ReturnInfoAdded':

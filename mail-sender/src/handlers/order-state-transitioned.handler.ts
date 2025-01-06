@@ -1,20 +1,23 @@
 import CustomError from '../errors/custom.error';
 import { HTTP_STATUS_BAD_REQUEST } from '../constants/http-status.constants';
-import { OrderCreatedMessage, OrderImportedMessage } from '@commercetools/platform-sdk';
+import {
+  OrderStateTransitionMessage
+} from '@commercetools/platform-sdk';
+import { getOrderById } from '../ctp/order';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType, HandlerType } from '../types/index.types';
-import { findLocale, mapAddress } from '../utils/customer.utils';
+import { findLocale } from '../utils/customer.utils';
 import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
 import { mapLineItem } from '../utils/lineitem.utils';
+import { formatLocalizedString } from '../utils/localization.utils';
 
-export const handleOrderCreatedMessage: HandlerType<
-  OrderCreatedMessage | OrderImportedMessage
+export const handleOrderStateTransitioned: HandlerType<
+  OrderStateTransitionMessage
 > = async (messageBody, languages) => {
-  const { orderConfirmationTemplateId } = readAdditionalConfiguration();
+  const { orderStateChangeTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
-  const order = messageBody.order;
-
+  const order = await getOrderById(orderId);
   if (order) {
     const customer = await getCustomerFromOrder(order);
 
@@ -22,23 +25,19 @@ export const handleOrderCreatedMessage: HandlerType<
 
     const orderDetails: HandlerReturnType['templateData'] = {
       ...mapOrderDefaults(order, customer, locale),
+      orderState: formatLocalizedString(order.state.obj?.name, locale, languages),
+      orderShipmentState: order.shipmentState,
       orderLineItems: order.lineItems.map((lineItem) => {
         return mapLineItem(lineItem, locale, languages);
       }),
-      ...mapAddress(customer, order),
     };
-
-    //Fake for now
-    const createdAt = new Date(order.createdAt);
-    const newDate = new Date(createdAt);
-    newDate.setDate(createdAt.getDate() + 2);
 
     return {
       recipientEmailAddresses: [orderDetails.customerEmail],
-      templateId: orderConfirmationTemplateId,
+      templateId: orderStateChangeTemplateId,
       templateData: orderDetails,
-      successMessage: `Confirmation email of customer registration has been sent to ${orderDetails.customerEmail}.`,
-      preSuccessMessage: `Ready to send order confirmation email of customer registration : customerEmail=${orderDetails.customerEmail}, orderNumber=${orderDetails.orderNumber}, customerCreationTime=${orderDetails.orderCreationTime}`,
+      successMessage: `Order state change email has been sent to ${orderDetails.customerEmail}.`,
+      preSuccessMessage: `Ready to send order state change email : customerEmail=${orderDetails.customerEmail}, orderNumber=${orderDetails.orderNumber}, customerCreationTime=${orderDetails.orderCreationTime}`,
       locale: locale,
     };
   } else {
