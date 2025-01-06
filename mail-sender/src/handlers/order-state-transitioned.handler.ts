@@ -17,7 +17,7 @@ export const handleOrderStateTransitioned: HandlerType<
   const { orderStateChangeTemplateId } = readAdditionalConfiguration();
 
   const orderId = messageBody.resource.id;
-  const order = await getOrderById(orderId);
+  const order = await getOrderById(orderId, ['state']);
   if (order) {
     const customer = await getCustomerFromOrder(order);
 
