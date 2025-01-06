@@ -25,7 +25,7 @@ export const handleOrderStateTransitioned: HandlerType<
 
     const orderDetails: HandlerReturnType['templateData'] = {
       ...mapOrderDefaults(order, customer, locale),
-      orderState: formatLocalizedString(order.state.obj?.name, locale, languages),
+      orderState: formatLocalizedString(order.state?.obj?.name || {}, locale, languages),
       orderShipmentState: order.shipmentState,
       orderLineItems: order.lineItems.map((lineItem) => {
         return mapLineItem(lineItem, locale, languages);
