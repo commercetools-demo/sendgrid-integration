@@ -30,6 +30,7 @@ export const post = async (request: Request, response: Response) => {
         emailData = await handleCustomerCreated(messageBody, languages);
         break;
       }
+      case 'OrderImported':
       case 'OrderCreated': {
         emailData = await handleOrderCreatedMessage(messageBody, languages);
         break;
