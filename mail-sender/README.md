@@ -92,7 +92,7 @@ Order Confirmation
 └------------------------------------------------------------------------------------------------------------------------------------------------┘ 
 ```
 
-Order/Shipment State Change
+Order State Change
 
 ``` 
 ┌-----------------------------------------------------------------------------------------------------------------------------------------------┐
@@ -105,15 +105,28 @@ Order/Shipment State Change
 |   orderCreationTime                       |   Time of the order creation                                                                      |
 |   orderCreationDate                       |   Date of the order creation                                                                      |
 |   orderState                              |   Current state of the order                                                                      |
-|   orderShipmentState                      |   Current state of the shipment                                                                   |
+|   oldOrderState                           |   Previous state of the order (can be empty)                                                      |
 |   orderTotalPrice                         |   The total price of the order                                                                    |
 |   orderTaxedPrice                         |   The price of the order after the tax calculation                                                |
-|   orderLineItems                          |   A list of line items included in the specific order                                             |
-|       orderLineItems[n].productName       |   Product name in English of the line item                                                        |
-|       orderLineItems[n].productQuantity   |   The  quantity of the ordered line item                                                          |
-|       orderLineItems[n].productSku        |   The SKU of the ordered line item                                                                |
-|       orderLineItems[n].productImage      |   The image URL of the ordered line item. The default image would be in small size.               |
-|       orderLineItems[n].productSubTotal   |   The subtotal price of the line item                                                             |
+└-----------------------------------------------------------------------------------------------------------------------------------------------┘ 
+```
+
+Shipment State Change
+
+``` 
+┌-----------------------------------------------------------------------------------------------------------------------------------------------┐
+|   Parameters                              |   Description                                                                                     |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------|
+|   orderNumber                             |   Recipient email address                                                                         |
+|   customerEmail                           |   Email address of customer linked to the order                                                   |
+|   customerFirstName                       |   First name of the customer                                                                      |
+|   customerLastName                        |   Last name of the customer                                                                       |
+|   orderCreationTime                       |   Time of the order creation                                                                      |
+|   orderCreationDate                       |   Date of the order creation                                                                      |
+|   shipmentState                           |   Current state of the shipment                                                                   |
+|   oldShipmentState                        |   Previous state of the shipment (can be empty)                                                   |
+|   orderTotalPrice                         |   The total price of the order                                                                    |
+|   orderTaxedPrice                         |   The price of the order after the tax calculation                                                |
 └-----------------------------------------------------------------------------------------------------------------------------------------------┘ 
 ```
 

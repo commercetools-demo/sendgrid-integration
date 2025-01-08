@@ -7,13 +7,13 @@
   "orderCreationDate": "1/6/2025",
   "orderTotalPrice": "€46,743,059.56",
   "orderTaxedPrice": "",
-  "orderState": "Complete",
-  "oldOrderState": "Open",
+  "shipmentState": "Pending",
+  "oldShipmentState": "Open",
   "messages": {
-    "heroMessage": "Order State Change",
+    "heroMessage": "Shipment State Change",
     "heroImage": "http://cdn.mcauto-images-production.sendgrid.net/fcda5b5400c10505/d9dee00e-a252-4211-9fac-ef09b9d339e8/1200x300.png",
     "welcome": "Hey there,",
-    "text": "The state of your order has changed.",
+    "text": "The state of your shipment has changed.",
     "to": "→"
   }
 }

@@ -382,6 +382,19 @@
             "en-US": "The state of your order has changed.",
             "es-ES": "El estado de su pedido ha cambiado."
           }
+        },
+        {
+          "key": "to",
+          "label": {
+            "en-GB": "→",
+            "de-DE": "→",
+            "nl-NL": "→",
+            "it-IT": "→",
+            "fr-FR": "→",
+            "pt-PT": "→",
+            "en-US": "→",
+            "es-ES": "→"
+          }
         }
       ]
     },
@@ -448,6 +461,19 @@
             "pt-PT": "O estado do seu pedido mudou.",
             "en-US": "The state of your order has changed.",
             "es-ES": "El estado de su pedido ha cambiado."
+          }
+        },
+        {
+          "key": "to",
+          "label": {
+            "en-GB": "→",
+            "de-DE": "→",
+            "nl-NL": "→",
+            "it-IT": "→",
+            "fr-FR": "→",
+            "pt-PT": "→",
+            "en-US": "→",
+            "es-ES": "→"
           }
         }
       ]

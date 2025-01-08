@@ -10,6 +10,7 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { handleCustomerPasswordTokenCreated } from '../handlers/customer-password-token-creation.handler';
 import { loadAdditionalLocalizations } from '../utils/localization.utils';
 import { getProject } from '../ctp/project';
+import { handleShipmentStateChanged } from '../handlers/shipment-state-change.handler';
 
 /**
  * Exposed event POST endpoint.
@@ -34,9 +35,12 @@ export const post = async (request: Request, response: Response) => {
         emailData = await handleOrderCreatedMessage(messageBody, languages);
         break;
       }
-      case 'OrderStateChanged':
-      case 'OrderShipmentStateChanged': {
+      case 'OrderStateChanged': {
         emailData = await handleOrderStateChanged(messageBody, languages);
+        break;
+      }
+      case 'OrderShipmentStateChanged': {
+        emailData = await handleShipmentStateChanged(messageBody, languages);
         break;
       }
       case 'ReturnInfoAdded':

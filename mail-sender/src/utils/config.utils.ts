@@ -40,6 +40,8 @@ export const readAdditionalConfiguration = () => {
       .ORDER_CONFIRMATION_TEMPLATE_ID as string,
     orderStateChangeTemplateId: process.env
       .ORDER_STATE_CHANGE_TEMPLATE_ID as string,
+    shipmentStateChangeTemplateId: process.env
+      .SHIPMENT_STATE_CHANGE_TEMPLATE_ID as string,
     orderRefundTemplateId: process.env.ORDER_REFUND_TEMPLATE_ID as string,
     emailProviderApiKey: process.env.EMAIL_PROVIDER_API_KEY as string,
     customerPasswordTokenCreationTemplateId: process.env
