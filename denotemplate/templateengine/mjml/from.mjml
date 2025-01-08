@@ -1,9 +1,0 @@
-<mj-text>
-  <h3>From</h3>
-  <p><b>{{company.name}} </b></p>
-
-  <p>{{company.address.streetName}} {{company.address.streetNumber}}</p>
-  <p>{{company.address.postalCode}} {{company.address.city}}</p>
-  <p>{{company.address.country}}</p>
-
-</mj-text>
