@@ -45,7 +45,7 @@ async function createSubscription(
         messages: [
           {
             resourceTypeId: 'customer',
-            types: ['CustomerCreated'],
+            types: ['CustomerCreated', 'CustomerPasswordTokenCreated'],
           },
           {
             resourceTypeId: 'order',
@@ -55,6 +55,8 @@ async function createSubscription(
               'OrderShipmentStateChanged',
               'ReturnInfoAdded',
               'ReturnInfoSet',
+              'OrderImported',
+              'OrderStateTransition',
             ],
           },
         ],

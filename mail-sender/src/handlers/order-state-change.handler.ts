@@ -6,7 +6,6 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType, HandlerType } from '../types/index.types';
 import { findLocale } from '../utils/customer.utils';
 import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
-import { mapLineItem } from '../utils/lineitem.utils';
 
 export const handleOrderStateChanged: HandlerType<
   OrderStateChangedMessage
