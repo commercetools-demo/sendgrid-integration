@@ -1,15 +1,15 @@
-import { OrderStateChangedMessage } from '@commercetools/platform-sdk';
+import { OrderShipmentStateChangedMessage } from '@commercetools/platform-sdk';
 import { expect } from '@jest/globals';
 import {
   readAdditionalConfiguration,
   readConfiguration,
 } from '../../src/utils/config.utils';
-import { handleOrderStateChanged } from '../../src/handlers/order-state-change.handler';
 import { faker } from '@faker-js/faker';
 import { Customer, type TCustomer } from '@commercetools-test-data/customer';
 import { createApiRoot } from '../../src/client/create.client';
 import { Order, TOrder } from '@commercetools-test-data/order';
 import { Project, type TProject } from '@commercetools-test-data/project';
+import { handleShipmentStateChanged } from '../../src/handlers/shipment-state-change.handler';
 
 jest.mock('../../src/client/create.client', () => {
   const mockCreateApiRoot = jest.fn();
@@ -20,7 +20,7 @@ jest.mock('../../src/client/create.client', () => {
 
 jest.mock('../../src/utils/config.utils');
 
-describe('Testing Order State Changed', () => {
+describe('Testing Shipment State Changed', () => {
   const orderId = faker.string.uuid();
   const customerId = faker.string.uuid();
   const customer = Customer.random().build<TCustomer>();
@@ -28,15 +28,14 @@ describe('Testing Order State Changed', () => {
   const order = Order.random()
     .customerId(customerId)
     .customerEmail(customer.email)
-    .orderState('Complete')
+    .shipmentState('Shipped')
     .build<TOrder>();
-
   beforeEach(() => {
     (readConfiguration as jest.Mock).mockClear();
     (readAdditionalConfiguration as jest.Mock).mockClear();
   });
 
-  it('Order State Changed', async () => {
+  it('Order Shipment State Changed', async () => {
     // Define a mock root to be returned
     const customersWithId = jest.fn().mockReturnValueOnce({
       get: jest.fn().mockReturnValueOnce({
@@ -71,30 +70,36 @@ describe('Testing Order State Changed', () => {
     // Set the mock implementation for createApiRoot to return mockRoot
     (createApiRoot as jest.Mock).mockReturnValue(mockRoot);
 
-    const orderStateChangedMessage: OrderStateChangedMessage = {
+    const shipmentStateChangedMessage: OrderShipmentStateChangedMessage = {
       createdAt: faker.date.past().toISOString(),
       id: faker.string.uuid(),
       lastModifiedAt: faker.date.past().toISOString(),
       resource: { id: orderId, typeId: 'order' },
       resourceVersion: faker.number.int(),
       sequenceNumber: faker.number.int(),
-      type: 'OrderStateChanged',
+      type: 'OrderShipmentStateChanged',
       version: faker.number.int(),
-      oldOrderState: 'Open',
-      orderState: order.orderState,
+      oldShipmentState: 'Open',
+      shipmentState: order.shipmentState!,
     };
 
-    const result = await handleOrderStateChanged(orderStateChangedMessage, []);
+    const result = await handleShipmentStateChanged(
+      shipmentStateChangedMessage,
+      []
+    );
 
     expect(result?.recipientEmailAddresses[0]).toEqual(customer.email);
     expect(result?.templateId).toEqual(
       readAdditionalConfiguration().orderStateChangeTemplateId
     );
-    expect(result?.templateData['orderState']).toEqual(order.orderState);
-    expect(result?.templateData['oldOrderState']).toEqual('Open');
+
+    expect(result?.templateData['shipmentState']).toEqual(order.shipmentState);
+    expect(result?.templateData['oldShipmentState']).toEqual(
+      shipmentStateChangedMessage.oldShipmentState
+    );
   });
 
-  it('Order State Changed (empty old value)', async () => {
+  it('Order Shipment State Changed (empty old state)', async () => {
     // Define a mock root to be returned
     const customersWithId = jest.fn().mockReturnValueOnce({
       get: jest.fn().mockReturnValueOnce({
@@ -129,25 +134,29 @@ describe('Testing Order State Changed', () => {
     // Set the mock implementation for createApiRoot to return mockRoot
     (createApiRoot as jest.Mock).mockReturnValue(mockRoot);
 
-    const orderStateChangedMessage: OrderStateChangedMessage = {
+    const shipmentStateChangedMessage: OrderShipmentStateChangedMessage = {
       createdAt: faker.date.past().toISOString(),
       id: faker.string.uuid(),
       lastModifiedAt: faker.date.past().toISOString(),
       resource: { id: orderId, typeId: 'order' },
       resourceVersion: faker.number.int(),
       sequenceNumber: faker.number.int(),
-      type: 'OrderStateChanged',
+      type: 'OrderShipmentStateChanged',
       version: faker.number.int(),
-      orderState: order.orderState,
+      shipmentState: order.shipmentState!,
     };
 
-    const result = await handleOrderStateChanged(orderStateChangedMessage, []);
+    const result = await handleShipmentStateChanged(
+      shipmentStateChangedMessage,
+      []
+    );
 
     expect(result?.recipientEmailAddresses[0]).toEqual(customer.email);
     expect(result?.templateId).toEqual(
       readAdditionalConfiguration().orderStateChangeTemplateId
     );
-    expect(result?.templateData['orderState']).toEqual(order.orderState);
-    expect(result?.templateData['oldOrderState']).toEqual('');
+
+    expect(result?.templateData['shipmentState']).toEqual(order.shipmentState);
+    expect(result?.templateData['oldShipmentState']).toEqual('');
   });
 });

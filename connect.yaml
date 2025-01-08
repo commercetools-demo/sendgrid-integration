@@ -36,7 +36,11 @@ deployAs:
             service provider
           required: true
         - key: ORDER_STATE_CHANGE_TEMPLATE_ID
-          description: Identifier of order state change / shipment state change email
+          description: Identifier of order state change email
+            template stored in email service provider
+          required: true
+        - key: SHIPMENT_STATE_CHANGE_TEMPLATE_ID
+          description: Identifier of shipment state change email
             template stored in email service provider
           required: true
         - key: ORDER_REFUND_TEMPLATE_ID

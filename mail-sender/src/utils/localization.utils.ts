@@ -14,10 +14,7 @@ export const findFallbackLocale = (
 export const getPrimaryLocale = (locale: string): string =>
   locale.split('-')[0];
 
-export const formatLocalizedFallbackHint = (
-  value: string,
-  locale: string
-): string => `${value} (${locale.toUpperCase()})`;
+export const formatLocalizedFallbackHint = (value: string): string => value;
 
 export const formatLocalizedString = (
   localizedString: LocalizedString,
@@ -28,10 +25,7 @@ export const formatLocalizedString = (
   const fallbackLocale = findFallbackLocale(localizedString, fallbackOrder);
 
   const formattedLocalizedFallback = fallbackLocale
-    ? formatLocalizedFallbackHint(
-        localizedString[fallbackLocale],
-        fallbackLocale
-      )
+    ? formatLocalizedFallbackHint(localizedString[fallbackLocale])
     : fallback;
 
   // GIVEN no `locale`

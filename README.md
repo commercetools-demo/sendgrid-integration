@@ -24,7 +24,7 @@ Users are expected to create API client responsible for fetching customer and or
 5. Order/Shipment State Update
 6. Order Refund
 
-The keys or identifiers of templates built in external email provider can be provided as several environment variables (configuration for connect) `CUSTOMER_REGISTRATION_TEMPLATE_ID`, `ORDER_CONFIRMATION_TEMPLATE_ID`, `ORDER_STATE_CHANGE_TEMPLATE_ID` and `ORDER_REFUND_TEMPLATE_ID`. For details, please read [Deployment Configuration](./README.md#deployment-configuration).
+The keys or identifiers of templates built in external email provider can be provided as several environment variables (configuration for connect) `CUSTOMER_REGISTRATION_TEMPLATE_ID`, `ORDER_CONFIRMATION_TEMPLATE_ID`, `SHIPMENT_STATE_CHANGE_TEMPLATE_ID`, `ORDER_STATE_CHANGE_TEMPLATE_ID` and `ORDER_REFUND_TEMPLATE_ID`. For details, please read [Deployment Configuration](./README.md#deployment-configuration).
  
 ## Getting started
 The template contains following module :  
@@ -51,59 +51,7 @@ In addition, in order to support connect, the tax integration connector template
 └── connect.yaml
 ```
 
-Connect deployment configuration is specified in `connect.yaml` which is required information needed for publishing of the application. Following is the deployment configuration used by full ingestion and incremental updater modules
-```
-deployAs:
-  - name: mail-sender
-    applicationType: event
-    endpoint: /mailSender
-    scripts:
-      postDeploy: npm install && npm run build && npm run connector:post-deploy
-      preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
-    configuration:
-      standardConfiguration:
-        - key: CTP_REGION
-          description: commercetools Composable Commerce API region
-          required: true
-          default: "europe-west1.gcp"
-        - key: CTP_PROJECT_KEY
-          description: commercetools Composable Commerce project key
-          required: true
-        - key: CTP_CLIENT_ID
-          description: commercetools Composable Commerce client ID
-          required: true
-        - key: CTP_SCOPE
-          description: commercetools Composable Commerce client scope
-          required: true
-        - key: SENDER_EMAIL_ADDRESS
-          description: sender's email address displayed in the email
-          required: true
-        - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
-          description: Identifier of customer registration email template stored in email service provider
-          required: true
-        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
-          description: Identifier of password token creation email template stored in email service provider
-          required: true
-        - key: ORDER_CONFIRMATION_TEMPLATE_ID
-          description: Identifier of order confirmation email template stored in email service provider
-          required: true
-        - key: ORDER_STATE_CHANGE_TEMPLATE_ID
-          description: Identifier of order state change / shipment state change email template stored in email service provider
-          required: true
-        - key: ORDER_REFUND_TEMPLATE_ID
-          description: Identifier of order refund email template stored in email service provider
-          required: true
-        - key: DEFAULT_LOCALE
-          description: Default Locale used to localize e.g. dates and prices
-          required: true
-      securedConfiguration:
-        - key: CTP_CLIENT_SECRET
-          description: commercetools Composable Commerce client secret
-          required: true
-        - key: EMAIL_PROVIDER_API_KEY
-          description: The API key used to communicate with email provider
-          required: true
-```
+Connect deployment configuration is specified in [connect.yaml](./connect.yaml) which is required information needed for publishing of the application. 
 
 Here you can see the details about various variables in configuration
 - CTP_PROJECT_KEY: The key of commercetools composable commerce project.
@@ -115,7 +63,8 @@ Here you can see the details about various variables in configuration
 - SENDER_EMAIL_ADDRESS: It defines the email address of sender, which is passed to email template stored in email service provider so that it can be displayed in email notification.
 - CUSTOMER_REGISTRATION_TEMPLATE_ID: It defines the key or identifier of customer registration email template stored in email service provider.
 - ORDER_CONFIRMATION_TEMPLATE_ID: It defines the key or identifier of order confirmation email template stored in email service provider.
-- ORDER_STATE_CHANGE_TEMPLATE_ID: It defines the key or identifier of order/shipment state change email template stored in email service provider.
+- ORDER_STATE_CHANGE_TEMPLATE_ID: It defines the key or identifier of order state change email template stored in email service provider.
+- SHIPMENT_STATE_CHANGE_TEMPLATE_ID: It defines the key or identifier of shipment state change email template stored in email service provider.
 - ORDER_REFUND_TEMPLATE_ID: It defines the key or identifier of order refund email template stored in email service provider.
 - CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID: It defines the key or identifier of password token creation email template stored in email service provider.
 - DEFAULT_LOCALE: Default Locale used to localize e.g. dates and prices

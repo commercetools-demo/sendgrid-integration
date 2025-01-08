@@ -1,6 +1,6 @@
 import CustomError from '../errors/custom.error';
 import { HTTP_STATUS_BAD_REQUEST } from '../constants/http-status.constants';
-import { OrderCreatedMessage } from '@commercetools/platform-sdk';
+import { OrderCreatedMessage, OrderImportedMessage } from '@commercetools/platform-sdk';
 import { readAdditionalConfiguration } from '../utils/config.utils';
 import { HandlerReturnType, HandlerType } from '../types/index.types';
 import { findLocale, mapAddress } from '../utils/customer.utils';
@@ -8,7 +8,7 @@ import { getCustomerFromOrder, mapOrderDefaults } from '../utils/order.utils';
 import { mapLineItem } from '../utils/lineitem.utils';
 
 export const handleOrderCreatedMessage: HandlerType<
-  OrderCreatedMessage
+  OrderCreatedMessage | OrderImportedMessage
 > = async (messageBody, languages) => {
   const { orderConfirmationTemplateId } = readAdditionalConfiguration();
 

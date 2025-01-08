@@ -1,10 +1,10 @@
 import { createApiRoot } from '../client/create.client';
 
-export async function getOrderById(orderId: string, expands?: string[]) {
+export async function getStateById(stateId: string, expands?: string[]) {
   return await createApiRoot()
-    .orders()
+    .states()
     .withId({
-      ID: orderId,
+      ID: stateId,
     })
     .get({
       queryArgs: {

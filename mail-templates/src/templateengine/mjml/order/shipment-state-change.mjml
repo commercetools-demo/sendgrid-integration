@@ -1,0 +1,7 @@
+<mj-section css-class="custom-section">
+    <mj-column>
+        <mj-text>
+            {{#if oldShipmentState}}{{oldShipmentState}} {{/if}}{{messages.to}} {{shipmentState}}
+        </mj-text>
+    </mj-column>
+</mj-section>

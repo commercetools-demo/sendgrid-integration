@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { logger } from '../utils/logger.utils';
 import { doValidation } from '../validators/message.validators';
 import { handleOrderStateChanged } from '../handlers/order-state-change.handler';
+import { handleOrderStateTransitioned } from '../handlers/order-state-transitioned.handler';
 import { handleOrderCreatedMessage } from '../handlers/order-confirmation.handler';
 import { handleReturnInfo } from '../handlers/order-refund.handler';
 import { handleCustomerCreated } from '../handlers/customer-registration.handler';
@@ -10,6 +11,7 @@ import { readAdditionalConfiguration } from '../utils/config.utils';
 import { handleCustomerPasswordTokenCreated } from '../handlers/customer-password-token-creation.handler';
 import { loadAdditionalLocalizations } from '../utils/localization.utils';
 import { getProject } from '../ctp/project';
+import { handleShipmentStateChanged } from '../handlers/shipment-state-change.handler';
 
 /**
  * Exposed event POST endpoint.
@@ -30,13 +32,21 @@ export const post = async (request: Request, response: Response) => {
         emailData = await handleCustomerCreated(messageBody, languages);
         break;
       }
+      case 'OrderImported':
       case 'OrderCreated': {
         emailData = await handleOrderCreatedMessage(messageBody, languages);
         break;
       }
-      case 'OrderStateChanged':
-      case 'OrderShipmentStateChanged': {
+      case 'OrderStateChanged': {
         emailData = await handleOrderStateChanged(messageBody, languages);
+        break;
+      }
+      case 'OrderShipmentStateChanged': {
+        emailData = await handleShipmentStateChanged(messageBody, languages);
+        break;
+      }
+      case 'OrderStateTransition': {
+        emailData = await handleOrderStateTransitioned(messageBody, languages);
         break;
       }
       case 'ReturnInfoAdded':

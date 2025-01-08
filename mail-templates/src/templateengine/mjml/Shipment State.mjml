@@ -6,7 +6,7 @@
         <mj-include path="partials/hero-message.mjml"/>
         <mj-include path="partials/divider.mjml"/>
         <mj-include path="order/order-message.mjml"/>
-        <mj-include path="order/order-state-change.mjml"/>
+        <mj-include path="order/shipment-state-change.mjml"/>
         <mj-include path="partials/divider.mjml"/>
         <mj-include path="partials/footer.mjml"/>
     </mj-body>
