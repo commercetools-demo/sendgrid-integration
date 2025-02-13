@@ -7,19 +7,6 @@ deployAs:
       preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
-        - key: CTP_REGION
-          description: commercetools Composable Commerce API region
-          default: europe-west1.gcp
-          required: true
-        - key: CTP_PROJECT_KEY
-          description: commercetools Composable Commerce project key
-          required: true
-        - key: CTP_CLIENT_ID
-          description: commercetools Composable Commerce client ID
-          required: true
-        - key: CTP_SCOPE
-          description: commercetools Composable Commerce client scope
-          required: true
         - key: SENDER_EMAIL_ADDRESS
           description: sender's email address displayed in the email
           required: true
@@ -51,9 +38,6 @@ deployAs:
           description: Default Locale used to localize e.g. dates and prices
           required: true
       securedConfiguration:
-        - key: CTP_CLIENT_SECRET
-          description: commercetools Composable Commerce client secret
-          required: true
         - key: EMAIL_PROVIDER_API_KEY
           description: The API key used to communicate with email provider
           required: true
@@ -71,5 +55,12 @@ deployAs:
           description: The entry point URI path.
           required: true
           default: 'localization-manager'
-        - key: CTP_PROJECT_KEY
-          description: development project key
+inheritAs:
+  apiClient:
+    scopes:
+      - view_state
+      - view_project
+      - view_order
+      - view_customer
+      - manage_customers
+      - view_key_value_documents
