@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { logger } from '../utils/logger.utils';
-import { doValidation } from '../validators/message.validators';
+import {
+  doValidation,
+  isSelfCreatedChange,
+} from '../validators/message.validators';
 import { handleOrderStateChanged } from '../handlers/order-state-change.handler';
 import { handleOrderStateTransitioned } from '../handlers/order-state-transitioned.handler';
 import { handleOrderCreatedMessage } from '../handlers/order-confirmation.handler';
@@ -12,6 +15,7 @@ import { handleCustomerPasswordTokenCreated } from '../handlers/customer-passwor
 import { loadAdditionalLocalizations } from '../utils/localization.utils';
 import { getProject } from '../ctp/project';
 import { handleShipmentStateChanged } from '../handlers/shipment-state-change.handler';
+import CustomError from '../errors/custom.error';
 
 /**
  * Exposed event POST endpoint.
@@ -24,6 +28,14 @@ import { handleShipmentStateChanged } from '../handlers/shipment-state-change.ha
 export const post = async (request: Request, response: Response) => {
   // Check request body
   const messageBody = doValidation(request);
+  //the connector itself creates customer tokens and should not send an email again
+  if (isSelfCreatedChange(messageBody)) {
+    logger.info(
+      `Incoming message (ID=${messageBody.id}) is about change of ${messageBody.type} created by the current connector. Skip handling the message.`
+    );
+    response.status(204).send();
+  }
+
   let emailData = undefined;
   try {
     const { languages } = await getProject();

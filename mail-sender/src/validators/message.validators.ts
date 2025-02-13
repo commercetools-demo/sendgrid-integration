@@ -2,6 +2,13 @@ import CustomError from '../errors/custom.error';
 import { Request } from 'express';
 import { logger } from '../utils/logger.utils';
 import { Message } from '@commercetools/platform-sdk';
+import { readConfiguration } from '../utils/config.utils';
+
+export function isSelfCreatedChange(messageBody: Message) {
+  const resourceModifiedBy = messageBody.createdBy?.clientId;
+  const currentConnectorClientId = readConfiguration().clientId;
+  return resourceModifiedBy === currentConnectorClientId;
+}
 
 export function doValidation(request: Request) {
   // Check request body
