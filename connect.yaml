@@ -58,8 +58,8 @@ deployAs:
 inheritAs:
   apiClient:
     scopes:
-      - view_state
-      - view_order
-      - view_customer
+      - view_states
+      - view_orders
+      - view_customers
       - manage_customers
       - view_key_value_documents
