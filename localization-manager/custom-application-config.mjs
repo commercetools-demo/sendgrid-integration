@@ -9,7 +9,7 @@ const config = {
   cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
   env: {
     development: {
-      initialProjectKey: '${env:INITIAL_PROJECT_KEY}',
+      initialProjectKey: '${env:CTP_PROJECT_KEY}',
     },
     production: {
       applicationId: '${env:CUSTOM_APPLICATION_ID}',

@@ -71,5 +71,5 @@ deployAs:
           description: The entry point URI path.
           required: true
           default: 'localization-manager'
-        - key: INITIAL_PROJECT_KEY
+        - key: CTP_PROJECT_KEY
           description: development project key
