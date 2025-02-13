@@ -59,7 +59,6 @@ inheritAs:
   apiClient:
     scopes:
       - view_state
-      - view_project
       - view_order
       - view_customer
       - manage_customers
